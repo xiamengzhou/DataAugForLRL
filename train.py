@@ -42,13 +42,9 @@ if opt.layers != -1:
     opt.enc_layers = opt.layers
     opt.dec_layers = opt.layers
 
-opt.brnn = (opt.encoder_type == "brnn")
 if opt.seed > 0:
     random.seed(opt.seed)
     torch.manual_seed(opt.seed)
-
-if opt.rnn_type == "SRU" and not opt.gpuid:
-    raise AssertionError("Using SRU requires -gpuid set.")
 
 if torch.cuda.is_available() and not opt.gpuid:
     print("WARNING: You have a CUDA device, should run with -gpuid 0")

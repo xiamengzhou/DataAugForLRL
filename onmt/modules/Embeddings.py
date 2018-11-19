@@ -8,7 +8,7 @@ class Embeddings(nn.Module):
                  word_vocab_size,
                  word_padding_idx,
                  dropout=0):
-
+        self.embedding_size = word_vec_size
         super(Embeddings, self).__init__()
         self.word_padding_idx = word_padding_idx
         embeddings = nn.Embedding(word_vocab_size, word_vec_size, padding_idx=word_padding_idx)
@@ -21,6 +21,19 @@ class Embeddings(nn.Module):
         emb = self.embeddings(input)
         emb = self.pe(emb)
         return emb
+
+    def load_pretrained_vectors(self, emb_file, fixed):
+        """Load in pretrained embeddings.
+
+        Args:
+          emb_file (str) : path to torch serialized embeddings
+          fixed (bool) : if true, embeddings are not updated
+        """
+        if emb_file:
+            pretrained = torch.load(emb_file)
+            self.embeddings.weight.data.copy_(pretrained)
+            if fixed:
+                self.embeddings.weight.requires_grad = False
 
 class PositionalEncoding(nn.Module):
     """
