@@ -238,7 +238,10 @@ class Trainer(object):
             self.valid_loss.cur_dataset = cur_dataset
 
             src, src_lengths = batch.src
+            src = src.unsqueeze(-1)
             tgt = batch.tgt
+            tgt = tgt.unsqueeze(-1)
+
 
             # F-prop through the model.
             outputs, attns = \
@@ -312,9 +315,11 @@ class Trainer(object):
 
             dec_state = None
             src, src_lengths = batch.src
+            src = src.unsqueeze(-1)
             report_stats.n_src_words += src_lengths.sum()
 
             tgt_outer = batch.tgt
+            tgt_outer = tgt_outer.unsqueeze(-1)
 
 
             for j in range(0, target_size-1, trunc_size):

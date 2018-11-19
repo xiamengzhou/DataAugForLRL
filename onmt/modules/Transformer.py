@@ -36,7 +36,7 @@ class EncoderLayer(nn.Module):
         return ans
 
 
-class TransformerEncoder():
+class TransformerEncoder(nn.Module):
     def __init__(self, num_layers, hidden_size,
                  dropout, embeddings):
         super(TransformerEncoder, self).__init__()
@@ -46,8 +46,9 @@ class TransformerEncoder():
             EncoderLayer(hidden_size, dropout) for _ in range(num_layers)])
         self.layer_norm = LayerNorm(hidden_size)
 
-    def forward(self, input):
-         ### Seems like size of input must end with 1
+    def forward(self, input, src_lengths):
+        ### Seems like size of input must end with 1
+
         emb = self.embeddings(input)
         # s_len, n_batch, emb_dim = emb.size()
         out = emb.transpose(0, 1).contiguous()

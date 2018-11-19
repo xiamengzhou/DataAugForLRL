@@ -111,6 +111,7 @@ class Translator(object):
 
         # (1) Run the encoder on the src.
         src, src_lengths = batch.src
+        src = src.unsqueeze(-1)
 
         enc_states, memory_bank = self.model.encoder(src, src_lengths)
         tm_enc_final = None
@@ -201,7 +202,8 @@ class Translator(object):
 
     def _run_target(self, batch, data, lattice, _parallel_tm, use_weight_matrix, full_lattice, imitate_jiatao, lexicon):
         src, src_lengths = batch.src
-        tgt_in = batch.tgt[:-1]
+        src = src.unsqueeze(-1)
+        tgt_in = batch.tgt.unsqueeze(-1)[:-1]
 
         #  (1) run the encoder on the src
         enc_states, memory_bank = self.model.encoder(src, src_lengths)

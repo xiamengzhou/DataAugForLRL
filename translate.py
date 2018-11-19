@@ -259,9 +259,7 @@ def translate_single_process(opt, model, fields, data,
     index = iter(range(start_index, end_index))
     output = {}
     for batch in data_iter:
-        batch_data = translator.translate_batch(batch, data, opt.lattice, opt.parallel_tm,
-                                                opt.use_weight_matrix, opt.full_lattice,
-                                                opt.imitate_jiatao, opt.lexicon)
+        batch_data = translator.translate_batch(batch, data)
         translations = builder.from_batch(batch_data)
 
         for trans in translations:
