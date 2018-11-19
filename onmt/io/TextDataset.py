@@ -9,12 +9,8 @@ import sys
 import torch
 import torchtext
 
-from onmt.Utils import aeq
 from onmt.io.DatasetBase import (ONMTDatasetBase, UNK_WORD,
                                  PAD_WORD, BOS_WORD, EOS_WORD)
-from onmt.io.TMFields import TMDict_Field, Lattice_Adj_Field
-import scipy.sparse as sps
-import numpy as np
 
 class TextDataset(ONMTDatasetBase):
     """ Dataset for data_type=='text'

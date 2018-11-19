@@ -6,7 +6,6 @@ from itertools import count
 import torch
 import torchtext.data
 import torchtext.vocab
-from torch.autograd import Variable
 from torchtext.data.utils import RandomShuffler
 
 from onmt.io.DatasetBase import UNK_WORD, PAD_WORD, BOS_WORD, EOS_WORD
