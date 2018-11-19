@@ -123,11 +123,7 @@ class TransformerDecoder(nn.Module):
 
         self.layer_norm = LayerNorm(hidden_size)
 
-    def forward(self, tgt, memory_bank, state, memory_lengths=None, tm=None, adj=None,
-                parallel_tm=None, parallel_tm_lengths=None,
-                use_weight_matrix=False, tm_enc_final=None,
-                tm_memory_bank=None, tm_src_memory_lengths=None,
-                tm_lengths=None, lexicon=None):
+    def forward(self, tgt, memory_bank, state, memory_lengths=None):
         assert isinstance(state, TransformerDecoderState)
         tgt_len, tgt_batch, _ = tgt.size()
         memory_len, memory_batch, _ = memory_bank.size()
@@ -145,15 +141,13 @@ class TransformerDecoder(nn.Module):
         attns = {"std": []}
 
         # Run the forward pass of the TransformerDecoder.
-        emb = self.embeddings(tgt, None)
+        emb = self.embeddings(tgt)
         if state.previous_input is not None:
             emb = emb[state.previous_input.size(0):, ]
         assert emb.dim() == 3  # len x batch x embedding_dim
 
         output = emb.transpose(0, 1).contiguous()  # batch * length * channels
         src_memory_bank = memory_bank.transpose(0, 1).contiguous()
-        if tm_memory_bank is not None:
-            tm_memory_bank = [t.transpose(0, 1).contiguous() for t in tm_memory_bank]
 
         padding_idx = self.embeddings.word_padding_idx
         src_pad_mask = Variable(src_words.data.eq(padding_idx).float())
