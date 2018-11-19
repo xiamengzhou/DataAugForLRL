@@ -200,7 +200,7 @@ class Translator(object):
             ret["attention"].append(attn)
         return ret
 
-    def _run_target(self, batch, data, lattice, _parallel_tm, use_weight_matrix, full_lattice, imitate_jiatao, lexicon):
+    def _run_target(self, batch, data):
         src, src_lengths = batch.src
         src = src.unsqueeze(-1)
         tgt_in = batch.tgt.unsqueeze(-1)[:-1]

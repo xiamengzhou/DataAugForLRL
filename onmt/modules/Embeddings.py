@@ -18,7 +18,7 @@ class Embeddings(nn.Module):
 
 
     def forward(self, input):
-        emb = self.embeddings(input)
+        emb = self.embeddings(input.squeeze(-1))
         emb = self.pe(emb)
         return emb
 
