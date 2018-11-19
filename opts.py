@@ -1,5 +1,4 @@
 import argparse
-from onmt.modules.SRU import CheckSRU
 
 
 def model_opts(parser):
@@ -69,6 +68,9 @@ def preprocess_opts(parser):
     group.add_argument('-src_words_min_frequency', type=int, default=0)
     group.add_argument('-tgt_words_min_frequency', type=int, default=0)
 
+    group.add_argument('-share_vocab', action='store_true',
+                       help="Share source and target vocabulary")
+
     # Truncation options, for text corpus
     group = parser.add_argument_group('Pruning')
     group.add_argument('-src_seq_length', type=int, default=50,
@@ -91,6 +93,8 @@ def preprocess_opts(parser):
     group = parser.add_argument_group('Logging')
     group.add_argument('-report_every', type=int, default=100000,
                        help="Report status every this many sentences")
+
+    group.add_argument('-cover', default="standard")
 
 
 def train_opts(parser):
