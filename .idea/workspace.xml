@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e3c4f64b-11fa-4fb2-aa3f-d8de53608997" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/onmt/modules/Transformer.py" afterPath="$PROJECT_DIR$/onmt/modules/Transformer.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/opts.py" afterPath="$PROJECT_DIR$/opts.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,7 +14,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Transformer.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Transformer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/onmt/modules/Transformer.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-431">
@@ -27,6 +27,16 @@
                 <element signature="e#8523#12516#0" expanded="false" />
                 <element signature="e#12550#13073#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="opts.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/opts.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="257" column="44" lean-forward="false" selection-start-line="257" selection-start-column="44" selection-end-line="257" selection-end-column="44" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -121,16 +131,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="train.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/train.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1047">
-              <caret line="16" column="14" lean-forward="true" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -176,7 +176,6 @@
         <option value="$PROJECT_DIR$/onmt/io/TextDataset.py" />
         <option value="$PROJECT_DIR$/onmt/modules/__init__.py" />
         <option value="$PROJECT_DIR$/train.py" />
-        <option value="$PROJECT_DIR$/opts.py" />
         <option value="$PROJECT_DIR$/onmt/translate/Translation.py" />
         <option value="$PROJECT_DIR$/onmt/Trainer.py" />
         <option value="$PROJECT_DIR$/translate.py" />
@@ -185,6 +184,7 @@
         <option value="$PROJECT_DIR$/onmt/Models.py" />
         <option value="$PROJECT_DIR$/onmt/translate/Translator.py" />
         <option value="$PROJECT_DIR$/onmt/modules/Transformer.py" />
+        <option value="$PROJECT_DIR$/opts.py" />
       </list>
     </option>
   </component>
@@ -443,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1542612520834</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Fix bugs.">
+      <created>1542612837118</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1542612837118</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -667,14 +674,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/opts.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="257" column="25" lean-forward="false" selection-start-line="257" selection-start-column="25" selection-end-line="257" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/train.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1047">
@@ -769,6 +768,14 @@
             <element signature="e#8523#12516#0" expanded="false" />
             <element signature="e#12550#13073#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/opts.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="257" column="44" lean-forward="false" selection-start-line="257" selection-start-column="44" selection-end-line="257" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
