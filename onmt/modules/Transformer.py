@@ -342,7 +342,7 @@ class LayerNorm(nn.Module):
         mean = torch.mean(x, dim=-1, keepdim=True)
         std = torch.std(x, dim=-1, keepdim=True)
         norm_x = (x - mean) / (std + self.eps)
-        return norm_x * self.scale + self.bia
+        return norm_x * self.scale + self.bias
 
 def get_local_mask(length, diagonal=1, cuda=True):
     ans = Variable(torch.ones(length, length))
