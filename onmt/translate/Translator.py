@@ -114,11 +114,8 @@ class Translator(object):
         src = src.unsqueeze(-1)
 
         enc_states, memory_bank = self.model.encoder(src, src_lengths)
-        tm_enc_final = None
-        tm_memory_bank = None
 
-        dec_states = self.model.decoder.init_decoder_state(
-                                        src, memory_bank, enc_states)
+        dec_states = self.model.decoder.init_decoder_state(src)
 
         if src_lengths is None:
             src_lengths = torch.Tensor(batch_size).type_as(memory_bank.data)\
@@ -211,7 +208,7 @@ class Translator(object):
         tm_memory_bank = None
 
         dec_states = \
-            self.model.decoder.init_decoder_state(src, memory_bank, enc_states)
+            self.model.decoder.init_decoder_state(src)
 
         #  (2) if a target is specified, compute the 'goldScore'
         #  (i.e. log likelihood) of the target under the model
