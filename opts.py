@@ -255,6 +255,7 @@ def train_opts(parser):
                        help="""Log directory for Tensorboard.
                        This is also the name of the run.
                        """)
+    group.add_argument('valid_pt')
 
 
 def translate_opts(parser):

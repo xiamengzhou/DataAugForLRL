@@ -206,8 +206,7 @@ def make_loss_compute(model, tgt_vocab, opt, train=True):
     """
     compute = onmt.Loss.NMTLossCompute(
             model.generator, tgt_vocab,
-            label_smoothing=opt.label_smoothing if train else 0.0,
-            tm_lambda=opt.tm_lambda)
+            label_smoothing=opt.label_smoothing if train else 0.0)
 
     if use_gpu(opt):
         compute.cuda()
@@ -387,7 +386,6 @@ def build_optim(model, checkpoint):
             start_decay_at=opt.start_decay_at,
             beta1=opt.adam_beta1,
             beta2=opt.adam_beta2,
-            adagrad_accum=opt.adagrad_accumulator_init,
             decay_method=opt.decay_method,
             warmup_steps=opt.warmup_steps,
             model_size=opt.rnn_size)
