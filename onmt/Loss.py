@@ -65,7 +65,7 @@ class LossComputeBase(nn.Module):
         """
         return NotImplementedError
 
-    def monolithic_compute_loss(self, batch, output, attns, add, gate, lexicon_score):
+    def monolithic_compute_loss(self, batch, output, attns):
         """
         Compute the forward loss for the batch.
 
