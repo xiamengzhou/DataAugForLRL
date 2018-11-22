@@ -80,7 +80,7 @@ def build_dataset(fields, data_type, src_path, tgt_path, src_seq_length=0, tgt_s
 
     # Build src/tgt examples iterator from corpus files, also extract
     # number of features.
-    src_examples_iter, num_src_feats = \
+    src_examples_iter = \
         _make_examples_nfeats_tpl(src_path, src_seq_length_trunc)
 
     # For all data types, the tgt side corpus is in form of text.
@@ -195,11 +195,11 @@ def _make_examples_nfeats_tpl(src_path, src_seq_length_trunc):
     on source side for different 'data_type'.
     """
 
-    src_examples_iter, num_src_feats = \
+    src_examples_iter = \
             TextDataset.make_text_examples_nfeats_tpl(
                 src_path, src_seq_length_trunc, "src")
 
-    return src_examples_iter, num_src_feats
+    return src_examples_iter
 
 
 class TMBatch:
