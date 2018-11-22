@@ -54,3 +54,17 @@ python3 ~/11731_final/train.py -data $data_dir/processed/$process_type/$lang/$pr
                  -select_model ppl \
                  -save_cutoff 10 > $save_dir/log
 ```
+
+Test.
+```bash
+m=model # fill by yourself
+src=src # fill by yourself
+gpu=0
+output=output # fill by yourself
+
+python3 ~/mengzhox/11731_final/translate.py -gpu $gpu -model $m \
+                               -src $src \
+                               -output $output \
+                               -translate_batch_size 10 -new_bpe \
+                               -length_penalty avg
+```
