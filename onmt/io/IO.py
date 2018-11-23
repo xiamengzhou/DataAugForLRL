@@ -74,7 +74,7 @@ def merge_vocabs(vocabs, vocab_size=None):
                                  max_size=vocab_size)
 
 
-def build_dataset(fields, data_type, src_path, tgt_path, src_seq_length=0, tgt_seq_length=0,
+def build_dataset(fields, src_path, tgt_path, src_seq_length=0, tgt_seq_length=0,
                   src_seq_length_trunc=0, tgt_seq_length_trunc=0,
                   use_filter_pred=True):
 
