@@ -243,9 +243,7 @@ def translate_single_process(opt, model, fields, data,
         cuda=opt.cuda,
         beam_trace=opt.dump_beam != "",
         min_length=opt.min_length,
-        stepwise_penalty=opt.stepwise_penalty,
-        block_ngram_repeat=opt.block_ngram_repeat,
-        ignore_when_blocking=opt.ignore_when_blocking,)
+        stepwise_penalty=opt.stepwise_penalty)
     builder = onmt.translate.TranslationBuilder(
         data, translator.tgt_vocab,
         opt.n_best, opt.replace_unk, opt.tgt)
