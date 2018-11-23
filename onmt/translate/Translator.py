@@ -142,9 +142,9 @@ class Translator(object):
 
             # Turn any copied words to UNKs
             # 0 is unk
-            if self.copy_attn:
-                inp = inp.masked_fill(
-                    inp.gt(len(self.tgt_vocab) - 1), 0)
+            # if self.copy_attn:
+            #     inp = inp.masked_fill(
+            #         inp.gt(len(self.tgt_vocab) - 1), 0)
 
             # Temporary kludge solution to handle changed dim expectation
             # in the decoder
