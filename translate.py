@@ -231,8 +231,8 @@ def translate_single_process(opt, model, fields, data,
 
     # Translator
     scorer = onmt.translate.GNMTGlobalScorer(opt.alpha,
-                                             opt.beta,
-                                             opt.coverage_penalty,
+                                             -0.,
+                                             None,
                                              opt.length_penalty)
     translator = onmt.translate.Translator(
         model, fields["tgt"].vocab,

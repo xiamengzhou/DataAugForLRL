@@ -205,7 +205,7 @@ class GNMTGlobalScorer(object):
         penalty_builder = Penalties.PenaltyBuilder(cov_penalty,
                                                    length_penalty)
         # Term will be subtracted from probability
-        self.cov_penalty = penalty_builder.coverage_penalty()
+        # self.cov_penalty = penalty_builder.coverage_penalty()
         # Probability will be divided by this
         self.length_penalty = penalty_builder.length_penalty()
 
