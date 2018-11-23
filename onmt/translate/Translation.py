@@ -62,21 +62,22 @@ class TranslationBuilder(object):
         # Sorting
         inds, perm = torch.sort(batch.indices.data)
         src = batch.src[0].data.index_select(1, perm)
+        if self.has_tgt:
+            tgt = batch.tgt.data.index_select(1, perm)
+        else:
+            tgt = None
 
         translations = []
         for b in range(batch_size):
-            if data_type == 'text':
-                src_vocab = self.data.src_vocabs[inds[b]] \
-                  if self.data.src_vocabs else None
-                src_raw = self.data.examples[inds[b]].src
-            else:
-                src_vocab = None
-                src_raw = None
+            src_vocab = self.data.src_vocabs[inds[b]] \
+              if self.data.src_vocabs else None
+            src_raw = self.data.examples[inds[b]].src
             pred_sents = [self._build_target_tokens(
                 src[:, b] if src is not None else None,
                 src_vocab, src_raw,
                 preds[b][n], attn[b][n])
-                          for n in range(self.n_best)]
+                for n in range(self.n_best)]
+
             gold_sent = None
             if tgt is not None:
                 gold_sent = self._build_target_tokens(
