@@ -106,7 +106,7 @@ class TextDataset(ONMTDatasetBase):
         assert side in ['src', 'tgt']
 
         if path is None:
-            return (None, 0)
+            return None
 
         # All examples have same number of features, so we peek first one
         # to get the num_feats.
