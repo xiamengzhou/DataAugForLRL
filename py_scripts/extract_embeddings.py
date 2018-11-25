@@ -2,14 +2,14 @@
 python3 extract_embeddings.py sub $out/11731_final/spm8000/models/spm8000_acc_56.77_ppl_10.70_e15_s0.pt \
                               $data/11731_final/processed/spm8000/azetur/spm8000.vocab.pt \
                               $data/11731_final/analysis/azetur.tran.emb \
-                              $data/11731_final/analysis/azetur.train.emb.tag \
+                              $data/11731_final/analysis/azetur.tran.emb.tag \
                               $data/11731_final/vocab/aze.vocab.spm8k \
                               $data/11731_final/vocab/tur.vocab.spm8k
 
 python3 extract_embeddings.py word $out/11731_final/spm8000/models/spm8000_acc_56.77_ppl_10.70_e15_s0.pt \
                               $data/11731_final/processed/spm8000/azetur/spm8000.vocab.pt \
-                              $data/11731_final/analysis/azetur.tran.emb \
-                              $data/11731_final/analysis/azetur.train.emb.tag \
+                              $data/11731_final/analysis/azetur.tran.emb.tok \
+                              $data/11731_final/analysis/azetur.tran.emb.tok.tag \
                               $data/11731_final/vocab/aze.vocab.spm8k \
                               $data/11731_final/vocab/tur.vocab.spm8k \
                               $data/11731_final/mono/az_mono/az--vocab_size=8000.model \
@@ -98,7 +98,7 @@ if __name__ == '__main__':
                     lrl_vocab_path=sys.argv[6],
                     hrl_vocab_path=sys.argv[7])
 
-    elif sys.argv[2] == "word":
+    elif sys.argv[1] == "word":
         extract_word(model_path=sys.argv[2],
                      vocab_path=sys.argv[3],
                      embed_out_path=sys.argv[4],
