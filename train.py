@@ -220,7 +220,7 @@ def validate_while_training(fields, valid_pt=None):
     return valid_iter
 
 
-def train_model(model, fields, optim, data_type, model_opt):
+def train_model(model, fields, optim, model_opt):
     train_loss = make_loss_compute(model, fields["tgt"].vocab, opt)
     valid_loss = make_loss_compute(model, fields["tgt"].vocab, opt,
                                    train=False)
@@ -231,7 +231,7 @@ def train_model(model, fields, optim, data_type, model_opt):
     grad_accum_count = opt.accum_count
 
     trainer = onmt.Trainer(model, train_loss, valid_loss, optim,
-                           trunc_size, shard_size, data_type,
+                           trunc_size, shard_size,
                            norm_method, grad_accum_count, opt.select_model)
 
     print('\nStart training...')
@@ -338,7 +338,7 @@ def lazily_load_dataset(corpus_type, valid_pt=None):
             yield lazy_dataset_loader(pt, corpus_type)
 
 
-def load_fields(dataset, data_type, checkpoint):
+def load_fields(dataset, checkpoint):
     if checkpoint is not None:
         print('Loading vocab from checkpoint at %s.' % opt.train_from)
         fields = onmt.io.load_fields_from_vocab(checkpoint['vocab'])
@@ -413,10 +413,9 @@ def main():
     # Peek the fisrt dataset to determine the data_type.
     # (All datasets have the same data_type).
     first_dataset = next(lazily_load_dataset("train"))
-    data_type = first_dataset.data_type
 
     # Load fields generated from preprocess phase.
-    fields = load_fields(first_dataset, data_type, checkpoint)
+    fields = load_fields(first_dataset, checkpoint)
 
     # Build model.
     model = build_model(model_opt, opt, fields, checkpoint)
@@ -427,7 +426,7 @@ def main():
     optim = build_optim(model, checkpoint)
 
     # Do training.
-    train_model(model, fields, optim, data_type, model_opt)
+    train_model(model, fields, optim, model_opt)
 
     # If using tensorboard for logging, close the writer after training.
     if opt.tensorboard:

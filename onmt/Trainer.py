@@ -106,7 +106,7 @@ class Trainer(object):
     """
 
     def __init__(self, model, train_loss, valid_loss, optim,
-                 trunc_size=0, shard_size=32, data_type='text',
+                 trunc_size=0, shard_size=32,
                  norm_method="sents", grad_accum_count=1, select_model="ppl"):
         # Basic attributes.
         self.model = model
@@ -115,7 +115,6 @@ class Trainer(object):
         self.optim = optim
         self.trunc_size = trunc_size
         self.shard_size = shard_size
-        self.data_type = data_type
         self.norm_method = norm_method
         self.grad_accum_count = grad_accum_count
         self.progress_step = 0
