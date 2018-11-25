@@ -257,6 +257,11 @@ def train_opts(parser):
                        """)
     group.add_argument('-valid_pt', type=str)
 
+    # Monolingual constraint
+    group = parser.add_argument_group('Monolingual')
+    group.add_argument("-mono_cons", action="store_true")
+
+
 
 def translate_opts(parser):
     group = parser.add_argument_group('Model')

@@ -316,7 +316,7 @@ def lazily_load_dataset(corpus_type, valid_pt=None):
     Returns:
         A list of dataset, the dataset(s) are lazily loaded.
     """
-    assert corpus_type in ["train", "valid"]
+    assert corpus_type in ["train", "valid", "train_mono"]
 
     def lazy_dataset_loader(pt_file, corpus_type):
         dataset = torch.load(pt_file)

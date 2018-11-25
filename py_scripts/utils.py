@@ -23,3 +23,4 @@ def load_dict(d):
         di[w] = freq
     print("Load dictionary from {}!".format(d))
     return di
+

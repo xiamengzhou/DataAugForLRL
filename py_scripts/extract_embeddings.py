@@ -14,6 +14,17 @@ python3 extract_embeddings.py word $out/11731_final/spm8000/models/spm8000_acc_5
                               $data/11731_final/vocab/tur.vocab.tok \
                               $data/11731_final/mono/az_mono/az--vocab_size=8000.model \
                               $data/11731_final/mono/tr_mono/tr--vocab_size=8000.model
+
+python3 extract_embeddings.py dis_word $out/11731_final/sepspm8k/azetur/models/sepspm8k_acc_54.92_ppl_11.96_e14_s9228.pt \
+                              $data/11731_final/processed/sepspm8k/azetur/sepspm8k.vocab.pt \
+                              $data/11731_final/analysis/azetur.tran.emb.tok.dis \
+                              $data/11731_final/analysis/azetur.tran.emb.tok.dis.tag \
+                              $data/11731_final/vocab/aze.vocab.tok \
+                              $data/11731_final/vocab/tur.vocab.tok \
+                              $data/11731_final/mono/az_mono/az--vocab_size=8000.model \
+                              $data/11731_final/mono/tr_mono/tr--vocab_size=8000.model \
+                              $data/11731_final/vocab/aze.vocab.spm8k
+
 """
 
 from utils import load_model, load_vocab, load_dict

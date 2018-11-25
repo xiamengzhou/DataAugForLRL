@@ -148,7 +148,7 @@ def build_vocab(train_dataset_files, fields, share_vocab,
         _build_field_vocab_all(fields["tgt"], counter["tgt"],
                                 max_size=tgt_vocab_size,
                                 min_freq=tgt_words_min_frequency,
-                               vocab_file=tgt_vocab_file)
+                                vocab_file=tgt_vocab_file)
     else:
         _build_field_vocab(fields["tgt"], counter["tgt"],
             max_size=tgt_vocab_size,
@@ -341,11 +341,11 @@ class Vocab(torchtext.vocab.Vocab):
         itos = []
         f = open(file, "r").readlines()
         if max is not None:
-            f = f[4:max+4]
+            f = f[:max]
         else:
-            f = f[4:]
+            f = f
         for line in f:
-            index, word = line.split()
+            word, freq = line.split()
             itos.append(word)
         return itos
 

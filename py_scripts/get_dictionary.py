@@ -6,7 +6,7 @@ python3 get_dictionary.py --src_emb /home/junjieh/mengzhox/MUSE/deen_re5/debug/s
 
 python3 get_dictionary.py --lrl_hrl_emb $data/11731_final/analysis/azetur.tran.emb.tok.dis \
                           --lrl_hrl_vocab $data/11731_final/analysis/azetur.tran.emb.tok.dis.tag \
-                          --output $data/11731_final/analysis/azetur_S2T&T2S \
+                          --output $data/11731_final/analysis/azetur_S2T_T2S \
                           --dico_build "S2T&T2S"
 """
 

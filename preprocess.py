@@ -39,7 +39,8 @@ def parse_args():
     return opt
 
 
-def build_save_text_dataset_in_shards(src_corpus, tgt_corpus, fields, corpus_type, opt):
+def build_save_text_dataset_in_shards(src_corpus, tgt_corpus, fields, corpus_type, opt,
+                                      src_mono_corpus_1=None, src_mono_corpus_2=None):
     corpus_size = os.path.getsize(src_corpus)
     if corpus_size > 10 * (1024**2) and opt.max_shard_size == 0:
         print("Warning. The corpus %s is larger than 10M bytes, you can "
@@ -58,6 +59,13 @@ def build_save_text_dataset_in_shards(src_corpus, tgt_corpus, fields, corpus_typ
                 tgt_corpus, opt.tgt_seq_length_trunc,
                 "tgt", opt.max_shard_size,
                 assoc_iter=src_iter)
+    if src_mono_corpus_1:
+        assert src_mono_corpus_2 is not None
+        src_mono_1_iter = onmt.io.ShardedTextCorpusIterator(
+                            src_mono_corpus_1, 0, "src_mono_1", opt.max_shard_size)
+        src_mono_2_iter = onmt.io.ShardedTextCorpusIterator(
+                            src_mono_corpus_2, 0, "src_mono_2", opt.max_shard_size,
+                            assoc_iter=src_mono_1_iter)
 
     index = 0
     while not src_iter.hit_end():
@@ -86,13 +94,18 @@ def build_save_dataset(corpus_type, fields, opt):
     if corpus_type == 'train':
         src_corpus = opt.train_src
         tgt_corpus = opt.train_tgt
+        src_mono_corpus_1 = None
+        src_mono_corpus_2 = None
+        if opt.mono_cons:
+            src_mono_corpus_1 = opt.train_src_mono_1
+            src_mono_corpus_2 = opt.train_src_mono_2
 
     else:
         src_corpus = opt.valid_src
         tgt_corpus = opt.valid_tgt
 
     return build_save_text_dataset_in_shards(
-            src_corpus, tgt_corpus, fields, corpus_type, opt)
+            src_corpus, tgt_corpus, fields, corpus_type, opt, src_mono_corpus_1, src_mono_corpus_2)
 
 
 def build_save_vocab(train_dataset, fields, opt):
