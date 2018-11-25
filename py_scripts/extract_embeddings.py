@@ -67,7 +67,7 @@ def extract_word(model_path, vocab_path, embed_out_path, vocab_out_path,
     hrl_vocab = load_dict(hrl_vocab_path)
 
     for w in lrl_vocab:
-        tokens = lrl_vocab.encode_as_pieces(w)
+        tokens = lrl_s.encode_as_pieces(w)
         emb = torch.zeros(512)
         for t in tokens:
             emb += src_embedding[src_vocab.stoi[t]]
@@ -78,7 +78,7 @@ def extract_word(model_path, vocab_path, embed_out_path, vocab_out_path,
         vocab_output.write(w + "\t" + "lrl" + "\n")
 
     for w in hrl_vocab:
-        tokens = hrl_vocab.encode_as_pieces(w)
+        tokens = hrl_s.encode_as_pieces(w)
         emb = torch.zeros(512)
         for t in tokens:
             emb += src_embedding[src_vocab.stoi[t]]
