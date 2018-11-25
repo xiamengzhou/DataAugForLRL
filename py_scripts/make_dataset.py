@@ -12,13 +12,13 @@ from utils import load_dict
 import sys
 
 def make_dataset(train_src, output_file, lrl_vocab, hrl_vocab, cutoff):
-    f = open(train_src, "r").readlines()[cutoff:]
+    f = open(train_src, "r").readlines()
     f2 = open(output_file, "w")
     lrl_vocab = load_dict(lrl_vocab)
     hrl_vocab = load_dict(hrl_vocab)
     for line in f[:cutoff]:
         f2.write(line)
-    for line in f:
+    for line in f[cutoff:]:
         tokens = line.split()
         for i, t in enumerate(tokens):
             if t in lrl_vocab and t in hrl_vocab:
