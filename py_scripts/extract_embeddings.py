@@ -1,3 +1,12 @@
+"""
+python3 extract_embeddings.py $out/11731_final/spm8000/models/spm8000_acc_56.77_ppl_10.70_e15_s0.pt \
+                              $data/11731_final/processed/spm8000/azetur/spm8000.vocab.pt \
+                              $data/11731_final/analysis/azetur.tran.emb \
+                              $data/11731_final/analysis/azetur.train.emb.tag \
+                              $data/11731_final/vocab/aze.vocab.spm8k \
+                              $data/11731_final/vocab/tur.vocab.spm8k
+"""
+
 from utils import load_model, load_vocab, load_dict
 import sys
 
@@ -7,8 +16,8 @@ if __name__ == '__main__':
     # tgt_embedding = model["model"]["decoder.embeddings.embeddings.weight"]
     src_vocab = load_vocab(sys.argv[2])
 
-    embedding_output = sys.argv[3]
-    vocab_output = sys.argv[4]
+    embedding_output = open(sys.argv[3], "w")
+    vocab_output = open(sys.argv[4], "w")
 
     lrl_vocab = load_dict(sys.argv[5])
     hrl_vocab = load_dict(sys.argv[6])
