@@ -94,18 +94,18 @@ def build_save_dataset(corpus_type, fields, opt):
     if corpus_type == 'train':
         src_corpus = opt.train_src
         tgt_corpus = opt.train_tgt
-        src_mono_corpus_1 = None
-        src_mono_corpus_2 = None
-        if opt.mono_cons:
-            src_mono_corpus_1 = opt.train_src_mono_1
-            src_mono_corpus_2 = opt.train_src_mono_2
+        # src_mono_corpus_1 = None
+        # src_mono_corpus_2 = None
+        # if opt.mono_cons:
+        #     src_mono_corpus_1 = opt.train_src_mono_1
+        #     src_mono_corpus_2 = opt.train_src_mono_2
 
     else:
         src_corpus = opt.valid_src
         tgt_corpus = opt.valid_tgt
 
     return build_save_text_dataset_in_shards(
-            src_corpus, tgt_corpus, fields, corpus_type, opt, src_mono_corpus_1, src_mono_corpus_2)
+            src_corpus, tgt_corpus, fields, corpus_type, opt)
 
 
 def build_save_vocab(train_dataset, fields, opt):
