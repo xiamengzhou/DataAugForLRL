@@ -29,4 +29,4 @@ if __name__ == '__main__':
     import sys
     data = read_vectors(sys.argv[1])
     re = train_pca(data)
-    output(data, sys.argv[2])
+    output(re, sys.argv[2])
