@@ -1,5 +1,11 @@
 """
-    Make a dataset so that same word can be of different embedding in aze and tur.
+Make a dataset so that same word can be of different embedding in aze and tur.
+
+python3 make_dataset.py $data/11731_final/bilang/azetur_eng/ted-train.orig.azetur.tok.spm8k \
+                        $data/11731_final/bilang/azetur_eng/ted-train.orig.azetur.tok.sepspm8k \
+                        $data/11731_final/vocab/aze.vocab.spm8k \
+                        $data/11731_final/vocab/tur.vocab.spm8k \
+                        5946
 """
 
 from utils import load_dict
@@ -10,7 +16,8 @@ def make_dataset(train_src, output_file, lrl_vocab, hrl_vocab, cutoff):
     f2 = open(output_file, "w")
     lrl_vocab = load_dict(lrl_vocab)
     hrl_vocab = load_dict(hrl_vocab)
-    f2.write(f[:cutoff])
+    for line in f[:cutoff]:
+        f2.write(line)
     for line in f:
         tokens = line.split()
         for i, t in enumerate(tokens):
