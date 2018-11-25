@@ -10,8 +10,8 @@ python3 extract_embeddings.py word $out/11731_final/spm8000/models/spm8000_acc_5
                               $data/11731_final/processed/spm8000/azetur/spm8000.vocab.pt \
                               $data/11731_final/analysis/azetur.tran.emb.tok \
                               $data/11731_final/analysis/azetur.tran.emb.tok.tag \
-                              $data/11731_final/vocab/aze.vocab.spm8k \
-                              $data/11731_final/vocab/tur.vocab.spm8k \
+                              $data/11731_final/vocab/aze.vocab.tok \
+                              $data/11731_final/vocab/tur.vocab.tok \
                               $data/11731_final/mono/az_mono/az--vocab_size=8000.model \
                               $data/11731_final/mono/tr_mono/tr--vocab_size=8000.model
 """

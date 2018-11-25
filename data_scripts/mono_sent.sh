@@ -15,4 +15,14 @@ mkdir $data/11731_final/vocab
 for lang in aze tur bel rus glg por slk ces; do
 python3 ~/NMT/rapid/utils.py vocab $data_dir/${lang}_eng/ted-train.orig.${lang}.tok.spm8k \
                                    $data_dir/../vocab/${lang}.vocab.spm8k
+
+python3 ~/NMT/rapid/utils.py vocab $data_dir/${lang}_eng/ted-train.orig.${lang}.tok \
+                                   $data_dir/../vocab/${lang}.vocab.tok
+done
+
+for lang in azetur belrus glgpor slkces; do
+python3 ~/NMT/rapid/utils.py vocab $data_dir/${lang}_eng/ted-train.orig.${lang}.tok\
+                                   $data_dir/../vocab/${lang}.vocab
+python3 ~/NMT/rapid/utils.py vocab $data_dir/${lang}_eng/ted-train.orig.${lang}.tok.spm8k \
+                                   $data_dir/../vocab/${lang}.vocab.spm8k
 done
