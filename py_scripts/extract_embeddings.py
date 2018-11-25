@@ -14,7 +14,7 @@ if __name__ == '__main__':
     model = load_model(sys.argv[1])
     src_embedding = model["model"]["encoder.embeddings.embeddings.weight"]
     # tgt_embedding = model["model"]["decoder.embeddings.embeddings.weight"]
-    src_vocab = load_vocab(sys.argv[2])
+    src_vocab, _ = load_vocab(sys.argv[2])
 
     embedding_output = open(sys.argv[3], "w")
     vocab_output = open(sys.argv[4], "w")
