@@ -48,6 +48,7 @@ def extract_sub(model_path, vocab_path, embed_out_path, vocab_out_path, lrl_voca
         else:
             vocab_output.write(w + "\t" + "hrl" + "\n")
 
+# Share surface level lexicons
 def extract_word(model_path, vocab_path, embed_out_path, vocab_out_path,
                  lrl_vocab_path, hrl_vocab_path, lrl_spm_model, hrl_spm_model):
     lrl_s = SentencePieceProcessor()
@@ -88,6 +89,49 @@ def extract_word(model_path, vocab_path, embed_out_path, vocab_out_path,
         embedding_output.write("\n")
         vocab_output.write(w + "\t" + "hrl" + "\n")
 
+# Do not share surface level lexicons
+def extract_disparate_word(model_path, vocab_path, embed_out_path, vocab_out_path,
+                           lrl_vocab_path, hrl_vocab_path, lrl_spm_model, hrl_spm_model, lrl_spm_vocab_path):
+    lrl_s = SentencePieceProcessor()
+    lrl_s.load(lrl_spm_model)
+    hrl_s = SentencePieceProcessor()
+    hrl_s.load(hrl_spm_model)
+
+    model = load_model(model_path)
+    src_embedding = model["model"]["encoder.embeddings.embeddings.weight"]
+    # tgt_embedding = model["model"]["decoder.embeddings.embeddings.weight"]
+    src_vocab, _ = load_vocab(vocab_path)
+
+    embedding_output = open(embed_out_path, "w")
+    vocab_output = open(vocab_out_path, "w")
+
+    lrl_vocab = load_dict(lrl_vocab_path)
+    hrl_vocab = load_dict(hrl_vocab_path)
+    lrl_spm_vocab = load_dict(lrl_spm_vocab_path)
+
+    for w in lrl_vocab:
+        tokens = lrl_s.encode_as_pieces(w)
+        emb = torch.zeros(512)
+        for t in tokens:
+            emb += src_embedding[src_vocab.stoi[t]]
+        emb_str = [str(e) for e in emb]
+        assert len(emb_str) == 512
+        embedding_output.write("\t".join(emb_str))
+        embedding_output.write("\n")
+        vocab_output.write(w + "\t" + "lrl" + "\n")
+
+    for w in hrl_vocab:
+        tokens = hrl_s.encode_as_pieces(w)
+        emb = torch.zeros(512)
+        for t in tokens:
+            if t in lrl_spm_vocab:
+                t2 = t + '2'
+                emb += src_embedding[src_vocab.stoi[t2]]
+        emb_str = [str(e) for e in emb]
+        assert len(emb_str) == 512
+        embedding_output.write("\t".join(emb_str))
+        embedding_output.write("\n")
+        vocab_output.write(w + "\t" + "hrl" + "\n")
 
 if __name__ == '__main__':
     if sys.argv[1] == "sub":
@@ -107,6 +151,17 @@ if __name__ == '__main__':
                      hrl_vocab_path=sys.argv[7],
                      lrl_spm_model=sys.argv[8],
                      hrl_spm_model=sys.argv[9])
+
+    elif sys.argv[1] == "dis_word":
+        extract_disparate_word(model_path=sys.argv[2],
+                     vocab_path=sys.argv[3],
+                     embed_out_path=sys.argv[4],
+                     vocab_out_path=sys.argv[5],
+                     lrl_vocab_path=sys.argv[6],
+                     hrl_vocab_path=sys.argv[7],
+                     lrl_spm_model=sys.argv[8],
+                     hrl_spm_model=sys.argv[9],
+                     lrl_spm_vocab_path=sys.argv[10])
 
 
 
