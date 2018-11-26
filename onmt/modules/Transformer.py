@@ -52,7 +52,8 @@ class TransformerEncoder(nn.Module):
             self.ma = MultiheadAttention(hidden_size,
                                          hidden_size,
                                          hidden_size,
-                                         dropout)
+                                         dropout,
+                                         trans=False)
             self.ma_postdropout = nn.Dropout(dropout)
 
 
@@ -66,8 +67,7 @@ class TransformerEncoder(nn.Module):
         if self.vecs is not None:
             mid = self.ma_prenorm(out)
             v = self.vecs.unsqueeze(0).expand(out.size(0), -1, -1)
-            att = torch.matmul(mid, v.transpose(1, 2).contiguous())
-            mid = torch.matmul(att, v)
+            mid = self.ma(mid, v.transpose(0, 1).contiguous, self.num_heads, None)
             out = self.ma_postdropout(mid) + out
         words = input[:, :, 0].transpose(0, 1)
 
@@ -233,12 +233,15 @@ class MultiheadAttention(nn.Module):
                  total_value_depth,
                  channels,
                  attention_dropout=0.0,
-                 log_softmax=False):
+                 log_softmax=False,
+                 trans=True):
         super(MultiheadAttention, self).__init__()
         self.total_key_depth = total_key_depth
-        self.input_query_transform = nn.Linear(channels, total_key_depth)
-        self.input_key_transform = nn.Linear(channels, total_key_depth)
-        self.input_value_transform = nn.Linear(channels, total_value_depth)
+        self.trans = trans
+        if trans:
+            self.input_query_transform = nn.Linear(channels, total_key_depth)
+            self.input_key_transform = nn.Linear(channels, total_key_depth)
+            self.input_value_transform = nn.Linear(channels, total_value_depth)
         self.attention_softmax = nn.Softmax(dim=-1)
         self.attention_dropout = nn.Dropout(attention_dropout)
         self.output_transform = nn.Linear(total_value_depth, channels)
@@ -295,9 +298,14 @@ class MultiheadAttention(nn.Module):
 
         batch_size, query_len, _ = query_antecedent.size()
         _, key_len, _ = memory_antecedent.size()
-        q = self.input_query_transform(query_antecedent)
-        k = self.input_key_transform(memory_antecedent)
-        v = self.input_value_transform(memory_antecedent)
+        if self.trans:
+            q = self.input_query_transform(query_antecedent)
+            k = self.input_key_transform(memory_antecedent)
+            v = self.input_value_transform(memory_antecedent)
+        else:
+            q = query_antecedent
+            k = memory_antecedent
+            v = memory_antecedent
         q = self.split_heads(q, num_heads)
         k = self.split_heads(k, num_heads)
         v = self.split_heads(v, num_heads)
