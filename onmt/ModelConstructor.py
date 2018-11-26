@@ -21,7 +21,7 @@ def load_vectors(vectors_path=None, num=50000, is_cuda=True):
     count = 0
     while count < num:
         v = next(vectors).split(" ", 1)[1]
-        vecs.append(np.fromstring(v, " "))
+        vecs.append(np.fromstring(v, sep=" "))
         count += 1
     assert len(vecs) <= num
     embeddings = np.concatenate(vecs, 0)
