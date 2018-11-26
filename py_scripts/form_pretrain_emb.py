@@ -1,3 +1,11 @@
+"""
+python3 form_pretrain_emb.py $data/11731_final/processed/sepspm8k/azetur/sepspm8k.vocab.pt \
+                             $data/11731_final/mono/az_mono/az.200k.spm8k.vec \
+                             $data/11731_final/mono/tr_mono/tr.200k.spm8k.vec \
+                             $data/11731_final/pretrained/aztr.spm8k.pt
+"""
+
+
 from utils import load_vocab
 import numpy as np
 import torch
@@ -23,7 +31,7 @@ def form_pretrain_emb(vocab_path, lrl_emb, hrl_emb, output):
     vocab, _ = load_vocab(vocab_path)
     lrl_emb, lrl_id2word, lrl_word2id = load_vec(lrl_emb)
     hrl_emb, hrl_id2word, hrl_word2id = load_vec(hrl_emb)
-    emb = torch.zeros(len(vocab.stoi), 512)
+    emb = np.zeros(len(vocab.stoi), 512)
     for i, w in enumerate(vocab.stoi):
         if i > 1:
             if w[-1] == "2" and w[:-1] in vocab.stoi:
@@ -35,7 +43,7 @@ def form_pretrain_emb(vocab_path, lrl_emb, hrl_emb, output):
             else:
                 print("word {} is not anywhere".format(w))
                 break
-    torch.save(emb, output)
+    torch.save(torch.from_numpy(emb), output)
 
 if __name__ == '__main__':
     form_pretrain_emb(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
