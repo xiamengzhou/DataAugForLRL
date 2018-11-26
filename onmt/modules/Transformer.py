@@ -64,11 +64,9 @@ class TransformerEncoder(nn.Module):
         out = emb.transpose(0, 1).contiguous()
 
         if self.vecs is not None:
-            out, _ = self.ma(self.ma_prenorm(out),
-                             self.vecs.unsqueeze(0).expand(out.size(0), -1, -1),
-                             self.num_heads,
-                             bias=None)
-            out = self.ma_postdropout(out) + out
+            mid = self.ma_prenorm(out)
+            mid = self.matmul(mid, self.vecs.unsqueeze(0).expand(out.size(0), -1, -1))
+            out = self.ma_postdropout(mid) + out
         words = input[:, :, 0].transpose(0, 1)
 
         # Make mask.
