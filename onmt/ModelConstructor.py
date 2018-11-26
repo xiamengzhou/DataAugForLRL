@@ -28,7 +28,7 @@ def load_vectors(vectors_path=None, num=50000, is_cuda=True):
     embeddings = torch.from_numpy(embeddings).float()
     embeddings = embeddings.cuda() if is_cuda else embeddings
     print("Loaded vectors of shape {}.".format(str(embeddings.shape)))
-    return Variable(embeddings)
+    return Variable(embeddings, volatile=True)
 
 def make_embeddings(opt, word_dict, for_encoder=True):
     """
