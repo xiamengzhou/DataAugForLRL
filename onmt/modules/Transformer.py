@@ -67,7 +67,7 @@ class TransformerEncoder(nn.Module):
 
         if self.vecs is not None:
             mid = self.ma_prenorm(out)
-            v = self.vecs.unsqueeze(0).expand(out.size(0), -1, -1)
+            v = self.vecs.unsqueeze(0).expand(out.size(0), -1, -1).contiguous()
             # mid, _ = self.ma(mid, v, self.num_heads, None)
             att = torch.matmul(mid, v.transpose(1, 2).contiguous())
             att = self.softmax(att)
