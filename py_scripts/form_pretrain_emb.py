@@ -42,7 +42,6 @@ def form_pretrain_emb(vocab_path, lrl_emb, hrl_emb, output):
                 emb[i] = hrl_emb[hrl_word2id[w]]
             else:
                 print("word {} is not anywhere".format(w))
-                break
     torch.save(torch.from_numpy(emb), output)
 
 if __name__ == '__main__':
