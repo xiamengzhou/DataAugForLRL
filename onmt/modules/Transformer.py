@@ -67,7 +67,7 @@ class TransformerEncoder(nn.Module):
         if self.vecs is not None:
             mid = self.ma_prenorm(out)
             v = self.vecs.unsqueeze(0).expand(out.size(0), -1, -1).contiguous()
-            mid = self.ma(mid, v, self.num_heads, None)
+            mid, _ = self.ma(mid, v, self.num_heads, None)
             out = self.ma_postdropout(mid) + out
         words = input[:, :, 0].transpose(0, 1)
 
