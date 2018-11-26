@@ -16,13 +16,15 @@ def load_vectors(vectors_path=None, num=50000, is_cuda=True):
     if not vectors_path:
         return None
     vectors = open(vectors_path, "r")
-    next(vectors)
+    vectors.readline()
     vecs = []
     count = 0
-    while count < num:
-        v = next(vectors).split(" ", 1)[1]
+    for v in vectors:
+        v = v.split(" ", 1)[1]
         vecs.append(np.fromstring(v, sep=" "))
         count += 1
+        if count == num:
+            break
     assert len(vecs) <= num
     embeddings = np.vstack(vecs)
     embeddings = torch.from_numpy(embeddings).float()
