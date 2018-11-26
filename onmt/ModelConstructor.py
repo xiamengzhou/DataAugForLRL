@@ -1,5 +1,7 @@
 import torch
 import torch.nn as nn
+from torch.autograd import Variable
+import numpy as np
 
 import onmt
 import onmt.io
@@ -9,6 +11,23 @@ from onmt.Models import NMTModel
 from onmt.modules import Embeddings, TransformerEncoder, TransformerDecoder, Generator
 from onmt.Utils import use_gpu
 from torch.nn.init import xavier_uniform
+
+def load_vectors(vectors_path=None, num=50000, is_cuda=True):
+    if not vectors_path:
+        return None
+    vectors = open(vectors_path, "r")
+    next(vectors)
+    vecs = []
+    count = 0
+    while count < num:
+        v = next(vectors).split(" ", 1)[1]
+        vecs.append(np.fromstring(v, " "))
+        count += 1
+    assert len(vecs) <= num
+    embeddings = np.concatenate(vecs, 0)
+    embeddings = torch.from_numpy(embeddings).float()
+    embeddings = embeddings.cuda() if is_cuda else embeddings
+    return Variable(embeddings)
 
 def make_embeddings(opt, word_dict, for_encoder=True):
     """
@@ -32,14 +51,14 @@ def make_embeddings(opt, word_dict, for_encoder=True):
                       word_padding_idx=word_padding_idx,
                       word_vocab_size=num_word_embeddings)
 
-def make_encoder(opt, embeddings):
+def make_encoder(opt, embeddings, vecs):
     """
     Various encoder dispatcher function.
     Args:
         opt: the option in current environment.
         embeddings (Embeddings): vocab embeddings for this encoder.
     """
-    return TransformerEncoder(opt.enc_layers, opt.rnn_size, opt.dropout, embeddings)
+    return TransformerEncoder(opt.enc_layers, opt.rnn_size, opt.dropout, embeddings, vecs)
 
 def make_decoder(opt, embeddings):
     """
@@ -83,7 +102,10 @@ def make_base_model(model_opt, fields, gpu, checkpoint=None):
     # Make encoder.
     src_dict = fields["src"].vocab
     src_embeddings = make_embeddings(model_opt, src_dict)
-    encoder = make_encoder(model_opt, src_embeddings)
+
+    ####### ... Load Global Data ... ######
+    vecs = load_vectors(model_opt.vectors, model_opt.max_vec_num, is_cuda=True)
+    encoder = make_encoder(model_opt, src_embeddings, vecs)
 
     # Make decoder.
     tgt_dict = fields["tgt"].vocab

@@ -38,13 +38,22 @@ class EncoderLayer(nn.Module):
 
 class TransformerEncoder(nn.Module):
     def __init__(self, num_layers, hidden_size,
-                 dropout, embeddings):
+                 dropout, embeddings, vecs):
         super(TransformerEncoder, self).__init__()
         self.num_layers = num_layers
         self.embeddings = embeddings
         self.layer_stack = nn.ModuleList([
             EncoderLayer(hidden_size, dropout) for _ in range(num_layers)])
         self.layer_norm = LayerNorm(hidden_size)
+        self.vecs = vecs
+        if self.vecs:
+            self.ma_prenorm = LayerNorm(hidden_size)
+            self.ma = MultiheadAttention(hidden_size,
+                                         hidden_size,
+                                         hidden_size,
+                                         dropout)
+            self.ma_postdropout = nn.Dropout(dropout)
+
 
     def forward(self, input, src_lengths):
         ### Seems like size of input must end with 1
@@ -52,6 +61,10 @@ class TransformerEncoder(nn.Module):
         emb = self.embeddings(input)
         # s_len, n_batch, emb_dim = emb.size()
         out = emb.transpose(0, 1).contiguous()
+
+        if self.vecs:
+            out, _ = self.ma(self.ma_prenorm(out), self.vecs.expand(out.size(0), -1, -1), self.num_heads)
+            out = self.ma_postdropout(out) + out
         words = input[:, :, 0].transpose(0, 1)
 
         # Make mask.

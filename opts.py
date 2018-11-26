@@ -261,6 +261,11 @@ def train_opts(parser):
     group = parser.add_argument_group('Monolingual')
     group.add_argument("-mono_cons", action="store_true")
 
+    # Shared fixed space
+    group = parser.add_argument_group('Shared Space')
+    group.add_argument("-vectors", type=str)
+    group.add_argument("-max_vec_num", type=int, default=50000)
+
 
 
 def translate_opts(parser):

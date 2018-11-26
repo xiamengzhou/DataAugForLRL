@@ -10,21 +10,28 @@ python3 ~/NMT/rapid/sentence_piece.py encode $data_dir/${lang}_mono/${lang}--voc
 done
 
 # Word dictionary
-data_dir=$data/11731_final/bilang
+data_dir=$data/11731_final/mono
 mkdir $data/11731_final/vocab
-for lang in aze tur bel rus glg por slk ces; do
-python3 ~/NMT/rapid/utils.py vocab $data_dir/${lang}_eng/ted-train.orig.${lang}.tok.spm8k \
-                                   $data_dir/../vocab/${lang}.vocab.spm8k
+for lang in az tr; do #bel rus glg por slk ces; do
+#python3 ~/NMT/rapid/utils.py vocab $data_dir/${lang}_eng/ted-train.orig.${lang}.tok.spm8k \
+#                                   $data_dir/../vocab/${lang}.vocab.spm8k
+#
+#python3 ~/NMT/rapid/utils.py vocab $data_dir/${lang}_eng/ted-train.orig.${lang}.tok \
+#                                   $data_dir/../vocab/${lang}.vocab.tok
 
-python3 ~/NMT/rapid/utils.py vocab $data_dir/${lang}_eng/ted-train.orig.${lang}.tok \
-                                   $data_dir/../vocab/${lang}.vocab.tok
+python3 ~/NMT/rapid/utils.py vocab $data_dir/${lang}_mono/${lang}.wiki.tok.txt.200k \
+                                   $data_dir/../vocab/${lang}.wiki.vocab.tok
+
+
 done
 
-for lang in azetur belrus glgpor slkces; do
-python3 ~/NMT/rapid/utils.py vocab $data_dir/${lang}_eng/ted-train.orig.${lang}.tok\
-                                   $data_dir/../vocab/${lang}.vocab
-python3 ~/NMT/rapid/utils.py vocab $data_dir/${lang}_eng/ted-train.orig.${lang}.tok.spm8k \
-                                   $data_dir/../vocab/${lang}.vocab.spm8k
+for lang in azetur; do #belrus glgpor slkces; do
+#python3 ~/NMT/rapid/utils.py vocab $data_dir/${lang}_eng/ted-train.orig.${lang}.tok\
+#                                   $data_dir/../vocab/${lang}.vocab
+#python3 ~/NMT/rapid/utils.py vocab $data_dir/${lang}_eng/ted-train.orig.${lang}.tok.spm8k \
+#                                   $data_dir/../vocab/${lang}.vocab.spm8k
+python3 ~/NMT/rapid/utils.py vocab $data_dir/${lang}_mono/azetur.wiki.tok.txt.400k.spm40k \
+                                   $data_dir/../vocab/${lang}.wiki.vocab.spm40k
 done
 
 
@@ -42,8 +49,21 @@ for lang in azetur; do
 #                                             $data_dir/${lang}_mono/azetur.wiki.tok.txt.400k \
 #                                             $data_dir/${lang}_mono/azetur.wiki.tok.txt.400k.spm40k
 
+#python3 ~/NMT/rapid/sentence_piece.py encode $data/11731_final/mono/${lang}_mono/az--vocab_size=40000.model \
+#                                             $data/11731_final/bilang/${lang}_eng/ted-train.orig.azetur.tok \
+#                                             $data/11731_final/bilang/${lang}_eng/ted-train.orig.${lang}.tok.spm40k
+
 python3 ~/NMT/rapid/sentence_piece.py encode $data/11731_final/mono/${lang}_mono/az--vocab_size=40000.model \
-                                             $data/11731_final/bilang/${lang}_eng/ted-train.orig.azetur.tok \
-                                             $data/11731_final/bilang/${lang}_eng/ted-train.orig.${lang}.tok.spm40k
+                                             $data/11731_final/bilang/aze_eng/ted-dev.orig.aze.tok \
+                                             $data/11731_final/bilang/aze_eng/ted-dev.orig.aze.tok.spm40k
 done
 
+lang1=az
+lang2=tr
+data_dir=$data/11731_final
+python3 unsupervised.py --src_lang $lang1 \
+                        --tgt_lang $lang2 \
+                        --src_emb $data_dir/mono/${lang1}_mono/${lang1}.200k.vec \
+                        --tgt_emb $data_dir/mono/${lang2}_mono/${lang2}.200k.vec \
+                        --n_refinement 5 \
+                        --dico_eval data/crosslingual/dictionaries/en-tl.5000-6500.txt

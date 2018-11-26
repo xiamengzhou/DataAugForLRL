@@ -129,7 +129,9 @@ class Trainer(object):
         # Set model in training mode.
         self.model.train()
 
-    def train(self, train_iter, epoch, opt, fields, validate_while_training, writer, report_func=None, valid_pt=None):
+    def train(self, train_iter, epoch, opt, fields,
+              validate_while_training, writer, report_func=None, valid_pt=None,
+              ):
         """ Train next epoch.
         Args:
             train_iter: training data iterator
@@ -190,7 +192,7 @@ class Trainer(object):
 
             if i % opt.bleu_freq == 0 and i > 0:
                 valid_iter = validate_while_training(fields, valid_pt)
-                valid_stats = self.validate(valid_iter, fields)
+                valid_stats = self.validate(valid_iter)
                 if epoch > opt.save_cutoff:
                     if self.select_model == "bleu":
                         opt.src = join(opt.src)
@@ -221,7 +223,7 @@ class Trainer(object):
 
         return total_stats
 
-    def validate(self, valid_iter, fields):
+    def validate(self, valid_iter):
         """ Validate model.
             valid_iter: validate data iterator
         Returns:

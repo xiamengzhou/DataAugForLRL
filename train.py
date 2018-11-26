@@ -12,6 +12,7 @@ from datetime import datetime
 import torch
 import torch.nn as nn
 from torch import cuda
+from torch.autograd import Variable
 
 import onmt
 import onmt.io
@@ -22,6 +23,7 @@ from onmt.Utils import use_gpu
 import opts
 
 from copy import deepcopy
+import numpy as np
 
 parser = argparse.ArgumentParser(
     description='train.py',
@@ -220,6 +222,7 @@ def validate_while_training(fields, valid_pt=None):
     return valid_iter
 
 
+
 def train_model(model, fields, optim, model_opt):
     train_loss = make_loss_compute(model, fields["tgt"].vocab, opt)
     valid_loss = make_loss_compute(model, fields["tgt"].vocab, opt,
@@ -239,6 +242,8 @@ def train_model(model, fields, optim, model_opt):
           (opt.epochs + 1 - opt.start_epoch, opt.start_epoch))
     print(' * batch size: %d' % opt.batch_size)
 
+
+
     for epoch in range(opt.start_epoch, opt.epochs + 1):
         print('')
 
@@ -251,7 +256,8 @@ def train_model(model, fields, optim, model_opt):
                                     validate_while_training,
                                     writer,
                                     report_func,
-                                    opt.valid_pt)
+                                    opt.valid_pt,
+                                    )
         print('Train perplexity: %g' % train_stats.ppl())
         print('Train accuracy: %g' % train_stats.accuracy())
 
@@ -259,7 +265,7 @@ def train_model(model, fields, optim, model_opt):
         valid_iter = make_dataset_iter(lazily_load_dataset("valid", valid_pt=opt.valid_pt),
                                        fields, opt,
                                        is_train=False)
-        valid_stats = trainer.validate(valid_iter, fields)
+        valid_stats = trainer.validate(valid_iter)
         print('Validation perplexity: %g' % valid_stats.ppl())
         print('Validation accuracy: %g' % valid_stats.accuracy())
 

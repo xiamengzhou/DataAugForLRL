@@ -7,11 +7,12 @@ python3 get_dictionary.py --src_emb /home/junjieh/mengzhox/MUSE/deen_re5/debug/s
 python3 get_dictionary.py --lrl_hrl_emb $data/11731_final/analysis/azetur.tran.emb.tok.dis \
                           --lrl_hrl_vocab $data/11731_final/analysis/azetur.tran.emb.tok.dis.tag \
                           --output $data/11731_final/analysis/azetur_S2T_T2S \
-                          --dico_build "S2T&T2S"
+                          --dico_build "T2S"
 """
 
 import sys
 sys.path.append("/home/mengzhox/MUSE")
+sys.path.append("/home/junjieh/mengzhox/MUSE")
 from src.dico_builder import build_dictionary
 import numpy as np
 import io
@@ -55,7 +56,7 @@ def load_vec(emb_path, nmax=500000):
     embeddings = np.vstack(vectors)
     return embeddings, id2word, word2id
 
-def load_vec(emb_path, vocab_path):
+def load_vec_2(emb_path, vocab_path):
     lrl_vectors = []
     hrl_vectors = []
     lrl_word2id = {}
@@ -84,11 +85,11 @@ def load_vec(emb_path, vocab_path):
 
 
 if __name__ == '__main__':
-    # src_word_embs, src_id2word, src_word2id = load_vec(params.src_emb)
-    # tgt_word_embs, tgt_id2word, tgt_word2id = load_vec(params.tgt_emb)
+    src_word_embs, src_id2word, src_word2id = load_vec(params.src_emb)
+    tgt_word_embs, tgt_id2word, tgt_word2id = load_vec(params.tgt_emb)
 
-    src_word_embs, tgt_word_embs, src_id2word, tgt_id2word, src_word2id, tgt_word2id = \
-        load_vec(params.lrl_hrl_emb, params.lrl_hrl_vocab)
+    # src_word_embs, tgt_word_embs, src_id2word, tgt_id2word, src_word2id, tgt_word2id = \
+    #     load_vec_2(params.lrl_hrl_emb, params.lrl_hrl_vocab)
     src_word_embs = torch.FloatTensor(src_word_embs).cuda()
     tgt_word_embs = torch.FloatTensor(tgt_word_embs).cuda()
     dictionary = build_dictionary(src_emb=src_word_embs, tgt_emb=tgt_word_embs, params=params)
