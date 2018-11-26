@@ -31,7 +31,7 @@ def form_pretrain_emb(vocab_path, lrl_emb, hrl_emb, output):
     vocab, _ = load_vocab(vocab_path)
     lrl_emb, lrl_id2word, lrl_word2id = load_vec(lrl_emb)
     hrl_emb, hrl_id2word, hrl_word2id = load_vec(hrl_emb)
-    emb = np.zeros(len(vocab.stoi), 512)
+    emb = np.zeros([len(vocab.stoi), 512])
     for i, w in enumerate(vocab.stoi):
         if i > 1:
             if w[-1] == "2" and w[:-1] in vocab.stoi:
