@@ -24,9 +24,10 @@ def load_vectors(vectors_path=None, num=50000, is_cuda=True):
         vecs.append(np.fromstring(v, sep=" "))
         count += 1
     assert len(vecs) <= num
-    embeddings = np.concatenate(vecs, 0)
+    embeddings = np.vstack(vecs)
     embeddings = torch.from_numpy(embeddings).float()
     embeddings = embeddings.cuda() if is_cuda else embeddings
+    print("Loaded vectors of shape {}.".format(str(embeddings.shape)))
     return Variable(embeddings)
 
 def make_embeddings(opt, word_dict, for_encoder=True):

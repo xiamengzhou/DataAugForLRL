@@ -45,9 +45,9 @@ class TransformerEncoder(nn.Module):
         self.layer_stack = nn.ModuleList([
             EncoderLayer(hidden_size, dropout) for _ in range(num_layers)])
         self.layer_norm = LayerNorm(hidden_size)
-        self.num_heads = 8
         self.vecs = vecs
         if self.vecs is not None:
+            self.num_heads = 8
             self.ma_prenorm = LayerNorm(hidden_size)
             self.ma = MultiheadAttention(hidden_size,
                                          hidden_size,
@@ -66,7 +66,8 @@ class TransformerEncoder(nn.Module):
         if self.vecs is not None:
             out, _ = self.ma(self.ma_prenorm(out),
                              self.vecs.unsqueeze(0).expand(out.size(0), -1, -1),
-                             self.num_heads)
+                             self.num_heads,
+                             bias=None)
             out = self.ma_postdropout(out) + out
         words = input[:, :, 0].transpose(0, 1)
 
@@ -227,7 +228,6 @@ class TransformerDecoderState(DecoderState):
         self.src = Variable(self.src.data.repeat(1, beam_size, 1), volatile=True)
 
 class MultiheadAttention(nn.Module):
-
     def __init__(self,
                  total_key_depth,
                  total_value_depth,
@@ -277,7 +277,7 @@ class MultiheadAttention(nn.Module):
 
     def forward(self,
                 query_antecedent,
-                memroy_antecedent,
+                memory_antecedent,
                 num_heads,
                 bias,
                 weight_matrix=None):
@@ -290,14 +290,14 @@ class MultiheadAttention(nn.Module):
         Returns:
             the result of the attention transformation, shape is [batch, length_q, channels]
         """
-        if memroy_antecedent is None:
-            memroy_antecedent = query_antecedent
+        if memory_antecedent is None:
+            memory_antecedent = query_antecedent
 
         batch_size, query_len, _ = query_antecedent.size()
-        _, key_len, _ = memroy_antecedent.size()
+        _, key_len, _ = memory_antecedent.size()
         q = self.input_query_transform(query_antecedent)
-        k = self.input_key_transform(memroy_antecedent)
-        v = self.input_value_transform(memroy_antecedent)
+        k = self.input_key_transform(memory_antecedent)
+        v = self.input_value_transform(memory_antecedent)
         q = self.split_heads(q, num_heads)
         k = self.split_heads(k, num_heads)
         v = self.split_heads(v, num_heads)
