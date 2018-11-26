@@ -36,9 +36,9 @@ def form_pretrain_emb(vocab_path, lrl_emb, hrl_emb, output):
         if i > 1:
             if w[-1] == "2" and w[:-1] in vocab.stoi:
                 emb[i] = hrl_emb[hrl_word2id[w[-1]]]
-            elif w in lrl_emb:
+            elif w in lrl_word2id:
                 emb[i] = lrl_emb[lrl_word2id[w]]
-            elif w in hrl_emb:
+            elif w in hrl_word2id:
                 emb[i] = hrl_emb[hrl_word2id[w]]
             else:
                 print("word {} is not anywhere".format(w))
