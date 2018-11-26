@@ -45,8 +45,9 @@ class TransformerEncoder(nn.Module):
         self.layer_stack = nn.ModuleList([
             EncoderLayer(hidden_size, dropout) for _ in range(num_layers)])
         self.layer_norm = LayerNorm(hidden_size)
+        self.num_heads = 8
         self.vecs = vecs
-        if self.vecs:
+        if self.vecs is not None:
             self.ma_prenorm = LayerNorm(hidden_size)
             self.ma = MultiheadAttention(hidden_size,
                                          hidden_size,
@@ -62,8 +63,10 @@ class TransformerEncoder(nn.Module):
         # s_len, n_batch, emb_dim = emb.size()
         out = emb.transpose(0, 1).contiguous()
 
-        if self.vecs:
-            out, _ = self.ma(self.ma_prenorm(out), self.vecs.expand(out.size(0), -1, -1), self.num_heads)
+        if self.vecs is not None:
+            out, _ = self.ma(self.ma_prenorm(out),
+                             self.vecs.unsqueeze(0).expand(out.size(0), -1, -1),
+                             self.num_heads)
             out = self.ma_postdropout(out) + out
         words = input[:, :, 0].transpose(0, 1)
 
