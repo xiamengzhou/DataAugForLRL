@@ -266,7 +266,7 @@ def train_opts(parser):
     group.add_argument("-vectors", type=str)
     group.add_argument("-max_vec_num", type=int, default=50000)
 
-
+    group.add_argument("-finetune", action="store_true")
 
 def translate_opts(parser):
     group = parser.add_argument_group('Model')
