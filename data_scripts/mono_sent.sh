@@ -67,3 +67,18 @@ python3 unsupervised.py --src_lang $lang1 \
                         --tgt_emb $data_dir/mono/${lang2}_mono/${lang2}.200k.vec \
                         --n_refinement 5 \
                         --dico_eval data/crosslingual/dictionaries/en-tl.5000-6500.txt
+
+process_type=swap-3
+lang=azetur
+mkdir $data/11731_final/bilang/${lang}_eng/$process_type
+data_dir=$data/11731_final
+python3 ~/NMT/rapid/utils.py swap \
+                             $data_dir/bilang/${lang}_eng/ted-train.orig.${lang}.tok.spm8k \
+                             $data_dir/bilang/${lang}_eng/${process_type}/ted-train.orig.${lang}.tok.spm8k \
+                             $data_dir/vectors/wiki.256.200k.spm8k/azetur_S2TT2S \
+                             $data_dir/vocab/aze.vocab.spm8k \
+                             0
+
+python3 ~/NMT/rapid/sentence_piece.py encode $data/11731_final/mono/az_mono/az--vocab_size=8000.model \
+                                             $data/11731_final/bilang/azetur_eng/swap-3/ted-train.orig.azetur.tok \
+                                             $data/11731_final/bilang/azetur_eng/swap-3/ted-train.orig.azetur.tok.spm8k

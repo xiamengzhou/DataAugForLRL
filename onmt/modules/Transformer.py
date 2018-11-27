@@ -38,14 +38,14 @@ class EncoderLayer(nn.Module):
 
 class TransformerEncoder(nn.Module):
     def __init__(self, num_layers, hidden_size,
-                 dropout, embeddings, vecs):
+                 dropout, embeddings, uni_vecs):
         super(TransformerEncoder, self).__init__()
         self.num_layers = num_layers
         self.embeddings = embeddings
         self.layer_stack = nn.ModuleList([
             EncoderLayer(hidden_size, dropout) for _ in range(num_layers)])
         self.layer_norm = LayerNorm(hidden_size)
-        self.vecs = vecs
+        self.vecs = uni_vecs ## A universal space to be accessed by embedding.
         if self.vecs is not None:
             self.num_heads = 8
             self.ma_prenorm = LayerNorm(hidden_size)
