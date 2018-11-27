@@ -1,8 +1,8 @@
 """
-mkdir $data/11731_final/bilang/azetur/n_gram4_v1
-python3 get_ngram.py $data/11731_final/bilang/azetur/ted-train.orig.azetur.tok \
-                     $data/11731_final/bilang/azetur/n_gram4_v1/ted-train.orig.azetur.tok \
-                     $data/11731_final/bilang/azetur/n_gram4_v1/ngram_dict \
+mkdir $data/11731_final/bilang/azetur_eng/n_gram4_v1
+python3 get_ngram.py $data/11731_final/bilang/azetur_eng/ted-train.orig.azetur.tok \
+                     $data/11731_final/bilang/azetur_eng/n_gram4_v1/ted-train.orig.azetur.tok \
+                     $data/11731_final/bilang/azetur_eng/n_gram4_v1/azetur_ngram_dict \
                      4
 """
 
@@ -36,10 +36,10 @@ def get_dict(n_grams):
 
 def output_dict(d, out):
     f = open(out, "w")
-    d = sorted(d.items(), key=lambda kv: kv[1])
+    d = sorted(d.items(), key=lambda kv: -kv[1])
     for key, value in d:
         f.write(key + " " + str(value) + "\n")
-    print("Output to dict {}!".format(d))
+    print("Output to dict {}!".format(out))
 
 def out_train_file(n_grams, train_file):
     f = open(train_file, "w")
