@@ -57,7 +57,7 @@ def main(input, out_train, out_dict, n=4):
 
 if __name__ == '__main__':
     import sys
-    main(sys.argv[0],
-         sys.argv[1],
+    main(sys.argv[1],
          sys.argv[2],
-         int(sys.argv[3]))
+         sys.argv[3],
+         int(sys.argv[4]))
