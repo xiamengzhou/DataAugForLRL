@@ -378,12 +378,12 @@ def build_optim(model, checkpoint):
             checkpoint['optim'].optimizer.state_dict())
         print('Original LR: {}'.format(optim.optimizer.param_groups[0]['lr']))
         # optim.optimizer.param_groups[0]['lr'] *= opt.lr_am
-        optim.original_lr *= opt.lr_am
-        print('Current LR: {}'.format(optim.original_lr))
-        if opt.finetune:
-            optim.last_ppl = None
-            optim.start_decay = False
-            optim.start_decay_at = None
+        # optim.original_lr *= opt.lr_am
+        # print('Current LR: {}'.format(optim.original_lr))
+        # if opt.finetune:
+        #     optim.last_ppl = None
+        #     optim.start_decay = False
+        #     optim.start_decay_at = None
     else:
         print('Making optimizer for training.')
         optim = onmt.Optim(
