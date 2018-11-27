@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e3c4f64b-11fa-4fb2-aa3f-d8de53608997" name="Default" comment="Add fixed universal embedding to be accesses.&#10;Train_opt, add vectors and max_vec_num.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/onmt/modules/W2V.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/py_scripts/extract_MUSE_emb.py" />
+    <list default="true" id="e3c4f64b-11fa-4fb2-aa3f-d8de53608997" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data_scripts/mono_sent.sh" afterPath="$PROJECT_DIR$/data_scripts/mono_sent.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/onmt/modules/Transformer.py" afterPath="$PROJECT_DIR$/onmt/modules/Transformer.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,7 +16,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Transformer.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Transformer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/onmt/modules/Transformer.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="199">
@@ -102,7 +98,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="W2V.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="W2V.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/onmt/modules/W2V.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="287">
@@ -348,6 +344,17 @@
             <path>
               <item name="Final" type="b2602c69:ProjectViewProjectNode" />
               <item name="Final" type="462c0819:PsiDirectoryNode" />
+              <item name="onmt" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Final" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Final" type="462c0819:PsiDirectoryNode" />
+              <item name="onmt" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Final" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Final" type="462c0819:PsiDirectoryNode" />
               <item name="tools" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -427,13 +434,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1542514609546</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Fix bugs.">
-      <created>1542955152867</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1542955152867</updated>
     </task>
     <task id="LOCAL-00015" summary="Fix bugs.">
       <created>1542956894066</created>
@@ -771,7 +771,14 @@
       <option name="project" value="LOCAL" />
       <updated>1543360448128</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="Add fixed universal embedding to be accesses.&#10;Train_opt, add vectors and max_vec_num.">
+      <created>1543360482891</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1543360482891</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -812,9 +819,9 @@
     <MESSAGE value="Added pca." />
     <MESSAGE value="Get dictionary with clcs." />
     <MESSAGE value="Update vocab stuff. From index word to word freq." />
-    <MESSAGE value="Add fixed universal embedding to be accesses.&#10;Train_opt, add vectors and max_vec_num." />
     <MESSAGE value="Added get ngram." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added get ngram." />
+    <MESSAGE value="Add fixed universal embedding to be accesses.&#10;Train_opt, add vectors and max_vec_num." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add fixed universal embedding to be accesses.&#10;Train_opt, add vectors and max_vec_num." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1205,16 +1212,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/onmt/modules/W2V.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="31" column="20" lean-forward="false" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/preprocess.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1244,6 +1241,16 @@
         <state relative-caret-position="199">
           <caret line="41" column="39" lean-forward="false" selection-start-line="41" selection-start-column="39" selection-end-line="41" selection-end-column="39" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/onmt/modules/W2V.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="31" column="20" lean-forward="false" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
