@@ -155,7 +155,10 @@ class TransformerDecoder(nn.Module):
         memory_len, memory_batch, _ = memory_bank.size()
 
         src = state.src
-        src_words = src[:, :, 0].transpose(0, 1)
+        if src.dim() == 4:
+            src_words = src[:, :, 0, 0]
+        else:
+            src_words = src[:, :, 0].transpose(0, 1)
         tgt_words = tgt[:, :, 0].transpose(0, 1)
         src_batch, src_len = src_words.size()
         tgt_batch, tgt_len = tgt_words.size()
