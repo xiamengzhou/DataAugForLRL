@@ -233,7 +233,7 @@ class TMBatch:
                             new_outs.append(out_t)
                         new_outs2 = []
                         for o in new_outs:
-                            new_o = torch.nn.functional.pad(o, (0, o.shape[0]-max_sent_len, o.shape[1]-max_ngram_len))
+                            new_o = torch.nn.functional.pad(o, (0, o.shape[0]-max_sent_len, o.shape[1]-max_ngram_len), value=1) #padding index
                             new_outs2.append(new_o)
                         out = torch.stack(new_outs2, 0)
                         if device > 0:
@@ -257,9 +257,9 @@ class TMBatch:
     @classmethod
     def get_ngram(cls, batch, n):
         new_batch = []
-        for k, sent in batch:
+        for k, sent in enumerate(batch):
             new_batch.append([])
-            for m, token in sent:
+            for m, token in enumerate(sent):
                 new_batch[-1].append([])
                 lens = len(token)
                 for i in range(1, n + 1):
