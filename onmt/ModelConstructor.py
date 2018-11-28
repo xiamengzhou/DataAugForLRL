@@ -77,7 +77,7 @@ def load_test_model(opt, dummy_opt):
     checkpoint = torch.load(opt.model,
                             map_location=lambda storage, loc: storage)
     model_opt = checkpoint['opt']
-    fields = onmt.io.load_fields_from_vocab(checkpoint['vocab'])
+    fields = onmt.io.load_fields_from_vocab(checkpoint['vocab'], ngram=model_opt.ngram)
 
     for arg in dummy_opt:
         if arg not in model_opt:

@@ -28,14 +28,14 @@ torchtext.vocab.Vocab.__getstate__ = _getstate
 torchtext.vocab.Vocab.__setstate__ = _setstate
 
 def get_fields(ngram=-1):
-    return TextDataset.get_fields()
+    return TextDataset.get_fields(ngram)
 
-def load_fields_from_vocab(vocab):
+def load_fields_from_vocab(vocab, ngram=-1):
     """
     Load Field objects from `vocab.pt` file.
     """
     vocab = dict(vocab)
-    fields = TextDataset.get_fields()
+    fields = TextDataset.get_fields(ngram=ngram)
     for k, v in vocab.items():
         # Hack. Can't pickle defaultdict :(
         v.stoi = defaultdict(lambda: 0, v.stoi)
@@ -76,7 +76,7 @@ def merge_vocabs(vocabs, vocab_size=None):
 
 def build_dataset(fields, src_path, tgt_path, src_seq_length=0, tgt_seq_length=0,
                   src_seq_length_trunc=0, tgt_seq_length_trunc=0,
-                  use_filter_pred=True):
+                  use_filter_pred=True, ngram=-1):
 
     # Build src/tgt examples iterator from corpus files, also extract
     # number of features.
@@ -91,7 +91,8 @@ def build_dataset(fields, src_path, tgt_path, src_seq_length=0, tgt_seq_length=0
     dataset = TextDataset(fields, src_examples_iter, tgt_examples_iter,
                           src_seq_length=src_seq_length,
                           tgt_seq_length=tgt_seq_length,
-                          use_filter_pred=use_filter_pred)
+                          use_filter_pred=use_filter_pred,
+                          ngram=ngram)
 
     return dataset
 

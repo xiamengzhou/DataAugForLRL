@@ -161,7 +161,7 @@ def main(training=False, fields=None, model=None, opt=None, writer=None,  step=0
 
         out_file = codecs.open(opt.output, 'w', 'utf-8')
     assert opt.tgt is None
-    data = onmt.io.build_dataset(fields, opt.src, opt.tgt, use_filter_pred=False)
+    data = onmt.io.build_dataset(fields, opt.src, opt.tgt, use_filter_pred=False, ngram=opt.ngram)
     # Sort batch by decreasing lengths of sentence required by pytorch.
     # sort=False means "Use dataset's sortkey instead of iterator's".
 
