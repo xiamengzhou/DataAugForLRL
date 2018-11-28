@@ -75,7 +75,7 @@ class TransformerEncoder(nn.Module):
             mid = torch.matmul(drop_att, v)
             out = self.ma_postdropout(mid) + out
         if input.dim() == 4:
-            words = input[:, :, 0, 0].transpose(0, 1)
+            words = input[:, :, 0, 0]
         else:
             words = input[:, :, 0].transpose(0, 1)
 
