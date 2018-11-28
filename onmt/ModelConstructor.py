@@ -12,9 +12,12 @@ from onmt.modules import Embeddings, TransformerEncoder, TransformerDecoder, Gen
 from onmt.Utils import use_gpu
 from torch.nn.init import xavier_uniform
 
-def load_vectors(vectors_path=None, num=50000, is_cuda=True):
+def load_vectors(vectors_path=None, num=50000, is_cuda=True, random=False, dim=256):
     if not vectors_path:
-        return None
+        if random:
+            return nn.Parameter(torch.FloatTensor(num, dim), requires_grad=True)
+        else:
+            return None
     vectors = open(vectors_path, "r")
     vectors.readline()
     vecs = []
@@ -107,7 +110,7 @@ def make_base_model(model_opt, fields, gpu, checkpoint=None):
     src_embeddings = make_embeddings(model_opt, src_dict)
 
     ####### ... Load Global Data ... ######
-    vecs = load_vectors(model_opt.vectors, model_opt.max_vec_num, is_cuda=True)
+    vecs = load_vectors(model_opt.vectors, model_opt.max_vec_num, is_cuda=True, random=model_opt.random_uni)
     encoder = make_encoder(model_opt, src_embeddings, vecs)
 
     # Make decoder.

@@ -243,6 +243,8 @@ class TMBatch:
                             length = length.cuda(device)
                         assert out.shape == (len(batch), max_sent_len, max_ngram_len)
                         setattr(self, name, (out, length))
+                    elif name == "src_sg" and dataset.skipgram:
+                        out = field.process(batch, device=-1, train=train) # include length and batch first
                     else:
                         setattr(self, name, field.process(batch, device=device, train=train))
 
