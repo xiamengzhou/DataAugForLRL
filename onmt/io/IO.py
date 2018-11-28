@@ -215,8 +215,8 @@ class TMBatch:
             for (name, field) in dataset.fields.items():
                 if name in data[0].__dict__:
                     batch = [x.__dict__[name] for x in data]
-                    out = field.process(batch, device=-1, train=train)
                     if name == "src" and dataset.ngram > 0:
+                        out = field.process(batch, device=-1, train=train)
                         length = out[1]
                         new_batch = TMBatch.get_ngram(batch, dataset.ngram)
                         max_sent_len = 0
@@ -243,7 +243,8 @@ class TMBatch:
                         assert out.shape == (len(batch), max_sent_len, max_ngram_len)
                         setattr(self, name, (out, length))
                         break
-                    setattr(self, name, field.process(batch, device=device, train=train))
+                    else:
+                        setattr(self, name, field.process(batch, device=device, train=train))
 
     @classmethod
     def fromvars(cls, dataset, batch_size, train=True, **kwargs):
