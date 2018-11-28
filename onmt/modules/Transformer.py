@@ -57,7 +57,7 @@ class TransformerEncoder(nn.Module):
             self.ma_postdropout = nn.Dropout(dropout)
             self.softmax = nn.Softmax(dim=-1)
             self.attn_dp = nn.Dropout(dropout)
-            if not self.vecs.resquires_grad:
+            if not self.vecs.requires_grad:
                 dim = self.vecs.shape[1]
                 self.w = nn.Linear(dim, dim)
 
