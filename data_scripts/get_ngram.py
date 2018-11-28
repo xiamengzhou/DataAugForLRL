@@ -55,9 +55,39 @@ def main(input, out_train, out_dict, n=4):
 
 
 
+def get_ngram_2(batch, n):
+    new_batch = []
+    for k, sent in enumerate(batch):
+        new_batch.append([])
+        for m, token in enumerate(sent):
+            new_batch[-1].append([])
+            lens = len(token)
+            for i in range(1, n + 1):
+                for j in range(lens):
+                    if j + i <= lens:
+                        sub = token[j:j + i]
+                        new_batch[-1][-1].append(sub)
+    return new_batch
+
+def pad(ngrams):
+    max_sent_len = max([len(n) for n in ngrams])
+    lens = []
+    for sent in ngrams:
+        for token in sent:
+            lens.append(len(token))
+    max_ngram_len = max(lens)
+    for sent in ngrams:
+        if len(sent) < max_sent_len:
+            sent += [tuple([" "] * max_ngram_len)] * (max_sent_len - len(sent))
+    return ngrams
 if __name__ == '__main__':
     import sys
-    main(sys.argv[1],
-         sys.argv[2],
-         sys.argv[3],
-         int(sys.argv[4]))
+    # main(sys.argv[1],
+    #      sys.argv[2],
+    #      sys.argv[3],
+    #      int(sys.argv[4]))
+    b = get_ngram_2([["I", "love", "you"], ["This", "is", "my", "hometown"]], 4)
+    import itertools
+    import numpy as np
+    a = np.array(list(itertools.zip_longest(*b, fillvalue=0))).T
+    print(a)

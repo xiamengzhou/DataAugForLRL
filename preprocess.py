@@ -73,7 +73,8 @@ def build_save_text_dataset_in_shards(src_corpus, tgt_corpus, fields, corpus_typ
         dataset = onmt.io.TextDataset(
                 fields, src_iter, tgt_iter,
                 src_seq_length=opt.src_seq_length,
-                tgt_seq_length=opt.tgt_seq_length)
+                tgt_seq_length=opt.tgt_seq_length,
+                ngram=opt.ngram)
 
         # We save fields in vocab.pt seperately, so make it empty.
         dataset.fields = []
@@ -140,7 +141,7 @@ def main():
     opt = parse_args()
 
     print("Building `Fields` object...")
-    fields = onmt.io.get_fields()
+    fields = onmt.io.get_fields(ngram=opt.ngram)
     if opt.cover == "standard":
         print("Building & saving training data...")
         train_dataset_files = build_save_dataset('train', fields, opt)

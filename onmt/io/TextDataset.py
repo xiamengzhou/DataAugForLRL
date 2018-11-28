@@ -35,9 +35,9 @@ class TextDataset(ONMTDatasetBase):
     """
     def __init__(self, fields, src_examples_iter, tgt_examples_iter,
                  src_seq_length=0, tgt_seq_length=0,
-                 use_filter_pred=True):
+                 use_filter_pred=True, ngram=-1):
         self.data_type = 'text'
-
+        self.ngram=ngram
         # self.src_vocabs: mutated in dynamic_dict, used in
         # collapse_copy_scores and in Translator.py
         self.src_vocabs = []
@@ -157,7 +157,7 @@ class TextDataset(ONMTDatasetBase):
             return alignment
 
     @staticmethod
-    def get_fields():
+    def get_fields(ngram):
         """
         Args:
             n_src_features (int): the number of source features to
@@ -173,7 +173,8 @@ class TextDataset(ONMTDatasetBase):
 
         fields["src"] = torchtext.data.Field(
             pad_token=PAD_WORD,
-            include_lengths=True)
+            include_lengths=True,
+            batch_first=ngram>0)
 
         fields["tgt"] = torchtext.data.Field(
             init_token=BOS_WORD, eos_token=EOS_WORD,

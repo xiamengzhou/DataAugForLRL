@@ -7,7 +7,7 @@ import torch
 import torchtext.data
 import torchtext.vocab
 from torchtext.data.utils import RandomShuffler
-
+import torch.nn.functional
 from onmt.io.DatasetBase import UNK_WORD, PAD_WORD, BOS_WORD, EOS_WORD
 from onmt.io.TextDataset import TextDataset
 
@@ -27,7 +27,7 @@ def _setstate(self, state):
 torchtext.vocab.Vocab.__getstate__ = _getstate
 torchtext.vocab.Vocab.__setstate__ = _setstate
 
-def get_fields():
+def get_fields(ngram=-1):
     return TextDataset.get_fields()
 
 def load_fields_from_vocab(vocab):
@@ -214,6 +214,32 @@ class TMBatch:
             for (name, field) in dataset.fields.items():
                 if name in data[0].__dict__:
                     batch = [x.__dict__[name] for x in data]
+                    out = field.process(batch, device=-1, train=train)
+                    if name == "src" and dataset.ngram > 0:
+                        length = out[1]
+                        new_batch = TMBatch.get_ngram(batch, dataset.ngram)
+                        max_sent_len = 0
+                        max_ngram_len = 0
+                        new_outs = []
+                        for b in new_batch:
+                            out_t = field.process(b, device=-1, train=train)
+                            out_t = out_t[0]
+                            sent_len, ngram_len = out_t.shape
+                            if sent_len > max_sent_len:
+                                max_sent_len = sent_len
+                            if ngram_len > max_ngram_len:
+                                max_ngram_len = ngram_len
+                            new_outs.append(out_t)
+                        new_outs2 = []
+                        for o in new_outs:
+                            new_o = torch.nn.functional.pad(o, (0, o.shape[0]-max_sent_len, o.shape[1]-max_ngram_len))
+                            new_outs2.append(new_o)
+                        out = torch.stack(new_outs2, 0)
+                        if device > 0:
+                            out = out.cuda(device)
+                        assert out.shape == (len(batch), max_sent_len, max_ngram_len)
+                        setattr(self, name, (out, length))
+                        break
                     setattr(self, name, field.process(batch, device=device, train=train))
 
     @classmethod
@@ -226,6 +252,21 @@ class TMBatch:
         for k, v in kwargs.items():
             setattr(batch, k, v)
         return batch
+
+    @classmethod
+    def get_ngram(cls, batch, n):
+        new_batch = []
+        for k, sent in batch:
+            new_batch.append([])
+            for m, token in sent:
+                new_batch[-1].append([])
+                lens = len(token)
+                for i in range(1, n + 1):
+                    for j in range(lens):
+                        if j + i <= lens:
+                            sub = token[j:j + i]
+                            batch[-1][-1].append(sub)
+        return new_batch
 
 
 class OrderedIterator(torchtext.data.Iterator):
@@ -350,5 +391,5 @@ class Vocab(torchtext.vocab.Vocab):
         return itos
 
     def get_valid_vocab_size(self):
-        return len(self.freqs)
+        return min(len(self.freqs), len(self.itos))
 

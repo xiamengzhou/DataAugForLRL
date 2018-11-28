@@ -18,7 +18,16 @@ class Embeddings(nn.Module):
 
 
     def forward(self, input):
-        emb = self.embeddings(input.squeeze(-1))
+        if input.dim() == 4:
+            emb = []
+            for i in input:
+                e_i = self.embeddings(i.squeeze(-1))
+                e_i = e_i.sum(dim=1)
+                emb.append(e_i)
+            emb = torch.stack(emb)
+            emb = emb.transpose(0, 1).contiguous()
+        else:
+            emb = self.embeddings(input.squeeze(-1))
         emb = self.pe(emb)
         return emb
 
