@@ -57,6 +57,10 @@ class TransformerEncoder(nn.Module):
             self.ma_postdropout = nn.Dropout(dropout)
             self.softmax = nn.Softmax(dim=-1)
             self.attn_dp = nn.Dropout(dropout)
+            if not self.vecs.resquires_grad:
+                dim = self.vecs.shape[1]
+                self.w = nn.Linear(dim, dim)
+
 
     def forward(self, input, src_lengths):
         ### Seems like size of input must end with 1
@@ -67,7 +71,11 @@ class TransformerEncoder(nn.Module):
 
         if self.vecs is not None:
             mid = self.ma_prenorm(out)
-            v = self.vecs.unsqueeze(0).expand(out.size(0), -1, -1).contiguous()
+            if not self.vecs.requires_grad:
+                v = self.w(self.vecs)
+            else:
+                v = self.vecs
+            v = v.unsqueeze(0).expand(out.size(0), -1, -1).contiguous()
             # mid, _ = self.ma(mid, v, self.num_heads, None)
             att = torch.matmul(mid, v.transpose(1, 2).contiguous())
             att = self.softmax(att)
