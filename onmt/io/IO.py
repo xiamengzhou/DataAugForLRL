@@ -242,7 +242,6 @@ class TMBatch:
                             out = out.cuda(device)
                         assert out.shape == (len(batch), max_sent_len, max_ngram_len)
                         setattr(self, name, (out, length))
-                        break
                     else:
                         setattr(self, name, field.process(batch, device=device, train=train))
 
