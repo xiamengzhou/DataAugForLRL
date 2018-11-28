@@ -233,9 +233,9 @@ class TMBatch:
                             new_outs.append(out_t)
                         new_outs2 = []
                         for o in new_outs:
-                            pad1 = max(0, o.shape[1]-max_ngram_len)
-                            pad2 = max(0, o.shape[0]-max_sent_len)
-                            new_o = torch.nn.functional.pad(o, (0, pad1, 0, pad2), value=1) #padding index
+                            pad1 = max(0, max_ngram_len-o.shape[1])
+                            pad2 = max(0, max_sent_len-o.shape[0])
+                            new_o = torch.nn.functional.pad(o, (0, pad1, 0, pad2), value=0) # padding index
                             new_outs2.append(new_o)
                         out = torch.stack(new_outs2, 0)
                         if device > 0:
