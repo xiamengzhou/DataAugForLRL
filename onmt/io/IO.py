@@ -266,7 +266,7 @@ class TMBatch:
                     for j in range(lens):
                         if j + i <= lens:
                             sub = token[j:j + i]
-                            batch[-1][-1].append(sub)
+                            new_batch[-1][-1].append(sub)
         return new_batch
 
 
