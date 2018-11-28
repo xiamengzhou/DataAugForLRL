@@ -238,8 +238,9 @@ class TMBatch:
                             new_o = torch.nn.functional.pad(o, (0, pad1, 0, pad2), value=0) # padding index
                             new_outs2.append(new_o)
                         out = torch.stack(new_outs2, 0)
-                        if device > 0:
+                        if device > -1:
                             out = out.cuda(device)
+                            length = length.cuda(device)
                         assert out.shape == (len(batch), max_sent_len, max_ngram_len)
                         setattr(self, name, (out, length))
                     else:
