@@ -74,7 +74,11 @@ class TransformerEncoder(nn.Module):
             drop_att = self.attn_dp(att)
             mid = torch.matmul(drop_att, v)
             out = self.ma_postdropout(mid) + out
-        words = input[:, :, 0].transpose(0, 1)
+        if input.dim() == 4:
+            words = input[:, :, 0, 0].transpose(0, 1)
+        else:
+            words = input[:, :, 0].transpose(0, 1)
+
 
         # Make mask.
         padding_idx = self.embeddings.word_padding_idx
