@@ -59,7 +59,7 @@ class TransformerEncoder(nn.Module):
             self.attn_dp = nn.Dropout(dropout)
             if not self.vecs.requires_grad:
                 dim = self.vecs.shape[1]
-                self.w = nn.Linear(self.embeddings.embedding_size, dim)
+                self.w = nn.Linear(dim, self.embeddings.embedding_size)
 
 
     def forward(self, input, src_lengths):
