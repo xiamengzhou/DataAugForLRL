@@ -215,6 +215,8 @@ class TMBatch:
             for (name, field) in dataset.fields.items():
                 if name in data[0].__dict__:
                     batch = [x.__dict__[name] for x in data]
+                    if not isinstance(dataset.ngram, int):
+                        dataset.ngram = -1
                     if name == "src" and dataset.ngram > 0:
                         out = field.process(batch, device=-1, train=train)
                         length = out[1]

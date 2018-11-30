@@ -11,6 +11,7 @@ python3 get_dictionary.py --lrl_hrl_emb $data/11731_final/analysis/azetur.tran.e
 """
 
 import sys
+sys.path.append("/usr2/home/mengzhox/MUSE")
 sys.path.append("/home/mengzhox/MUSE")
 sys.path.append("/home/junjieh/mengzhox/MUSE")
 from src.dico_builder import build_dictionary

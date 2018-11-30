@@ -3,11 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e3c4f64b-11fa-4fb2-aa3f-d8de53608997" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/onmt/ModelConstructor.py" afterPath="$PROJECT_DIR$/onmt/ModelConstructor.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/onmt/io/DatasetBase.py" afterPath="$PROJECT_DIR$/onmt/io/DatasetBase.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/onmt/io/IO.py" afterPath="$PROJECT_DIR$/onmt/io/IO.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/py_scripts/get_dictionary.py" afterPath="$PROJECT_DIR$/py_scripts/get_dictionary.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/py_scripts/utils.py" afterPath="$PROJECT_DIR$/py_scripts/utils.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/train.py" afterPath="$PROJECT_DIR$/train.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/translate.py" afterPath="$PROJECT_DIR$/translate.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,64 +23,8 @@
       <file leaf-file-name="Transformer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/onmt/modules/Transformer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="43" column="13" lean-forward="false" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IO.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/onmt/io/IO.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8">
-              <caret line="76" column="12" lean-forward="false" selection-start-line="76" selection-start-column="12" selection-end-line="76" selection-end-column="12" />
-              <folding>
-                <element signature="e#25#82#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DatasetBase.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/onmt/io/DatasetBase.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="36" column="19" lean-forward="true" selection-start-line="36" selection-start-column="19" selection-end-line="36" selection-end-column="19" />
-              <folding>
-                <element signature="e#25#52#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TextDataset.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/onmt/io/TextDataset.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="158" column="16" lean-forward="false" selection-start-line="158" selection-start-column="16" selection-end-line="158" selection-end-column="16" />
-              <folding>
-                <element signature="e#25#56#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="train.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/train.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="425" column="0" lean-forward="false" selection-start-line="425" selection-start-column="0" selection-end-line="425" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="preprocess.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/preprocess.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="143" column="26" lean-forward="false" selection-start-line="143" selection-start-column="26" selection-end-line="143" selection-end-column="26" />
+            <state relative-caret-position="148">
+              <caret line="45" column="22" lean-forward="false" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -90,8 +33,8 @@
       <file leaf-file-name="ModelConstructor.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/onmt/ModelConstructor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="55">
-              <caret line="75" column="4" lean-forward="false" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="4" />
+            <state relative-caret-position="175">
+              <caret line="86" column="31" lean-forward="false" selection-start-line="86" selection-start-column="31" selection-end-line="86" selection-end-column="31" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -102,33 +45,78 @@
       <file leaf-file-name="translate.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/translate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="163" column="31" lean-forward="false" selection-start-line="163" selection-start-column="31" selection-end-line="163" selection-end-column="31" />
+            <state relative-caret-position="193">
+              <caret line="163" column="97" lean-forward="false" selection-start-line="163" selection-start-column="97" selection-end-line="163" selection-end-column="97" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="opts.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/opts.py">
+      <file leaf-file-name="IO.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/onmt/io/IO.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="97" column="52" lean-forward="false" selection-start-line="97" selection-start-column="52" selection-end-line="97" selection-end-column="52" />
-              <folding>
-                <element signature="e#46#1167#0" expanded="false" />
-                <element signature="e#4521#14033#0" expanded="false" />
-                <element signature="e#14067#17911#0" expanded="false" />
-                <element signature="e#17952#18082#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="195">
+              <caret line="218" column="42" lean-forward="false" selection-start-line="218" selection-start-column="42" selection-end-line="218" selection-end-column="42" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Embeddings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/onmt/modules/Embeddings.py">
+      <file leaf-file-name="preprocess.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/preprocess.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="27" column="49" lean-forward="false" selection-start-line="27" selection-start-column="49" selection-end-line="27" selection-end-column="49" />
+            <state relative-caret-position="135">
+              <caret line="143" column="24" lean-forward="false" selection-start-line="143" selection-start-column="24" selection-end-line="143" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="train.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/train.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="429" column="22" lean-forward="false" selection-start-line="429" selection-start-column="22" selection-end-line="429" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="extract_embeddings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/py_scripts/extract_embeddings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="115">
+              <caret line="36" column="16" lean-forward="false" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/py_scripts/utils.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="11" column="57" lean-forward="false" selection-start-line="11" selection-start-column="57" selection-end-line="11" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="get_dictionary.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/py_scripts/get_dictionary.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="237">
+              <caret line="16" column="43" lean-forward="false" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="form_pretrain_emb.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/py_scripts/form_pretrain_emb.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="122">
+              <caret line="30" column="19" lean-forward="true" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -145,14 +133,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>self.embeddings(</find>
-      <find>opt.beta</find>
-      <find>Beam</find>
-      <find>torch.load</find>
-      <find>vocab size</find>
-      <find>torch.load(</find>
-      <find>opt.shuffle</find>
-      <find>shuffle</find>
       <find>opt.src_voca</find>
       <find>pre_word_vecs_enc</find>
       <find>load_pretrain</find>
@@ -162,7 +142,6 @@
       <find>load_vec</find>
       <find>volatile</find>
       <find>pretrained_</find>
-      <find>load_vectors</find>
       <find>finetune</find>
       <find>fromstring</find>
       <find>fn</find>
@@ -171,10 +150,19 @@
       <find>TMBatch</find>
       <find>TMB</find>
       <find>torchtext</find>
-      <find>tmbatch</find>
       <find>batch.src</find>
       <find>NMTModel</find>
       <find>Transformer</find>
+      <find>valid</find>
+      <find>tmbatch</find>
+      <find>load_</find>
+      <find>ngram</find>
+      <find>load_model(</find>
+      <find>vecs</find>
+      <find>load_vocab</find>
+      <find>load_vectors</find>
+      <find>load_model</find>
+      <find>TMBA</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -198,27 +186,27 @@
         <option value="$PROJECT_DIR$/py_scripts/__init__.py" />
         <option value="$PROJECT_DIR$/py_scripts/make_dataset.py" />
         <option value="$PROJECT_DIR$/py_scripts/pca.py" />
-        <option value="$PROJECT_DIR$/py_scripts/utils.py" />
         <option value="$PROJECT_DIR$/py_scripts/sent_tokenize.py" />
-        <option value="$PROJECT_DIR$/py_scripts/get_dictionary.py" />
         <option value="$PROJECT_DIR$/onmt/Models.py" />
         <option value="$PROJECT_DIR$/onmt/Trainer.py" />
         <option value="$PROJECT_DIR$/py_scripts/form_pretrain_emb.py" />
         <option value="$PROJECT_DIR$/data_scripts/mono_sent.sh" />
         <option value="$PROJECT_DIR$/py_scripts/extract_embeddings.py" />
         <option value="$PROJECT_DIR$/py_scripts/extract_MUSE_emb.py" />
-        <option value="$PROJECT_DIR$/onmt/modules/W2V.py" />
-        <option value="$PROJECT_DIR$/onmt/modules/Transformer.py" />
         <option value="$PROJECT_DIR$/data_scripts/get_ngram.py" />
-        <option value="$PROJECT_DIR$/opts.py" />
         <option value="$PROJECT_DIR$/preprocess.py" />
         <option value="$PROJECT_DIR$/onmt/io/TextDataset.py" />
-        <option value="$PROJECT_DIR$/onmt/modules/Embeddings.py" />
         <option value="$PROJECT_DIR$/onmt/io/DatasetBase.py" />
+        <option value="$PROJECT_DIR$/onmt/modules/Embeddings.py" />
+        <option value="$PROJECT_DIR$/onmt/modules/W2V.py" />
+        <option value="$PROJECT_DIR$/opts.py" />
+        <option value="$PROJECT_DIR$/onmt/modules/Transformer.py" />
+        <option value="$PROJECT_DIR$/py_scripts/get_dictionary.py" />
+        <option value="$PROJECT_DIR$/py_scripts/utils.py" />
         <option value="$PROJECT_DIR$/onmt/ModelConstructor.py" />
-        <option value="$PROJECT_DIR$/onmt/io/IO.py" />
         <option value="$PROJECT_DIR$/translate.py" />
         <option value="$PROJECT_DIR$/train.py" />
+        <option value="$PROJECT_DIR$/onmt/io/IO.py" />
       </list>
     </option>
   </component>
@@ -229,8 +217,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="4" />
-    <option name="y" value="71" />
+    <option name="x" value="48" />
+    <option name="y" value="59" />
     <option name="width" value="1187" />
     <option name="height" value="700" />
   </component>
@@ -353,18 +341,12 @@
             <path>
               <item name="Final" type="b2602c69:ProjectViewProjectNode" />
               <item name="Final" type="462c0819:PsiDirectoryNode" />
-              <item name="data_scripts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Final" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Final" type="462c0819:PsiDirectoryNode" />
               <item name="onmt" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Final" type="b2602c69:ProjectViewProjectNode" />
               <item name="Final" type="462c0819:PsiDirectoryNode" />
-              <item name="onmt" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="py_scripts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Final" type="b2602c69:ProjectViewProjectNode" />
@@ -448,132 +430,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1542514609546</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Fix bugs.">
-      <created>1542959235206</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1542959235206</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Fix bugs.">
-      <created>1542959535444</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1542959535444</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Fix bugs.">
-      <created>1543118021511</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1543118021511</updated>
-    </task>
-    <task id="LOCAL-00023" summary="Added utils and extract embeddings.">
-      <created>1543118832010</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1543118832011</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Added utils and extract embeddings.">
-      <created>1543118927782</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1543118927782</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Added utils and extract embeddings.">
-      <created>1543120150215</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1543120150215</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Added utils and extract embeddings.">
-      <created>1543124427755</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1543124427755</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Added utils and extract embeddings.">
-      <created>1543124572092</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1543124572092</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Added utils and extract embeddings.">
-      <created>1543124639402</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1543124639402</updated>
-    </task>
-    <task id="LOCAL-00029" summary="Added makedataset.">
-      <created>1543129590356</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1543129590356</updated>
-    </task>
-    <task id="LOCAL-00030" summary="Added makedataset.">
-      <created>1543129843131</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1543129843131</updated>
-    </task>
-    <task id="LOCAL-00031" summary="Added makedataset.">
-      <created>1543129949911</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1543129949911</updated>
-    </task>
-    <task id="LOCAL-00032" summary="Added makedataset.">
-      <created>1543175703580</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1543175703580</updated>
-    </task>
-    <task id="LOCAL-00033" summary="Added pca.">
-      <created>1543176473512</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1543176473512</updated>
-    </task>
-    <task id="LOCAL-00034" summary="Added pca.">
-      <created>1543176867981</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1543176867981</updated>
-    </task>
-    <task id="LOCAL-00035" summary="Get dictionary with clcs.">
-      <created>1543180713316</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1543180713316</updated>
-    </task>
-    <task id="LOCAL-00036" summary="Update vocab stuff. From index word to word freq.">
-      <created>1543184267507</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1543184267508</updated>
-    </task>
-    <task id="LOCAL-00037" summary="Update vocab stuff. From index word to word freq.">
-      <created>1543185924549</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1543185924549</updated>
     </task>
     <task id="LOCAL-00038" summary="Add fixed universal embedding to be accesses.&#10;Train_opt, add vectors and max_vec_num.">
       <created>1543199453482</created>
@@ -792,11 +648,137 @@
       <option name="project" value="LOCAL" />
       <updated>1543369157550</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="Add fixed universal embedding to be accesses.&#10;Train_opt, add vectors and max_vec_num.">
+      <created>1543369859074</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1543369859075</updated>
+    </task>
+    <task id="LOCAL-00070" summary="Added ngram embedding.">
+      <created>1543370164858</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1543370164858</updated>
+    </task>
+    <task id="LOCAL-00071" summary="Added ngram embedding.">
+      <created>1543370214381</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1543370214381</updated>
+    </task>
+    <task id="LOCAL-00072" summary="Added ngram embedding.">
+      <created>1543370390560</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1543370390560</updated>
+    </task>
+    <task id="LOCAL-00073" summary="Fixed bug of padding.">
+      <created>1543370615569</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1543370615569</updated>
+    </task>
+    <task id="LOCAL-00074" summary="Fixed bug of padding.">
+      <created>1543371383312</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1543371383313</updated>
+    </task>
+    <task id="LOCAL-00075" summary="Fixed bug of padding.">
+      <created>1543371657104</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1543371657104</updated>
+    </task>
+    <task id="LOCAL-00076" summary="Fixed bug of padding.">
+      <created>1543371871933</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1543371871933</updated>
+    </task>
+    <task id="LOCAL-00077" summary="Fixed bug of padding.">
+      <created>1543372507293</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1543372507294</updated>
+    </task>
+    <task id="LOCAL-00078" summary="Fixed bug of padding.">
+      <created>1543373462599</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1543373462599</updated>
+    </task>
+    <task id="LOCAL-00079" summary="Fixed bug of padding.">
+      <created>1543373838964</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1543373838964</updated>
+    </task>
+    <task id="LOCAL-00080" summary="Fixed bug of padding.">
+      <created>1543374093133</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1543374093133</updated>
+    </task>
+    <task id="LOCAL-00081" summary="Added random universal encoding.">
+      <created>1543379395121</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1543379395125</updated>
+    </task>
+    <task id="LOCAL-00082" summary="Added linear transformation for fixed encoding.">
+      <created>1543388400286</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1543388400291</updated>
+    </task>
+    <task id="LOCAL-00083" summary="Added linear transformation for fixed encoding.">
+      <created>1543388818723</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1543388818724</updated>
+    </task>
+    <task id="LOCAL-00084" summary="Loading vector errors when training on different machines.">
+      <created>1543543991329</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1543543991334</updated>
+    </task>
+    <task id="LOCAL-00085" summary="Loading vector errors when training on different machines.">
+      <created>1543544343368</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1543544343368</updated>
+    </task>
+    <task id="LOCAL-00086" summary="Loading vector errors when training on different machines.">
+      <created>1543545128651</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1543545128651</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="4" y="71" width="1187" height="700" extended-state="0" />
+    <frame x="48" y="59" width="1187" height="700" extended-state="0" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31958762" sideWeight="0.50305676" order="7" side_tool="true" content_ui="tabs" />
@@ -835,7 +817,12 @@
     <MESSAGE value="Update vocab stuff. From index word to word freq." />
     <MESSAGE value="Added get ngram." />
     <MESSAGE value="Add fixed universal embedding to be accesses.&#10;Train_opt, add vectors and max_vec_num." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add fixed universal embedding to be accesses.&#10;Train_opt, add vectors and max_vec_num." />
+    <MESSAGE value="Added ngram embedding." />
+    <MESSAGE value="Fixed bug of padding." />
+    <MESSAGE value="Added random universal encoding." />
+    <MESSAGE value="Added linear transformation for fixed encoding." />
+    <MESSAGE value="Loading vector errors when training on different machines." />
+    <option name="LAST_COMMIT_MESSAGE" value="Loading vector errors when training on different machines." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -861,11 +848,61 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/onmt/io/IO.py</url>
-          <line>243</line>
+          <line>250</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/onmt/io/IO.py</url>
+          <line>235</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/onmt/io/IO.py</url>
+          <line>241</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/onmt/io/IO.py</url>
+          <line>219</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/onmt/io/IO.py</url>
+          <line>245</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/onmt/modules/Embeddings.py</url>
+          <line>27</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/onmt/io/IO.py</url>
+          <line>216</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/onmt/io/TextDataset.py</url>
+          <line>175</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/onmt/io/TextDataset.py</url>
+          <line>173</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/onmt/io/IO.py</url>
+          <line>37</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/train.py</url>
+          <line>351</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="5" />
+      <option name="time" value="15" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1058,14 +1095,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/anaconda/lib/python3.5/site-packages/torch/nn/parameter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="6" lean-forward="false" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/onmt/modules/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -1090,16 +1119,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/py_scripts/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="4" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#10#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/py_scripts/pca.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="354">
@@ -1108,44 +1127,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/py_scripts/get_dictionary.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="67" column="30" lean-forward="false" selection-start-line="67" selection-start-column="30" selection-end-line="67" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/py_scripts/form_pretrain_emb.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="18" column="52" lean-forward="false" selection-start-line="18" selection-start-column="52" selection-end-line="18" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/py_scripts/extract_MUSE_emb.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/py_scripts/extract_embeddings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" column="17" lean-forward="false" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
-          <folding>
-            <element signature="e#1958#2009#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/onmt/modules/W2V.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="29" lean-forward="true" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -1177,14 +1162,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/anaconda/lib/python3.5/site-packages/torch/nn/functional.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="1479" column="4" lean-forward="false" selection-start-line="1479" selection-start-column="4" selection-end-line="1479" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data_scripts/get_ngram.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="302">
@@ -1201,18 +1178,88 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/onmt/Models.py">
+    <entry file="file://$PROJECT_DIR$/onmt/io/DatasetBase.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="58" column="24" lean-forward="true" selection-start-line="58" selection-start-column="24" selection-end-line="58" selection-end-column="24" />
+        <state relative-caret-position="130">
+          <caret line="36" column="19" lean-forward="true" selection-start-line="36" selection-start-column="19" selection-end-line="36" selection-end-column="19" />
+          <folding>
+            <element signature="e#25#52#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda/lib/python3.5/site-packages/torch/nn/functional.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-206">
+          <caret line="1479" column="4" lean-forward="false" selection-start-line="1479" selection-start-column="4" selection-end-line="1479" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/onmt/modules/Transformer.py">
+    <entry file="file://$PROJECT_DIR$/onmt/modules/Embeddings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="43" column="13" lean-forward="false" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+        <state relative-caret-position="259">
+          <caret line="29" column="32" lean-forward="false" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/onmt/Models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="28" column="50" lean-forward="false" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/onmt/modules/W2V.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="62" column="30" lean-forward="true" selection-start-line="62" selection-start-column="30" selection-end-line="62" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda/lib/python3.5/site-packages/torch/nn/parameter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-117">
+          <caret line="3" column="6" lean-forward="false" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/opts.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="268" column="34" lean-forward="false" selection-start-line="268" selection-start-column="34" selection-end-line="268" selection-end-column="34" />
+          <folding>
+            <element signature="e#46#1167#0" expanded="false" />
+            <element signature="e#14126#17970#0" expanded="false" />
+            <element signature="e#18011#18141#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/onmt/io/TextDataset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="159" column="12" lean-forward="false" selection-start-line="159" selection-start-column="12" selection-end-line="159" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/py_scripts/get_dictionary.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="16" column="43" lean-forward="false" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/py_scripts/form_pretrain_emb.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="30" column="19" lean-forward="true" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -1220,84 +1267,65 @@
     <entry file="file://$PROJECT_DIR$/preprocess.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
-          <caret line="143" column="26" lean-forward="false" selection-start-line="143" selection-start-column="26" selection-end-line="143" selection-end-column="26" />
+          <caret line="143" column="24" lean-forward="false" selection-start-line="143" selection-start-column="24" selection-end-line="143" selection-end-column="24" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/onmt/modules/Embeddings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="27" column="49" lean-forward="false" selection-start-line="27" selection-start-column="49" selection-end-line="27" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/onmt/io/TextDataset.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="158" column="16" lean-forward="false" selection-start-line="158" selection-start-column="16" selection-end-line="158" selection-end-column="16" />
-          <folding>
-            <element signature="e#25#56#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/onmt/io/DatasetBase.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="36" column="19" lean-forward="true" selection-start-line="36" selection-start-column="19" selection-end-line="36" selection-end-column="19" />
-          <folding>
-            <element signature="e#25#52#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/onmt/ModelConstructor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
-          <caret line="75" column="4" lean-forward="false" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="4" />
+        <state relative-caret-position="175">
+          <caret line="86" column="31" lean-forward="false" selection-start-line="86" selection-start-column="31" selection-end-line="86" selection-end-column="31" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/onmt/io/IO.py">
+    <entry file="file://$PROJECT_DIR$/onmt/modules/Transformer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8">
-          <caret line="76" column="12" lean-forward="false" selection-start-line="76" selection-start-column="12" selection-end-line="76" selection-end-column="12" />
-          <folding>
-            <element signature="e#25#82#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="148">
+          <caret line="45" column="22" lean-forward="false" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/translate.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="163" column="31" lean-forward="false" selection-start-line="163" selection-start-column="31" selection-end-line="163" selection-end-column="31" />
+        <state relative-caret-position="193">
+          <caret line="163" column="97" lean-forward="false" selection-start-line="163" selection-start-column="97" selection-end-line="163" selection-end-column="97" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/opts.py">
+    <entry file="file://$PROJECT_DIR$/py_scripts/extract_embeddings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="97" column="52" lean-forward="false" selection-start-line="97" selection-start-column="52" selection-end-line="97" selection-end-column="52" />
-          <folding>
-            <element signature="e#46#1167#0" expanded="false" />
-            <element signature="e#4521#14033#0" expanded="false" />
-            <element signature="e#14067#17911#0" expanded="false" />
-            <element signature="e#17952#18082#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="115">
+          <caret line="36" column="16" lean-forward="false" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/py_scripts/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="11" column="57" lean-forward="false" selection-start-line="11" selection-start-column="57" selection-end-line="11" selection-end-column="57" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="425" column="0" lean-forward="false" selection-start-line="425" selection-start-column="0" selection-end-line="425" selection-end-column="0" />
+        <state relative-caret-position="288">
+          <caret line="429" column="22" lean-forward="false" selection-start-line="429" selection-start-column="22" selection-end-line="429" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/onmt/io/IO.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="218" column="42" lean-forward="false" selection-start-line="218" selection-start-column="42" selection-end-line="218" selection-end-column="42" />
           <folding />
         </state>
       </provider>

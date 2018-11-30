@@ -421,9 +421,13 @@ def main():
     first_dataset = next(lazily_load_dataset("train"))
 
     #### Attributes from data preprocessing ####
-    model_opt.ngram = first_dataset.ngram
-    opt.ngram = first_dataset.ngram
-
+    if isinstance(first_dataset.ngram, int):
+        model_opt.ngram = first_dataset.ngram
+        opt.ngram = first_dataset.ngram
+    else:
+        first_dataset.ngram = -1
+        model_opt.ngram = -1
+        opt.ngram = -1
     # Load fields generated from preprocess phase.
     fields = load_fields(first_dataset, checkpoint)
 

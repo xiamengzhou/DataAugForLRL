@@ -9,6 +9,7 @@ def load_model(model_path):
     return model
 
 def load_vocab(vocab_path):
+    sys.path.append("/home/junjieh/mengzhox/11731_final")
     sys.path.append("/usr2/home/mengzhox/11731_final")
     sys.path.append("/home/mengzhox/11731_final")
     vocab = torch.load(vocab_path)
