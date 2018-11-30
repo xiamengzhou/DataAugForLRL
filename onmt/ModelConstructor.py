@@ -114,7 +114,8 @@ def make_base_model(model_opt, fields, gpu, checkpoint=None):
     src_embeddings = make_embeddings(model_opt, src_dict)
 
     ####### ... Load Global Data ... ######
-    vecs = load_vectors(model_opt.vectors, model_opt.max_vec_num, is_cuda=True, random=model_opt.random_uni)
+    vecs = load_vectors(model_opt.vectors, model_opt.max_vec_num,
+                        is_cuda=True, random=model_opt.random_uni, dim=model_opt.word_vec_size)
     encoder = make_encoder(model_opt, src_embeddings, vecs)
 
     # Make decoder.
