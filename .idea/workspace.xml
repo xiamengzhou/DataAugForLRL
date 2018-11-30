@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e3c4f64b-11fa-4fb2-aa3f-d8de53608997" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/onmt/io/IO.py" afterPath="$PROJECT_DIR$/onmt/io/IO.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/py_scripts/get_dictionary.py" afterPath="$PROJECT_DIR$/py_scripts/get_dictionary.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/py_scripts/utils.py" afterPath="$PROJECT_DIR$/py_scripts/utils.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/train.py" afterPath="$PROJECT_DIR$/train.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/onmt/modules/Transformer.py" afterPath="$PROJECT_DIR$/onmt/modules/Transformer.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/translate.py" afterPath="$PROJECT_DIR$/translate.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,11 +18,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Transformer.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Transformer.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/onmt/modules/Transformer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="45" column="22" lean-forward="false" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
+            <state relative-caret-position="125">
+              <caret line="248" column="70" lean-forward="false" selection-start-line="248" selection-start-column="70" selection-end-line="248" selection-end-column="70" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Translator.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/onmt/translate/Translator.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="117" column="44" lean-forward="false" selection-start-line="117" selection-start-column="44" selection-end-line="117" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/onmt/Models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="224">
+              <caret line="24" column="46" lean-forward="false" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -45,14 +63,14 @@
       <file leaf-file-name="translate.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/translate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="163" column="97" lean-forward="false" selection-start-line="163" selection-start-column="97" selection-end-line="163" selection-end-column="97" />
+            <state relative-caret-position="246">
+              <caret line="185" column="33" lean-forward="false" selection-start-line="185" selection-start-column="33" selection-end-line="185" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IO.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="IO.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/onmt/io/IO.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="195">
@@ -102,26 +120,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="get_dictionary.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/py_scripts/get_dictionary.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="16" column="43" lean-forward="false" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="form_pretrain_emb.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/py_scripts/form_pretrain_emb.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
-              <caret line="30" column="19" lean-forward="true" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -133,8 +131,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>opt.src_voca</find>
-      <find>pre_word_vecs_enc</find>
       <find>load_pretrain</find>
       <find>parameter</find>
       <find>NMTM</find>
@@ -163,6 +159,8 @@
       <find>load_vectors</find>
       <find>load_model</find>
       <find>TMBA</find>
+      <find>src.</find>
+      <find>init_decoder_state</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -200,13 +198,13 @@
         <option value="$PROJECT_DIR$/onmt/modules/Embeddings.py" />
         <option value="$PROJECT_DIR$/onmt/modules/W2V.py" />
         <option value="$PROJECT_DIR$/opts.py" />
-        <option value="$PROJECT_DIR$/onmt/modules/Transformer.py" />
         <option value="$PROJECT_DIR$/py_scripts/get_dictionary.py" />
         <option value="$PROJECT_DIR$/py_scripts/utils.py" />
         <option value="$PROJECT_DIR$/onmt/ModelConstructor.py" />
-        <option value="$PROJECT_DIR$/translate.py" />
         <option value="$PROJECT_DIR$/train.py" />
         <option value="$PROJECT_DIR$/onmt/io/IO.py" />
+        <option value="$PROJECT_DIR$/translate.py" />
+        <option value="$PROJECT_DIR$/onmt/modules/Transformer.py" />
       </list>
     </option>
   </component>
@@ -430,13 +428,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1542514609546</updated>
-    </task>
-    <task id="LOCAL-00038" summary="Add fixed universal embedding to be accesses.&#10;Train_opt, add vectors and max_vec_num.">
-      <created>1543199453482</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1543199453482</updated>
     </task>
     <task id="LOCAL-00039" summary="Add fixed universal embedding to be accesses.&#10;Train_opt, add vectors and max_vec_num.">
       <created>1543200162186</created>
@@ -774,7 +765,14 @@
       <option name="project" value="LOCAL" />
       <updated>1543545128651</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="Fixed ngram to be compatible with the past setting.">
+      <created>1543546917433</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1543546917436</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -822,7 +820,8 @@
     <MESSAGE value="Added random universal encoding." />
     <MESSAGE value="Added linear transformation for fixed encoding." />
     <MESSAGE value="Loading vector errors when training on different machines." />
-    <option name="LAST_COMMIT_MESSAGE" value="Loading vector errors when training on different machines." />
+    <MESSAGE value="Fixed ngram to be compatible with the past setting." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed ngram to be compatible with the past setting." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1035,14 +1034,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/onmt/translate/Translator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="146" column="56" lean-forward="false" selection-start-line="146" selection-start-column="56" selection-end-line="146" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/onmt/translate/Beam.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1204,14 +1195,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/onmt/Models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="28" column="50" lean-forward="false" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/onmt/modules/W2V.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
@@ -1282,22 +1265,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/onmt/modules/Transformer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="45" column="22" lean-forward="false" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/translate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="163" column="97" lean-forward="false" selection-start-line="163" selection-start-column="97" selection-end-line="163" selection-end-column="97" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/py_scripts/extract_embeddings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
@@ -1326,6 +1293,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="218" column="42" lean-forward="false" selection-start-line="218" selection-start-column="42" selection-end-line="218" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/translate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="185" column="33" lean-forward="false" selection-start-line="185" selection-start-column="33" selection-end-line="185" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/onmt/Models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="24" column="46" lean-forward="false" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/onmt/translate/Translator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="117" column="44" lean-forward="false" selection-start-line="117" selection-start-column="44" selection-end-line="117" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/onmt/modules/Transformer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="248" column="70" lean-forward="false" selection-start-line="248" selection-start-column="70" selection-end-line="248" selection-end-column="70" />
           <folding />
         </state>
       </provider>

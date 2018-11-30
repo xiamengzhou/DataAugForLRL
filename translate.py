@@ -160,6 +160,9 @@ def main(training=False, fields=None, model=None, opt=None, writer=None,  step=0
             onmt.ModelConstructor.load_test_model(opt, dummy_opt.__dict__)
 
         out_file = codecs.open(opt.output, 'w', 'utf-8')
+
+    if not hasattr(model_opt, "ngram"):
+        model_opt.ngram = -1
     assert opt.tgt is None
     data = onmt.io.build_dataset(fields, opt.src, opt.tgt, use_filter_pred=False, ngram=model_opt.ngram)
 

@@ -245,7 +245,10 @@ class TransformerDecoderState(DecoderState):
 
     def repeat_beam_size_times(self, beam_size):
         """ Repeat beam_size times along batch dimension. """
-        self.src = Variable(self.src.data.repeat(1, beam_size, 1), volatile=True)
+        if self.src.dim() == 4:
+            self.src = Variable(self.src.data.repeat(beam_size, 1, 1, 1), volatile=True)
+        else:
+            self.src = Variable(self.src.data.repeat(1, beam_size, 1), volatile=True)
 
 class MultiheadAttention(nn.Module):
     def __init__(self,
