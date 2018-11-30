@@ -267,6 +267,7 @@ def train_opts(parser):
     group.add_argument("-vectors", type=str)
     group.add_argument("-max_vec_num", type=int, default=50000)
     group.add_argument("-random_uni", action="store_true")
+    group.add_argument("-uni_dim", type=int)
 
     group.add_argument("-finetune", action="store_true")
 
