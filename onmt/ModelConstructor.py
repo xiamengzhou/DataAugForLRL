@@ -20,7 +20,7 @@ def load_vectors(vectors_path=None, num=50000, is_cuda=True, random=False, dim=2
             return None
     if not os.path.isfile(vectors_path):
         index = vectors_path.find("data")
-        p = vectors_path[index+4:]
+        p = vectors_path[index+5:]
         vectors_path = os.path.join(os.environ["data"], p)
     vectors = open(vectors_path, "r")
     vectors.readline()
