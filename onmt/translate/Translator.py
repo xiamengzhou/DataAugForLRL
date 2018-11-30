@@ -170,7 +170,7 @@ class Translator(object):
             for j, b in enumerate(beam):
                 b.advance(out[:, j],
                           beam_attn.data[:, j, :memory_lengths[j]])
-                # dec_states.beam_update(j, b.get_current_origin(), beam_size)
+                dec_states.beam_update(j, b.get_current_origin(), beam_size)
 
         # (4) Extract sentences from beam.
         ret = self._from_beam(beam)
