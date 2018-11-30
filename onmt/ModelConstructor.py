@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 from torch.autograd import Variable
 import numpy as np
-
+import os
 import onmt
 import onmt.io
 import onmt.Models
@@ -18,6 +18,10 @@ def load_vectors(vectors_path=None, num=50000, is_cuda=True, random=False, dim=2
             return nn.Parameter(torch.FloatTensor(num, dim), requires_grad=True)
         else:
             return None
+    if not os.path.isfile(vectors_path):
+        index = vectors_path.find("data")
+        p = vectors_path[index+4:]
+        vectors_path = os.path.join(os.environ["data"], p)
     vectors = open(vectors_path, "r")
     vectors.readline()
     vecs = []
