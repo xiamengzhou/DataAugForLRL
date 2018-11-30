@@ -79,11 +79,17 @@ def make_decoder(opt, embeddings):
     """
     return TransformerDecoder(opt.dec_layers, opt.rnn_size, opt.dropout, embeddings)
 
+def fix_prior(model_opt):
+    if not hasattr(model_opt, "ngram"):
+        model_opt.ngram = -1
+    if not hasattr(model_opt, "uni_dim"):
+        model_opt.uni_dim = 256
 
 def load_test_model(opt, dummy_opt):
     checkpoint = torch.load(opt.model,
                             map_location=lambda storage, loc: storage)
     model_opt = checkpoint['opt']
+    fix_prior(model_opt)
     fields = onmt.io.load_fields_from_vocab(checkpoint['vocab'], ngram=model_opt.ngram)
 
     for arg in dummy_opt:
