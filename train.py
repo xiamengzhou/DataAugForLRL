@@ -221,9 +221,25 @@ def validate_while_training(fields, valid_pt=None):
                                    fields, opt, is_train=False)
     return valid_iter
 
+def load_swap_dict(src_field, opt, sep="|||"):
+    if opt.swap_dict is not None
+        f = open(opt.swap_dict, "r").readlines()
+        a = []
+        b = []
+        for line in f:
+            tokens = line.strip().split(sep)
+            tokens1 = tokens[0].strip().split()
+            tokens2 = tokens[1].strip().split()
+            a.append([t for t in tokens1])
+            b.append([t for t in tokens2])
+        a = src_field.process(a, device=opt.gpuid[0], train=True)
+        b = src_field.process(b, device=opt.gpuid[0], train=True)
+        print("Loading swap dict from {}.".format(opt.swap_dict))
+        return a, b
+    else:
+        return None
 
-
-def train_model(model, fields, optim, model_opt):
+def train_model(model, fields, optim, model_opt, swap_dict):
     train_loss = make_loss_compute(model, fields["tgt"].vocab, opt)
     valid_loss = make_loss_compute(model, fields["tgt"].vocab, opt,
                                    train=False)
@@ -257,7 +273,7 @@ def train_model(model, fields, optim, model_opt):
                                     writer,
                                     report_func,
                                     opt.valid_pt,
-                                    )
+                                    swap_dict)
         print('Train perplexity: %g' % train_stats.ppl())
         print('Train accuracy: %g' % train_stats.accuracy())
 
@@ -432,7 +448,6 @@ def main():
     fields = load_fields(first_dataset, checkpoint)
 
     # Build model.
-
     model = build_model(model_opt, opt, fields, checkpoint)
     tally_parameters(model)
     check_save_model_path()
@@ -440,8 +455,11 @@ def main():
     # Build optimizer.
     optim = build_optim(model, checkpoint)
 
+    ###### Load ######:
+    swap_dict = load_swap_dict(fields["src"], opt)
+
     # Do training.
-    train_model(model, fields, optim, model_opt)
+    train_model(model, fields, optim, model_opt, swap_dict=swap_dict)
 
     # If using tensorboard for logging, close the writer after training.
     if opt.tensorboard:

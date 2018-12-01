@@ -47,7 +47,7 @@ class DecoderState(object):
                 h.detach_()
 
     def beam_update(self, idx, positions, beam_size):
-        # usually layer_num * (beam_size * bs) * 1 *dim
+        # usually layer_num * (beam_size * bs) * 1 * dim
         for e in self._all:
             sizes = e.size()
             if len(sizes) == 3:
@@ -58,8 +58,8 @@ class DecoderState(object):
                     sent_states.data.index_select(1, positions))
 
             else:
-                br = sizes[0]
                 if e.shape[-1] == 1:
+                    br = sizes[0]
                     sent_states = e.view(beam_size, br // beam_size,
                                          sizes[1], sizes[2], sizes[3])[:, idx]
                     sent_states.data.copy_(

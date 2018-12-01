@@ -31,11 +31,15 @@ class Statistics(object):
         self.n_correct = n_correct
         self.n_src_words = 0
         self.start_time = time.time()
+        self.emb_loss = 0
 
     def update(self, stat):
         self.loss += stat.loss
         self.n_words += stat.n_words
         self.n_correct += stat.n_correct
+
+    def update_emb_loss(self, emb_loss):
+        self.emb_loss += emb_loss
 
     def accuracy(self):
         return 100 * (self.n_correct / self.n_words)
@@ -131,7 +135,7 @@ class Trainer(object):
 
     def train(self, train_iter, epoch, opt, fields,
               validate_while_training, writer, report_func=None, valid_pt=None,
-              ):
+              swap_dict=None):
         """ Train next epoch.
         Args:
             train_iter: training data iterator
@@ -173,9 +177,11 @@ class Trainer(object):
                 normalization += batch.batch_size
 
             if accum == self.grad_accum_count:
+                emb_loss = self.pass_constraint(swap_dict=swap_dict, ec_weight=opt.ec_weight, report_stats=report_stats,
+                                     total_stats=total_stats)
                 self._gradient_accumulation(
                         true_batchs, total_stats,
-                        report_stats, normalization)
+                        report_stats, normalization, emb_loss)
 
                 if report_func is not None:
                     report_stats = report_func(
@@ -216,9 +222,11 @@ class Trainer(object):
 
 
         if len(true_batchs) > 0:
+            emb_loss = self.pass_constraint(swap_dict=swap_dict, ec_weight=opt.ec_weight, report_stats=report_stats,
+                                    total_stats=total_stats)
             self._gradient_accumulation(
                     true_batchs, total_stats,
-                    report_stats, normalization)
+                    report_stats, normalization, emb_loss)
             true_batchs = []
 
         return total_stats
@@ -263,6 +271,15 @@ class Trainer(object):
         outputs, attns, _ = self.model(src, tgt, src_lengths, None)
         return outputs, attns
 
+    def pass_constraint(self, swap_dict, ec_weight, report_stats, total_stats):
+        if swap_dict is not None:
+            emb_loss = self.model.encoder.embeddings.embedding_constraint(ec_weight, swap_dict)
+            report_stats.update_emb_loss(emb_loss.data[0])
+            total_stats.update_emb_loss(emb_loss.data[0])
+            return emb_loss
+        else:
+            return None
+
     def epoch_step(self, ppl, epoch):
         return self.optim.update_learning_rate(ppl, epoch)
 
@@ -302,7 +319,8 @@ class Trainer(object):
         print('%s_acc_%.2f_ppl_%.2f_e%d_s%d.pt' % (opt.save_model, valid_stats.accuracy(),
                       valid_stats.ppl(), epoch, step), "saved!")
 
-    def _gradient_accumulation(self, true_batchs, total_stats, report_stats, normalization):
+    def _gradient_accumulation(self, true_batchs, total_stats, report_stats, normalization,
+                               emb_loss=None):
         if self.grad_accum_count > 1:
             self.model.zero_grad()
 
@@ -334,6 +352,8 @@ class Trainer(object):
                 outputs, attns = \
                     self.pass_model(src, tgt, src_lengths)
 
+                if emb_loss is not None:
+                    emb_loss.backward(retain_graph=True)
 
                 # 3. Compute loss in shards for memory efficiency.
                 batch_stats = self.train_loss.sharded_compute_loss(
