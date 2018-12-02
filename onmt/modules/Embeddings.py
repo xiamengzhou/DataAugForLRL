@@ -44,6 +44,23 @@ class Embeddings(nn.Module):
             if fixed:
                 self.embeddings.weight.requires_grad = False
 
+    def embedding_constraint(self, ec_weight, swap_dict):
+        # a_index low resource
+        a_index, a_length = swap_dict[0]
+        b_index, b_length = swap_dict[1]
+        a_length = a_length.unsqueeze(-1)
+        b_length = b_length.unsqueeze(-1)
+        a_emb = self.forward(a_index.unsqueeze(-1))
+        b_emb = self.forward(b_index.unsqueeze(-1))
+        b_emb = b_emb.detach() ### Want low resource embeddings to approach the high resource embeddings
+        a_emb = torch.sum(a_emb, 0)
+        b_emb = torch.sum(b_emb, 0)
+        a_emb = a_emb / Variable(a_length.float())
+        b_emb = b_emb / Variable(b_length.float())
+        b_emb.detach()
+        loss = ec_weight * ((b_emb - a_emb) ** 2).sum().div(a_index.shape[1])
+        return loss
+
 class PositionalEncoding(nn.Module):
     """
     Implements the sinusoidal positional encoding for
@@ -83,19 +100,3 @@ class PositionalEncoding(nn.Module):
         emb = self.dropout(emb)
         return emb
 
-    def embedding_constraint(self, ec_weight, swap_dict):
-        # a_index low resource
-        a_index, a_length = swap_dict[0]
-        b_index, b_length = swap_dict[1]
-        a_length = a_length.unsqueeze(-1)
-        b_length = b_length.unsqueeze(-1)
-        a_emb = self.forward(a_index.unsqueeze(-1))
-        b_emb = self.forward(b_index.unsqueeze(-1))
-        b_emb = b_emb.detach() ### Want low resource embeddings to approach the high resource embeddings
-        a_emb = torch.sum(a_emb, 0)
-        b_emb = torch.sum(b_emb, 0)
-        a_emb = a_emb / Variable(a_length.float())
-        b_emb = b_emb / Variable(b_length.float())
-        b_emb.detach()
-        loss = ec_weight * ((b_emb - a_emb) ** 2).sum().div(a_index.shape[1])
-        return loss
