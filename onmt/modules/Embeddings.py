@@ -50,8 +50,8 @@ class Embeddings(nn.Module):
         b_index, b_length = swap_dict[1]
         a_length = a_length.unsqueeze(-1)
         b_length = b_length.unsqueeze(-1)
-        a_emb = self.embeddings(a_index.unsqueeze(-1))
-        b_emb = self.embeddings(b_index.unsqueeze(-1))
+        a_emb = self.embeddings(a_index)
+        b_emb = self.embeddings(b_index)
         b_emb = b_emb.detach() ### Want low resource embeddings to approach the high resource embeddings
         a_emb = torch.sum(a_emb, 0)
         b_emb = torch.sum(b_emb, 0)
