@@ -83,7 +83,7 @@ class PositionalEncoding(nn.Module):
         emb = self.dropout(emb)
         return emb
 
-    def constraint(self, ec_weight, swap_dict):
+    def embedding_constraint(self, ec_weight, swap_dict):
         # a_index low resource
         a_index, a_length = swap_dict[0]
         b_index, b_length = swap_dict[1]
