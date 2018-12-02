@@ -222,7 +222,7 @@ def validate_while_training(fields, valid_pt=None):
     return valid_iter
 
 def load_swap_dict(src_field, opt, sep="|||"):
-    if opt.swap_dict is not None
+    if opt.swap_dict is not None:
         f = open(opt.swap_dict, "r").readlines()
         a = []
         b = []

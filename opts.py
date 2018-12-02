@@ -271,6 +271,7 @@ def train_opts(parser):
 
     group.add_argument("-finetune", action="store_true")
     group.add_argument("-swap_dict")
+    group.add_argument("-ec_weight", type=float)
 
 def translate_opts(parser):
     group = parser.add_argument_group('Model')

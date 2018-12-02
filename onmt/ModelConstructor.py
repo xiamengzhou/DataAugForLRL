@@ -84,6 +84,8 @@ def fix_prior(model_opt):
         model_opt.ngram = -1
     if not hasattr(model_opt, "uni_dim"):
         model_opt.uni_dim = 256
+    if not hasattr(model_opt, "random_uni"):
+        model_opt.random_uni = False
 
 def load_test_model(opt, dummy_opt):
     checkpoint = torch.load(opt.model,
