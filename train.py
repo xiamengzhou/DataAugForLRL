@@ -363,9 +363,17 @@ def lazily_load_dataset(corpus_type, valid_pt=None):
 def load_fields(dataset, checkpoint):
     if checkpoint is not None:
         print('Loading vocab from checkpoint at %s.' % opt.train_from)
-        fields = onmt.io.load_fields_from_vocab(checkpoint['vocab'], dataset.ngram)
+        v = checkpoint['vocab']
+        v_names = [f[0] for f in v]
+        fields = onmt.io.load_fields_from_vocab(v,
+                                                dataset.ngram,
+                                                "src_sg" in v_names)
     else:
-        fields = onmt.io.load_fields_from_vocab(torch.load(opt.data + '.vocab.pt'), dataset.ngram)
+        v = torch.load(opt.data + '.vocab.pt')
+        v_names = [f[0] for f in v]
+        fields = onmt.io.load_fields_from_vocab(v,
+                                                dataset.ngram,
+                                                "src_sg" in v_names)
     fields = dict([(k, f) for (k, f) in fields.items()
                    if k in dataset.examples[0].__dict__])
 
@@ -444,6 +452,7 @@ def main():
         first_dataset.ngram = -1
         model_opt.ngram = -1
         opt.ngram = -1
+
     # Load fields generated from preprocess phase.
     fields = load_fields(first_dataset, checkpoint)
 
