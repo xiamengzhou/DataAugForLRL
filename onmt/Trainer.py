@@ -63,12 +63,13 @@ class Statistics(object):
            start (int): start time of epoch.
         """
         t = self.elapsed_time()
-        print(("Epoch %2d, %5d/%5d; acc: %6.2f; ppl: %6.2f; xent: %6.2f; " +
+        print(("Epoch %2d, %5d/%5d; acc: %6.2f; ppl: %6.2f; xent: %6.2f; emb_loss: %6.2f;" +
                "%3.0f src tok/s; %3.0f tgt tok/s; %6.0f s elapsed") %
               (epoch, batch, n_batches,
                self.accuracy(),
                self.ppl(),
                self.xent(),
+               self.emb_loss,
                self.n_src_words / (t + 1e-5),
                self.n_words / (t + 1e-5),
                time.time() - start))

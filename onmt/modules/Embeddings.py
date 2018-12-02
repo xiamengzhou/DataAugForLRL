@@ -52,12 +52,11 @@ class Embeddings(nn.Module):
         b_length = b_length.unsqueeze(-1)
         a_emb = self.embeddings(a_index)
         b_emb = self.embeddings(b_index)
-        b_emb = b_emb.detach() ### Want low resource embeddings to approach the high resource embeddings
         a_emb = torch.sum(a_emb, 0)
         b_emb = torch.sum(b_emb, 0)
         a_emb = a_emb / Variable(a_length.float())
         b_emb = b_emb / Variable(b_length.float())
-        b_emb.detach()
+        b_emb = b_emb.detach() ### Want low resource embeddings to approach the high resource embeddings
         loss = ec_weight * ((b_emb - a_emb) ** 2).sum().div(a_index.shape[1])
         return loss
 
