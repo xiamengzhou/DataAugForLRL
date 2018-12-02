@@ -91,7 +91,6 @@ def load_test_model(opt, dummy_opt):
     checkpoint = torch.load(opt.model,
                             map_location=lambda storage, loc: storage)
     model_opt = checkpoint['opt']
-    fix_prior(model_opt)
     fields = onmt.io.load_fields_from_vocab(checkpoint['vocab'], ngram=model_opt.ngram)
 
     for arg in dummy_opt:
@@ -120,6 +119,7 @@ def make_base_model(model_opt, fields, gpu, checkpoint=None):
     # Make encoder.
     src_dict = fields["src"].vocab
     src_embeddings = make_embeddings(model_opt, src_dict)
+    fix_prior(model_opt)
 
     ####### ... Load Global Data ... ######
     vecs = load_vectors(model_opt.vectors, model_opt.max_vec_num,
