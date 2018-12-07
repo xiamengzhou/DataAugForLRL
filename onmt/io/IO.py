@@ -27,15 +27,15 @@ def _setstate(self, state):
 torchtext.vocab.Vocab.__getstate__ = _getstate
 torchtext.vocab.Vocab.__setstate__ = _setstate
 
-def get_fields(ngram=-1):
-    return TextDataset.get_fields(ngram)
+def get_fields(ngram=-1, skipgram=False):
+    return TextDataset.get_fields(ngram, skipgram)
 
-def load_fields_from_vocab(vocab, ngram=-1):
+def load_fields_from_vocab(vocab, ngram=-1, skipgram=False):
     """
     Load Field objects from `vocab.pt` file.
     """
     vocab = dict(vocab)
-    fields = TextDataset.get_fields(ngram=ngram)
+    fields = TextDataset.get_fields(ngram=ngram, skipgram=skipgram)
     for k, v in vocab.items():
         # Hack. Can't pickle defaultdict :(
         v.stoi = defaultdict(lambda: 0, v.stoi)
@@ -245,8 +245,8 @@ class TMBatch:
                             length = length.cuda(device)
                         assert out.shape == (len(batch), max_sent_len, max_ngram_len)
                         setattr(self, name, (out, length))
-                    elif name == "src_sg" and dataset.skipgram:
-                        out = field.process(batch, device=-1, train=train) # include length and batch first
+                    # if name == "src_sg" and dataset.skipgram:
+                    #     setattr(self, name, field.process(batch, device=device, train=train))
                     else:
                         setattr(self, name, field.process(batch, device=device, train=train))
 

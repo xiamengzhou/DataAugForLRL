@@ -96,6 +96,7 @@ def preprocess_opts(parser):
 
     group.add_argument('-cover', default="standard")
     group.add_argument("-ngram", type=int, default=-1)
+    group.add_argument("-skipgram", action="store_true")
 
 
 def train_opts(parser):

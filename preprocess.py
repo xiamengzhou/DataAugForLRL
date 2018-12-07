@@ -141,7 +141,7 @@ def main():
     opt = parse_args()
 
     print("Building `Fields` object...")
-    fields = onmt.io.get_fields(ngram=opt.ngram)
+    fields = onmt.io.get_fields(ngram=opt.ngram, skipgram=opt.skipgram)
     if opt.cover == "standard":
         print("Building & saving training data...")
         train_dataset_files = build_save_dataset('train', fields, opt)

@@ -2,8 +2,11 @@ import sys
 import torch
 
 def load_model(model_path):
+    sys.path.append("/home/junjieh/mengzhox/11731_final")
     sys.path.append("/usr2/home/mengzhox/11731_final")
     sys.path.append("/home/mengzhox/11731_final")
+    sys.path.append("/home/junjieh/usr3/Research/seq2seq")
+    sys.path.append("/home/junjieh/usr3/Research/seq2seq/module")
     model = torch.load(model_path, map_location=lambda storage, loc: storage)
     print("Load model from {}!".format(model_path))
     return model
@@ -24,4 +27,11 @@ def load_dict(d):
         di[w] = freq
     print("Load dictionary from {}!".format(d))
     return di
+
+def load_junjie_model(path):
+    sys.path.append("/home/junjieh/usr3/Research/seq2seq")
+    sys.path.append("/home/junjieh/usr3/Research/seq2seq/module")
+    from module.models import LSTMSeq2SeqModel
+    model = LSTMSeq2SeqModel.load(path)
+    return model
 

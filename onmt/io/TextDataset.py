@@ -157,7 +157,7 @@ class TextDataset(ONMTDatasetBase):
             return alignment
 
     @staticmethod
-    def get_fields(ngram):
+    def get_fields(ngram, skipgram):
         """
         Args:
             n_src_features (int): the number of source features to
@@ -175,6 +175,11 @@ class TextDataset(ONMTDatasetBase):
             pad_token=PAD_WORD,
             include_lengths=True,
             batch_first=ngram>0)
+
+        if skipgram:
+            fields["src_sg"] = torchtext.data.Field(
+                pad_token=PAD_WORD
+            )
 
         fields["tgt"] = torchtext.data.Field(
             init_token=BOS_WORD, eos_token=EOS_WORD,
