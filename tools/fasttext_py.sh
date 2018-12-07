@@ -1,1 +1,1 @@
-./fasttext skipgram -input $1 -output $2
+./../../fasttext skipgram -input $1 -output $2
