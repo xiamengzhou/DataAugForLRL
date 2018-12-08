@@ -1,8 +1,9 @@
 # coding: utf-8
 import os, sys
 import argparse
-import torch
 import data
+
+
 
 parser = argparse.ArgumentParser(description='word swap')
 parser.add_argument('--lrl_file', type=str,
@@ -17,5 +18,42 @@ parser.add_argument('--all', action='store_true',
                     help='use all words in dictionary')
 args = parser.parse_args()
 
-corpus = data.Corpus(args.data, args.nvocab)
-torch.save(corpus, os.path.join(args.data, 'corpus.pt'))
+
+lrl_file = args.lrl_file
+hrl_file = args.hrl_file
+bi_dict_file = args.bi_dict
+all_words = args.all
+
+def read_bi_dict(dict_file):
+
+	bi_dict = {}
+	with open(bi_dict_file, encoding='utf-8') as f:
+		for line in f:
+			words = line.strip().split()
+			bi_dict[words[1]] = words[0]
+	return bi_dict
+
+bi_dict = read_bi_dict(bi_dict_file)
+
+def vocab(path):
+
+	vocab_list = []
+	with open(path, encoding='utf-8') as f:
+		for line in f:
+			words = line.strip().split()
+			for w in words:
+				if w not in vocab_list:
+					vocab_list.append(w)
+	return vocab_list
+
+lrl_vocab = vocab(lrl_file)
+
+def word_swap(hrl_path, lrl_vocab, bidict, all_words):
+
+	with open(hrl_path, encoding='utf-8') as h, open(hrl_path + '.swp', 'w', encoding='utf-8') as f:
+		for line in h:
+			words = line.strip().split()
+			
+
+
+
