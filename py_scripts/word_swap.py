@@ -6,9 +6,9 @@ import data
 
 parser = argparse.ArgumentParser(description='word swap')
 parser.add_argument('--lrl_file', type=str,
-                    help='location of the data corpus')
+                    help='low resource language file path')
 parser.add_argument('--hrl_file', type=int,
-                    help='vocabulary size')
+                    help='high resource language file path')
 args = parser.parse_args()
 
 corpus = data.Corpus(args.data, args.nvocab)
