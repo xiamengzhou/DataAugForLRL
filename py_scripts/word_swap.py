@@ -60,11 +60,13 @@ def word_swap(hrl_path, lrl_vocab, bidict, all_words):
 			for w in words:
 				if all_words:
 					hrl_words.append(bidict.get(w, w))
-				else if w in lrl_vocab:
+				elif w in lrl_vocab:
 					hrl_words.append(bidict.get(w, w))
 				else:
 					hrl_words.append(w)
 			f.write(' '.join(hrl_words) + '\n')
+
+
 
 
 
