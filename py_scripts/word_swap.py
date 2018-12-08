@@ -49,8 +49,11 @@ def vocab(path):
 lrl_vocab = vocab(lrl_file)
 
 def word_swap(hrl_path, lrl_vocab, bidict, all_words):
-
-	with open(hrl_path, encoding='utf-8') as h, open(hrl_path + '.swp', 'w', encoding='utf-8') as f:
+	if all_words:
+		out_file = hrl_path + '.swpall'
+	else:
+		out_file = hrl_path + '.swp'
+	with open(hrl_path, encoding='utf-8') as h, open(out_file, 'w', encoding='utf-8') as f:
 		for line in h:
 			words = line.strip().split()
 			hrl_words = []
@@ -62,6 +65,7 @@ def word_swap(hrl_path, lrl_vocab, bidict, all_words):
 				else:
 					hrl_words.append(w)
 			f.write(' '.join(hrl_words) + '\n')
+
 
 
 
