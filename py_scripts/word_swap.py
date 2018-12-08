@@ -53,7 +53,17 @@ def word_swap(hrl_path, lrl_vocab, bidict, all_words):
 	with open(hrl_path, encoding='utf-8') as h, open(hrl_path + '.swp', 'w', encoding='utf-8') as f:
 		for line in h:
 			words = line.strip().split()
-			
+			hrl_words = []
+			for w in words:
+				if all_words:
+					hrl_words.append(bidict.get(w, w))
+				else if w in lrl_vocab:
+					hrl_words.append(bidict.get(w, w))
+				else:
+					hrl_words.append(w)
+			f.write(' '.join(hrl_words) + '\n')
+
+
 
 
 
