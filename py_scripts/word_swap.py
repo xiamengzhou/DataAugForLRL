@@ -1,7 +1,6 @@
 # coding: utf-8
 import os, sys
 import argparse
-import data
 
 
 
@@ -12,8 +11,6 @@ parser.add_argument('--hrl_file', type=str,
                     help='high resource language file path')
 parser.add_argument('--bi_dict', type=str,
                     help='bilingual word translation dictionary')
-parser.add_argument('--hrl_file', type=str,
-                    help='high resource language file path')
 parser.add_argument('--all', action='store_true',
                     help='use all words in dictionary')
 args = parser.parse_args()
@@ -49,6 +46,7 @@ def vocab(path):
 lrl_vocab = vocab(lrl_file)
 
 def word_swap(hrl_path, lrl_vocab, bidict, all_words):
+	replace_amount = 0
 	if all_words:
 		out_file = hrl_path + '.swpall'
 	else:
@@ -59,12 +57,19 @@ def word_swap(hrl_path, lrl_vocab, bidict, all_words):
 			hrl_words = []
 			for w in words:
 				if all_words:
+					if w in bidict:
+						replace_amount += 1
 					hrl_words.append(bidict.get(w, w))
 				elif w in lrl_vocab:
+					if w in bidict:
+						replace_amount += 1
 					hrl_words.append(bidict.get(w, w))
 				else:
 					hrl_words.append(w)
 			f.write(' '.join(hrl_words) + '\n')
+	print('the total amount of replaced word is %d' %(replace_amount))
+
+word_swap(hrl_file, lrl_vocab, bi_dict, all_words)
 
 
 
