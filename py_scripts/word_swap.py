@@ -7,8 +7,14 @@ import data
 parser = argparse.ArgumentParser(description='word swap')
 parser.add_argument('--lrl_file', type=str,
                     help='low resource language file path')
-parser.add_argument('--hrl_file', type=int,
+parser.add_argument('--hrl_file', type=str,
                     help='high resource language file path')
+parser.add_argument('--bi_dict', type=str,
+                    help='bilingual word translation dictionary')
+parser.add_argument('--hrl_file', type=str,
+                    help='high resource language file path')
+parser.add_argument('--all', action='store_true',
+                    help='use all words in dictionary')
 args = parser.parse_args()
 
 corpus = data.Corpus(args.data, args.nvocab)
