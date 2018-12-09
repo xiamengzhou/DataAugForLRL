@@ -259,13 +259,13 @@ def swap(file, outfile, dict_=None, src_vocab=None, alpha=1/2):
     output_dict("/".join(outfile.split("/")[:-1]) + "/swap_dict", swap_dict, " ||| ")
 
 # Get the probablity of low frequency words
-def get_prob(swap_dict, lrl_freq, output, temp=0.5):
+def get_prob(swap_dict, lrl_freq, output, temp=0.5, sep=" ||| "):
     freq = load_vocab_freq(lrl_freq, True, " ")
     f = load_files(swap_dict)
-    f_out = open(output)
+    f_out = open(output, "w")
     freqs = []
     for line in f:
-        src, tgt = line.split(" ||| ")
+        src, tgt = line.split(sep)
         freqs.append(freq[src])
     freqs = [math.exp(temp*k) for k in freqs]
     sum_freqs = sum(freqs)
@@ -421,5 +421,6 @@ if __name__ == '__main__':
         get_prob(swap_dict=sys.argv[2],
                  lrl_freq=sys.argv[3],
                  output=sys.argv[4],
-                 temp=float(sys.argv[5]))
+                 temp=float(sys.argv[5]),
+                 sep=sys.argv[6])
 
