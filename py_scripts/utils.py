@@ -1,4 +1,10 @@
-import sys
+"""
+prob - python3 utils.py /projects/tir3/users/mengzhox/data/11731_final/MUSE_dict/azetur/T2S_re \
+                        /projects/tir3/users/mengzhox/data/11731_final/vocab/aze.vocab.tok \
+
+
+"""
+
 import torch
 
 def load_model(model_path):
@@ -18,15 +24,6 @@ def load_vocab(vocab_path):
     vocab = torch.load(vocab_path)
     print("Load vocab from {}!".format(vocab_path))
     return vocab[0][1], vocab[1][1]
-
-def load_dict(d):
-    di = {}
-    f = open(d, "r").readlines()
-    for line in f:
-        w, freq = line.split()
-        di[w] = freq
-    print("Load dictionary from {}!".format(d))
-    return di
 
 import math
 import numpy as np
@@ -163,8 +160,6 @@ def output_lines(f, lines):
     for line in lines:
         file.write(" ".join(line) + "\n")
     print("Output to {}!".format(f))
-
-
 
 def output_dict(f, d, sep = " "):
     file = open(f, "w")
@@ -422,4 +417,9 @@ if __name__ == '__main__':
         build_vocabulary(file=sys.argv[2], out_file=sys.argv[3])
     elif sys.argv[1] == "nonbpe":
         generate_nonbpe(sys.argv[2])
+    elif sys.argv[1] == "prob":
+        get_prob(swap_dict=sys.argv[2],
+                 lrl_freq=sys.argv[3],
+                 output=sys.argv[4],
+                 temp=int(sys.argv[5]))
 

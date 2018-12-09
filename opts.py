@@ -273,6 +273,11 @@ def train_opts(parser):
     group.add_argument("-finetune", action="store_true")
     group.add_argument("-swap_dict")
     group.add_argument("-ec_weight", type=float)
+    group.add_argument("-ec_weight_file", type=float)
+    group.add_argument("-lrl_prob")
+    group.add_argument("-sample_num", type=int)
+
+
 
 def translate_opts(parser):
     group = parser.add_argument_group('Model')

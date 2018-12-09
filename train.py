@@ -223,6 +223,13 @@ def validate_while_training(fields, valid_pt=None):
 
 def load_swap_dict(src_field, opt, sep="|||"):
     if opt.swap_dict is not None:
+        swap_dict = onmt.modules.SwapDict(swap_dict=opt.swap_dict,
+                                          wc_weight=opt.wc_weight_file,
+                                          src_field=src_field,
+                                          sep=sep,
+                                          lrl_prob=opt.lrl_prob,
+                                          device=0,
+                                          sample_num=opt.sample_num)
         # f = open(opt.swap_dict, "r").readlines()
         # a = []
         # b = []
