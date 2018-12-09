@@ -23,6 +23,7 @@ from onmt.Utils import use_gpu
 import opts
 
 from copy import deepcopy
+
 import numpy as np
 
 parser = argparse.ArgumentParser(
@@ -50,6 +51,7 @@ if opt.seed > 0:
 
 if torch.cuda.is_available() and not opt.gpuid:
     print("WARNING: You have a CUDA device, should run with -gpuid 0")
+
 
 if opt.gpuid:
     cuda.set_device(opt.gpuid[0])
