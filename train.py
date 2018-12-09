@@ -223,19 +223,20 @@ def validate_while_training(fields, valid_pt=None):
 
 def load_swap_dict(src_field, opt, sep="|||"):
     if opt.swap_dict is not None:
-        f = open(opt.swap_dict, "r").readlines()
-        a = []
-        b = []
-        for line in f:
-            tokens = line.strip().split(sep)
-            tokens1 = tokens[0].strip().split()
-            tokens2 = tokens[1].strip().split()
-            a.append([t for t in tokens1])
-            b.append([t for t in tokens2])
-        a = src_field.process(a, device=opt.gpuid[0], train=True)
-        b = src_field.process(b, device=opt.gpuid[0], train=True)
-        print("Loading swap dict from {}.".format(opt.swap_dict))
-        return a, b
+        # f = open(opt.swap_dict, "r").readlines()
+        # a = []
+        # b = []
+        # for line in f:
+        #     tokens = line.strip().split(sep)
+        #     tokens1 = tokens[0].strip().split()
+        #     tokens2 = tokens[1].strip().split()
+        #     a.append([t for t in tokens1])
+        #     b.append([t for t in tokens2])
+        # a = src_field.process(a, device=-1, train=True)
+        # b = src_field.process(b, device=-1, train=True)
+        # print("Loading swap dict from {}.".format(opt.swap_dict))
+        # return a, b
+
     else:
         return None
 

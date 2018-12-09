@@ -57,7 +57,7 @@ class Embeddings(nn.Module):
         a_emb = a_emb / Variable(a_length.float())
         b_emb = b_emb / Variable(b_length.float())
         b_emb = b_emb.detach() ### Want low resource embeddings to approach the high resource embeddings
-        loss = ec_weight * ((b_emb - a_emb) ** 2).sum().div(a_index.shape[1])
+        loss = (ec_weight * ((b_emb - a_emb) ** 2)).sum().div(a_index.shape[1])
         return loss
 
 class PositionalEncoding(nn.Module):

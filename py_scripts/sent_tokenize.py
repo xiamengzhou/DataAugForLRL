@@ -1,7 +1,7 @@
 import nltk
 def sent_tokenize_wiki():
-    f = open("tr.wiki.txt", "r").readlines()
-    f2 = open("tr.wiki.tok.txt", "w")
+    f = open("cs.wiki.txt", "r").readlines()
+    f2 = open("cs.wiki.tok.txt", "w")
     for line in f:
         if len(line.split()) == 0:
             continue

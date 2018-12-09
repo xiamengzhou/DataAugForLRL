@@ -232,6 +232,7 @@ class Trainer(object):
 
         return total_stats
 
+
     def validate(self, valid_iter):
         """ Validate model.
             valid_iter: validate data iterator
@@ -272,9 +273,10 @@ class Trainer(object):
         outputs, attns, _ = self.model(src, tgt, src_lengths, None)
         return outputs, attns
 
-    def pass_constraint(self, swap_dict, ec_weight, report_stats, total_stats):
+    def pass_constraint(self, swap_dict, report_stats, total_stats):
         if swap_dict is not None:
-            emb_loss = self.model.encoder.embeddings.embedding_constraint(ec_weight, swap_dict)
+            s, w = swap_dict.sample()
+            emb_loss = self.model.encoder.embeddings.embedding_constraint(w, s)
             report_stats.update_emb_loss(emb_loss.data[0])
             total_stats.update_emb_loss(emb_loss.data[0])
             return emb_loss
