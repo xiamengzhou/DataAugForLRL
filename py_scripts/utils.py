@@ -421,5 +421,5 @@ if __name__ == '__main__':
         get_prob(swap_dict=sys.argv[2],
                  lrl_freq=sys.argv[3],
                  output=sys.argv[4],
-                 temp=int(sys.argv[5]))
+                 temp=float(sys.argv[5]))
 
