@@ -43,7 +43,7 @@ accum_count=8
 
 python3 ~/11731_final/train.py -data $data_dir/processed/$process_type/$lang/$process_type \
                  -save_model $save_dir/models/${process_type} -gpuid ${gpu} \
-                 -layers 6 -rnn_size 512 -word_vec_size 512 \
+                 -layers 4 -rnn_size 256 -word_vec_size 256 \
                  -epochs 30 -max_generator_batches 32 -dropout 0.1 \
                  -batch_size ${batch_size} -batch_type tokens -normalization tokens -accum_count ${accum_count} \
                  -optim adam -adam_beta2 0.998 -decay_method noam -warmup_steps 8000 -learning_rate 2 \

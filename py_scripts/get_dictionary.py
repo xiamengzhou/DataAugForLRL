@@ -14,6 +14,7 @@ import sys
 sys.path.append("/usr2/home/mengzhox/MUSE")
 sys.path.append("/home/mengzhox/MUSE")
 sys.path.append("/home/junjieh/mengzhox/MUSE")
+sys.path.append("/home/xiangk/11731-final/MUSE")
 from src.dico_builder import build_dictionary
 import numpy as np
 import io

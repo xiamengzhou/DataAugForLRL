@@ -29,8 +29,8 @@ l2_vectors = extract_vector(lang2)
 
 l1_pca = pca_transform(l1_vectors)
 l2_pca = pca_transform(l2_vectors)
+print(l1_pca[:][0].shape)
+plt.scatter(l1_pca[:, 0], l1_pca[:, 1])
+plt.scatter(l2_pca[:, 0], l2_pca[:, 1])
 
-plt.scatter(l1_pca[:][0], l1_pca[:][1], c=T)
-plt.scatter(l2_pca[:][0], l2_pca[:][1], c=R)
-
-#plt.savefig(os.path.join(lang2, 'pca.png'))
+plt.savefig(os.path.join(pca_save, 'pca.png'))
