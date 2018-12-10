@@ -14,13 +14,15 @@ class SwapDict():
             b.append([t for t in tokens2])
         a = src_field.process(a, device=-1, train=True)
         b = src_field.process(b, device=-1, train=True)
-        print("Loading swap dict from {}.".format(swap_dict))
         self.a = a
         self.b = b
         self.src_field = src_field
         self.dict_size = self.a[0].shape[0]
         self.device = device
         self.sample_num = sample_num
+        print("Loading swap dict from {} with size {}.".format(swap_dict, str(self.dict_size)))
+
+
 
         self.weight = []
         f2 = open(ec_weight, "r").readlines()
