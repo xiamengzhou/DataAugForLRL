@@ -178,8 +178,8 @@ class Trainer(object):
                 normalization += batch.batch_size
 
             if accum == self.grad_accum_count:
-                emb_loss = self.pass_constraint(swap_dict=swap_dict, ec_weight=opt.ec_weight, report_stats=report_stats,
-                                     total_stats=total_stats)
+                emb_loss = self.pass_constraint(swap_dict=swap_dict, report_stats=report_stats,
+                                                total_stats=total_stats)
                 self._gradient_accumulation(
                         true_batchs, total_stats,
                         report_stats, normalization, emb_loss)
@@ -223,7 +223,7 @@ class Trainer(object):
 
 
         if len(true_batchs) > 0:
-            emb_loss = self.pass_constraint(swap_dict=swap_dict, ec_weight=opt.ec_weight, report_stats=report_stats,
+            emb_loss = self.pass_constraint(swap_dict=swap_dict, report_stats=report_stats,
                                             total_stats=total_stats)
             self._gradient_accumulation(
                     true_batchs, total_stats,
