@@ -278,7 +278,7 @@ def swap(file, outfile, dict_=None, src_vocab=None, alpha=1/2):
             prob[key] = math.exp(- v[key] * alpha)
             swap_one_hot[key] = np.random.choice([0, 1], 1, p=[1-prob[key], prob[key]])[0]
     lines = load_file_by_words(file)
-    if isinstance(list(dict_.values())[0], list):
+    if isinstance(list(dict_.values())[0], tuple):
         for line in lines:
             for j, token in enumerate(line):
                 if v is not None:
