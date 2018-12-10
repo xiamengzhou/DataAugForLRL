@@ -50,10 +50,10 @@ class SwapDict():
         b_index = self.b[0][:, index]
         b_length = self.b[1][index]
         if self.device >= 0:
-            a_index = a_index.device(self.device)
-            a_length = a_length.device(self.device)
-            b_index = b_index.device(self.device)
-            b_length = b_length.device(self.device)
+            a_index = a_index.cuda(self.device)
+            a_length = a_length.cuda(self.device)
+            b_index = b_index.cuda(self.device)
+            b_length = b_length.cuda(self.device)
             weight = weight.device(self.device)
         return ((a_index, a_length), (b_index, b_length)), weight
 
