@@ -17,7 +17,7 @@ class SwapDict():
         self.a = a
         self.b = b
         self.src_field = src_field
-        self.dict_size = self.a[0].shape[0]
+        self.dict_size = self.a[0].shape[1]
         self.device = device
         self.sample_num = sample_num
         print("Loading swap dict from {} with size {}.".format(swap_dict, str(self.dict_size)))
