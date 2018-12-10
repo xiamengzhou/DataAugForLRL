@@ -289,7 +289,7 @@ def swap(file, outfile, dict_=None, src_vocab=None, alpha=1/2):
                         else:
                             line[j] = dict_[token][0]
                             swap_dict[dict_[token][0]] = (token, dict_[token][1])
-        output_dict("/".join(outfile.split("/")[:-1]) + "/swap_dict", swap_dict, " ||| ")
+        output_dict_and_score("/".join(outfile.split("/")[:-1]) + "/swap_dict", swap_dict, " ||| ")
 
     else:
         for line in lines:
@@ -302,7 +302,7 @@ def swap(file, outfile, dict_=None, src_vocab=None, alpha=1/2):
                         else:
                             line[j] = dict_[token]
                             swap_dict[dict_[token]] = token
-        output_dict_and_score("/".join(outfile.split("/")[:-1]) + "/swap_dict", swap_dict, " ||| ")
+        output_dict("/".join(outfile.split("/")[:-1]) + "/swap_dict", swap_dict, " ||| ")
 
     output_lines(outfile, lines)
 
