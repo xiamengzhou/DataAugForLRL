@@ -171,19 +171,37 @@ def output_dict(f, d, sep = " "):
             file.write(i + sep + j + "\n")
     print("Output to {}!".format(f))
 
+def output_dict_and_score(f, d, sep = " "):
+    file = open(f, "w")
+    file2 = open(f+"_score", "w")
+    if isinstance(d, dict):
+        for i in d:
+            file.write(i + sep + d[i][0] + "\n")
+            file2.write(d[i][1] + "\n")
+    elif isinstance(d, list):
+        for i, j in d:
+            file.write(i + sep + j + "\n")
+    print("Output to {} and {}!".format(f, f+"_score"))
+
 # /projects/tir3/users/mengzhox/data/rapid2/azetur_eng/utils/aze_tur_google.vocab
 # token1, token2 => {token2, token1}
-def load_swap_dict(dict_, sep=" ||| "):
+def load_swap_dict(dict_, sep=" ||| ", score_file=None):
     a = load_files(dict_)
     re = {}
-    for l in a:
+    scores = None
+    if score_file:
+        scores = load_files(score_file)
+    for i, l in enumerate(a):
         l = l.rstrip()
         l_s = l.split(sep)
         if len(l_s) > 2:
             continue
         else:
             src, tgt = l_s
-            re[tgt] = src
+            if scores:
+                re[tgt] = (src, i)
+            else:
+                re[tgt] = src
     print("load a dictionary of length {}".format(str(len(re))))
     first_key = list(re.keys())[0]
     print("First key and value: {}, {}".format(first_key, re[first_key]))
@@ -248,15 +266,15 @@ def swap(file, outfile, dict_=None, src_vocab=None, alpha=1/2):
     for line in lines:
         for j, token in enumerate(line):
             if v is not None:
-                if token in dict_ and dict_[token] in swap_one_hot and token not in v:
-                    index = swap_one_hot[dict_[token]]
+                if token in dict_ and dict_[token][0] in swap_one_hot and token not in v:
+                    index = swap_one_hot[dict_[token][0]]
                     if not index:
                         continue
                     else:
-                        line[j] = dict_[token]
-                        swap_dict[dict_[token]] = token
+                        line[j] = dict_[token][0]
+                        swap_dict[dict_[token][0]] = (token, dict_[token][1])
     output_lines(outfile, lines)
-    output_dict("/".join(outfile.split("/")[:-1]) + "/swap_dict", swap_dict, " ||| ")
+    output_dict_and_score("/".join(outfile.split("/")[:-1]) + "/swap_dict", swap_dict, " ||| ")
 
 # Get the probablity of low frequency words
 def get_prob(swap_dict, lrl_freq, output, temp=0.5, sep=" ||| "):
@@ -406,7 +424,7 @@ if __name__ == '__main__':
     if sys.argv[1] == "swap":
         swap(file=sys.argv[2],
              outfile=sys.argv[3],
-             dict_=load_swap_dict(sys.argv[4]),
+             dict_=load_swap_dict(sys.argv[4], sys.argv[7]),
              src_vocab=sys.argv[5],
              alpha=float(sys.argv[6]))
     elif sys.argv[1] == "shuffle":
