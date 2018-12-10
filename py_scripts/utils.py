@@ -1,7 +1,17 @@
 """
-prob - python3 utils.py /projects/tir3/users/mengzhox/data/11731_final/MUSE_dict/azetur/T2S_re \
-                        /projects/tir3/users/mengzhox/data/11731_final/vocab/aze.vocab.tok \
+prob - python3 utils.py prob /projects/tir3/users/mengzhox/data/11731_final/bilang/azetur_eng/swap-5/swap_dict \
+                             /projects/tir3/users/mengzhox/data/11731_final/vocab/aze.vocab.tok \
+                             /projects/tir3/users/mengzhox/data/11731_final/vocab/prob \
+                             0.5 \
+                             " ||| "
 
+python3 ~/11731_final/py_scripts/utils.py swap \
+                                          $data_dir/bilang/${lang}_eng/ted-train.orig.${lang}.tok \
+                                          $data_dir/bilang/${lang}_eng/${process_type}/ted-train.orig.${lang}.tok \
+                                          /projects/tir3/users/mengzhox/data/11731_final/MUSE_dict/azetur/T2S_re  \
+                                          $data_dir/vocab/aze.vocab.tok \
+                                          0  " " \
+                                          /projects/tir3/users/mengzhox/data/11731_final/MUSE_dict/azetur/T2S_re2_score
 
 """
 
@@ -286,7 +296,7 @@ def get_prob(swap_dict, lrl_freq, output, temp=0.5, sep=" ||| "):
     for line in f:
         src, tgt = line.split(sep)
         freqs.append(freq[src])
-    freqs = [math.exp(temp*k) for k in freqs]
+    freqs = [math.exp(-temp*k) for k in freqs]
     sum_freqs = sum(freqs)
     freqs = [k / sum_freqs for k in freqs]
     for f in freqs:
