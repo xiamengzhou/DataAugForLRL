@@ -425,7 +425,7 @@ if __name__ == '__main__':
     if sys.argv[1] == "swap":
         swap(file=sys.argv[2],
              outfile=sys.argv[3],
-             dict_=load_swap_dict(sys.argv[4], score_file=sys.argv[7]),
+             dict_=load_swap_dict(sys.argv[4], sep=sys.argv[7], score_file=sys.argv[8]),
              src_vocab=sys.argv[5],
              alpha=float(sys.argv[6]))
     elif sys.argv[1] == "shuffle":
