@@ -45,9 +45,9 @@ class SwapDict():
         index = np.random.choice(range(self.dict_size), self.sample_num, False, p=self.probs)
         index = torch.LongTensor(index)
         weight = self.weight[index]
-        a_index = self.a[0][index]
+        a_index = self.a[0][:, index]
         a_length = self.a[1][index]
-        b_index = self.b[0][index]
+        b_index = self.b[0][:, index]
         b_length = self.b[1][index]
         if self.device >= 0:
             a_index = a_index.device(self.device)
