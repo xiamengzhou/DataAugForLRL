@@ -187,6 +187,7 @@ def output_dict_and_score(f, d, sep = " "):
 # /projects/tir3/users/mengzhox/data/rapid2/azetur_eng/utils/aze_tur_google.vocab
 # token1, token2 => {token2, token1}
 def load_swap_dict(dict_, sep=" ||| ", score_file=None):
+    print("Loading from the score file {}!".format(score_file))
     a = load_files(dict_)
     re = {}
     scores = None
