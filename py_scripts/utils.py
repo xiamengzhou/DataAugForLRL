@@ -214,9 +214,11 @@ def load_swap_dict(dict_, sep=" ||| ", score_file=None):
         else:
             src, tgt = l_s
             if scores:
-                re[tgt] = (src, scores[i].strip())
+                if tgt not in re:
+                    re[tgt] = (src, scores[i].strip())
             else:
-                re[tgt] = src
+                if tgt not in re:
+                    re[tgt] = src
     print("load a dictionary of length {}".format(str(len(re))))
     first_key = list(re.keys())[0]
     print("First key and value: {}, {}".format(first_key, re[first_key]))
