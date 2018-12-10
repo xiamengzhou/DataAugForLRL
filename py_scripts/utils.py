@@ -200,7 +200,7 @@ def load_swap_dict(dict_, sep=" ||| ", score_file=None):
         else:
             src, tgt = l_s
             if scores:
-                re[tgt] = (src, scores[i])
+                re[tgt] = (src, scores[i].strip())
             else:
                 re[tgt] = src
     print("load a dictionary of length {}".format(str(len(re))))
