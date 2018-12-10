@@ -79,7 +79,7 @@ python3 ~/NMT/rapid/utils.py swap \
                              $data_dir/bilang/${lang}_eng/${process_type}/ted-train.orig.${lang}.tok \
                              /projects/tir3/users/mengzhox/data/11731_final/MUSE_dict/azetur/T2S_re \
                              $data_dir/vocab/aze.vocab.tok \
-                             0
+                             0 /projects/tir3/users/mengzhox/data/11731_final/MUSE_dict/azetur/T2S_re2_score
 
 python3 ~/NMT/rapid/sentence_piece.py encode $data/11731_final/mono/az_mono/az--vocab_size=8000.model \
                                              $data/11731_final/bilang/azetur_eng/$process_type/ted-train.orig.azetur.tok \

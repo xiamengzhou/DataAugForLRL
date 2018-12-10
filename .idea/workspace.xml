@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e3c4f64b-11fa-4fb2-aa3f-d8de53608997" name="Default" comment="">
+    <list default="true" id="e3c4f64b-11fa-4fb2-aa3f-d8de53608997" name="Default" comment="Revised the soft embedding version.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/opts.py" afterPath="$PROJECT_DIR$/opts.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data_scripts/mono_sent.sh" afterPath="$PROJECT_DIR$/data_scripts/mono_sent.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/py_scripts/utils.py" afterPath="$PROJECT_DIR$/py_scripts/utils.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/train.py" afterPath="$PROJECT_DIR$/train.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -33,11 +32,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="opts.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="opts.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/opts.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="277" column="31" lean-forward="true" selection-start-line="277" selection-start-column="31" selection-end-line="277" selection-end-column="31" />
+            <state relative-caret-position="-781">
+              <caret line="276" column="32" lean-forward="false" selection-start-line="276" selection-start-column="32" selection-end-line="276" selection-end-column="32" />
               <folding>
                 <element signature="e#46#1167#0" expanded="false" />
                 <element signature="e#14454#18298#0" expanded="false" />
@@ -113,11 +112,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="utils.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/py_scripts/utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+            <state relative-caret-position="164">
+              <caret line="427" column="19" lean-forward="false" selection-start-line="427" selection-start-column="19" selection-end-line="427" selection-end-column="19" />
               <folding>
                 <element signature="e#247#677#0" expanded="false" />
                 <element signature="e#711#992#0" expanded="false" />
@@ -131,9 +130,6 @@
                 <element signature="e#3518#3602#0" expanded="false" />
                 <element signature="e#3667#3796#0" expanded="false" />
                 <element signature="e#3866#4374#0" expanded="false" />
-                <element signature="e#4443#4564#0" expanded="false" />
-                <element signature="e#4604#4850#0" expanded="false" />
-                <element signature="e#5015#5415#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -142,8 +138,8 @@
       <file leaf-file-name="mono_sent.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data_scripts/mono_sent.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
-              <caret line="85" column="12" lean-forward="false" selection-start-line="85" selection-start-column="12" selection-end-line="85" selection-end-column="12" />
+            <state relative-caret-position="367">
+              <caret line="81" column="107" lean-forward="false" selection-start-line="81" selection-start-column="107" selection-end-line="81" selection-end-column="107" />
               <folding />
             </state>
           </provider>
@@ -187,9 +183,9 @@
       <find>tmbatch</find>
       <find>main</find>
       <find>load_model</find>
-      <find>swap</find>
       <find>constraint</find>
       <find>nltk</find>
+      <find>swap</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -226,15 +222,15 @@
         <option value="$PROJECT_DIR$/onmt/io/TextDataset.py" />
         <option value="$PROJECT_DIR$/onmt/ModelConstructor.py" />
         <option value="$PROJECT_DIR$/onmt/io/IO.py" />
-        <option value="$PROJECT_DIR$/data_scripts/mono_sent.sh" />
         <option value="$PROJECT_DIR$/onmt/modules/__init__.py" />
         <option value="$PROJECT_DIR$/onmt/modules/SwapDict.py" />
         <option value="$PROJECT_DIR$/onmt/Trainer.py" />
         <option value="$PROJECT_DIR$/onmt/modules/Embeddings.py" />
         <option value="$PROJECT_DIR$/py_scripts/sent_tokenize.py" />
-        <option value="$PROJECT_DIR$/py_scripts/utils.py" />
         <option value="$PROJECT_DIR$/train.py" />
         <option value="$PROJECT_DIR$/opts.py" />
+        <option value="$PROJECT_DIR$/data_scripts/mono_sent.sh" />
+        <option value="$PROJECT_DIR$/py_scripts/utils.py" />
       </list>
     </option>
   </component>
@@ -365,6 +361,11 @@
               <item name="Final" type="b2602c69:ProjectViewProjectNode" />
               <item name="Final" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Final" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Final" type="462c0819:PsiDirectoryNode" />
+              <item name="py_scripts" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -443,34 +444,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1542514609546</updated>
-    </task>
-    <task id="LOCAL-00062" summary="Added get ngram.">
-      <created>1543360448128</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1543360448128</updated>
-    </task>
-    <task id="LOCAL-00063" summary="Add fixed universal embedding to be accesses.&#10;Train_opt, add vectors and max_vec_num.">
-      <created>1543360482891</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1543360482891</updated>
-    </task>
-    <task id="LOCAL-00064" summary="Add fixed universal embedding to be accesses.&#10;Train_opt, add vectors and max_vec_num.">
-      <created>1543360557340</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1543360557340</updated>
-    </task>
-    <task id="LOCAL-00065" summary="Add fixed universal embedding to be accesses.&#10;Train_opt, add vectors and max_vec_num.">
-      <created>1543360813451</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1543360813451</updated>
     </task>
     <task id="LOCAL-00066" summary="Add fixed universal embedding to be accesses.&#10;Train_opt, add vectors and max_vec_num.">
       <created>1543360915503</created>
@@ -787,7 +760,35 @@
       <option name="project" value="LOCAL" />
       <updated>1544392412501</updated>
     </task>
-    <option name="localTasksCounter" value="111" />
+    <task id="LOCAL-00111" summary="Revised the soft embedding version.">
+      <created>1544395409274</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1544395409274</updated>
+    </task>
+    <task id="LOCAL-00112" summary="Revised the soft embedding version.">
+      <created>1544395724970</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1544395724970</updated>
+    </task>
+    <task id="LOCAL-00113" summary="Revised the soft embedding version.">
+      <created>1544395844220</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1544395844220</updated>
+    </task>
+    <task id="LOCAL-00114" summary="Revised the soft embedding version.">
+      <created>1544400394494</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1544400394494</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -799,7 +800,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27860263" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27860263" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1292,38 +1293,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data_scripts/mono_sent.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="85" column="12" lean-forward="false" selection-start-line="85" selection-start-column="12" selection-end-line="85" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/py_scripts/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding>
-            <element signature="e#247#677#0" expanded="false" />
-            <element signature="e#711#992#0" expanded="false" />
-            <element signature="e#1208#1510#0" expanded="false" />
-            <element signature="e#1587#1731#0" expanded="false" />
-            <element signature="e#1833#2066#0" expanded="false" />
-            <element signature="e#2157#2463#0" expanded="false" />
-            <element signature="e#2584#3040#0" expanded="false" />
-            <element signature="e#3121#3193#0" expanded="false" />
-            <element signature="e#3288#3470#0" expanded="false" />
-            <element signature="e#3518#3602#0" expanded="false" />
-            <element signature="e#3667#3796#0" expanded="false" />
-            <element signature="e#3866#4374#0" expanded="false" />
-            <element signature="e#4443#4564#0" expanded="false" />
-            <element signature="e#4604#4850#0" expanded="false" />
-            <element signature="e#5015#5415#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/onmt/Trainer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="274">
@@ -1368,12 +1337,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/opts.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="277" column="31" lean-forward="true" selection-start-line="277" selection-start-column="31" selection-end-line="277" selection-end-column="31" />
+        <state relative-caret-position="-781">
+          <caret line="276" column="32" lean-forward="false" selection-start-line="276" selection-start-column="32" selection-end-line="276" selection-end-column="32" />
           <folding>
             <element signature="e#46#1167#0" expanded="false" />
             <element signature="e#14454#18298#0" expanded="false" />
             <element signature="e#18339#18469#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_scripts/mono_sent.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="81" column="107" lean-forward="false" selection-start-line="81" selection-start-column="107" selection-end-line="81" selection-end-column="107" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/py_scripts/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="427" column="19" lean-forward="false" selection-start-line="427" selection-start-column="19" selection-end-line="427" selection-end-column="19" />
+          <folding>
+            <element signature="e#247#677#0" expanded="false" />
+            <element signature="e#711#992#0" expanded="false" />
+            <element signature="e#1208#1510#0" expanded="false" />
+            <element signature="e#1587#1731#0" expanded="false" />
+            <element signature="e#1833#2066#0" expanded="false" />
+            <element signature="e#2157#2463#0" expanded="false" />
+            <element signature="e#2584#3040#0" expanded="false" />
+            <element signature="e#3121#3193#0" expanded="false" />
+            <element signature="e#3288#3470#0" expanded="false" />
+            <element signature="e#3518#3602#0" expanded="false" />
+            <element signature="e#3667#3796#0" expanded="false" />
+            <element signature="e#3866#4374#0" expanded="false" />
           </folding>
         </state>
       </provider>

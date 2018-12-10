@@ -178,10 +178,11 @@ def output_dict_and_score(f, d, sep = " "):
         for i in d:
             file.write(i + sep + d[i][0] + "\n")
             file2.write(d[i][1] + "\n")
+        print("Output to {} and {}!".format(f, f+"_score"))
     elif isinstance(d, list):
         for i, j in d:
             file.write(i + sep + j + "\n")
-    print("Output to {} and {}!".format(f, f+"_score"))
+        print("Output to {}!".format(f))
 
 # /projects/tir3/users/mengzhox/data/rapid2/azetur_eng/utils/aze_tur_google.vocab
 # token1, token2 => {token2, token1}
@@ -199,7 +200,7 @@ def load_swap_dict(dict_, sep=" ||| ", score_file=None):
         else:
             src, tgt = l_s
             if scores:
-                re[tgt] = (src, i)
+                re[tgt] = (src, scores[i])
             else:
                 re[tgt] = src
     print("load a dictionary of length {}".format(str(len(re))))
