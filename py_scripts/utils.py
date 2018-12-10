@@ -278,18 +278,33 @@ def swap(file, outfile, dict_=None, src_vocab=None, alpha=1/2):
             prob[key] = math.exp(- v[key] * alpha)
             swap_one_hot[key] = np.random.choice([0, 1], 1, p=[1-prob[key], prob[key]])[0]
     lines = load_file_by_words(file)
-    for line in lines:
-        for j, token in enumerate(line):
-            if v is not None:
-                if token in dict_ and dict_[token][0] in swap_one_hot and token not in v:
-                    index = swap_one_hot[dict_[token][0]]
-                    if not index:
-                        continue
-                    else:
-                        line[j] = dict_[token][0]
-                        swap_dict[dict_[token][0]] = (token, dict_[token][1])
+    if isinstance(list(dict_.values())[0], list):
+        for line in lines:
+            for j, token in enumerate(line):
+                if v is not None:
+                    if token in dict_ and dict_[token][0] in swap_one_hot and token not in v:
+                        index = swap_one_hot[dict_[token][0]]
+                        if not index:
+                            continue
+                        else:
+                            line[j] = dict_[token][0]
+                            swap_dict[dict_[token][0]] = (token, dict_[token][1])
+        output_dict("/".join(outfile.split("/")[:-1]) + "/swap_dict", swap_dict, " ||| ")
+
+    else:
+        for line in lines:
+            for j, token in enumerate(line):
+                if v is not None:
+                    if token in dict_ and dict_[token] in swap_one_hot and token not in v:
+                        index = swap_one_hot[dict_[token]]
+                        if not index:
+                            continue
+                        else:
+                            line[j] = dict_[token]
+                            swap_dict[dict_[token]] = token
+        output_dict_and_score("/".join(outfile.split("/")[:-1]) + "/swap_dict", swap_dict, " ||| ")
+
     output_lines(outfile, lines)
-    output_dict_and_score("/".join(outfile.split("/")[:-1]) + "/swap_dict", swap_dict, " ||| ")
 
 # Get the probablity of low frequency words
 def get_prob(swap_dict, lrl_freq, output, temp=0.5, sep=" ||| "):
