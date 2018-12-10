@@ -54,7 +54,7 @@ class SwapDict():
             a_length = a_length.cuda(self.device)
             b_index = b_index.cuda(self.device)
             b_length = b_length.cuda(self.device)
-            weight = weight.device(self.device)
+            weight = weight.cuda(self.device)
         return ((a_index, a_length), (b_index, b_length)), weight
 
 
