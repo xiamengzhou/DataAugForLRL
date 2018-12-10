@@ -2,7 +2,7 @@ import torch
 import numpy as np
 
 class SwapDict():
-    def __init__(self, swap_dict, wc_weight, src_field, sep, lrl_prob, device=0, sample_num=5000):
+    def __init__(self, swap_dict, ec_weight, src_field, sep, lrl_prob, device=0, sample_num=5000):
         f = open(swap_dict, "r").readlines()
         a = []
         b = []
@@ -23,7 +23,7 @@ class SwapDict():
         self.sample_num = sample_num
 
         self.weight = []
-        f2 = open(wc_weight, "r").readlines()
+        f2 = open(ec_weight, "r").readlines()
         for line in f2:
             self.weight.append(float(line.strip()))
         self.weight = torch.FloatTensor(self.weight)

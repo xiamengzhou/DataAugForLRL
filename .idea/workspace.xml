@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e3c4f64b-11fa-4fb2-aa3f-d8de53608997" name="Default" comment="Revised the soft embedding version.">
+    <list default="true" id="e3c4f64b-11fa-4fb2-aa3f-d8de53608997" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data_scripts/mono_sent.sh" afterPath="$PROJECT_DIR$/data_scripts/mono_sent.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/onmt/modules/SwapDict.py" afterPath="$PROJECT_DIR$/onmt/modules/SwapDict.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/py_scripts/utils.py" afterPath="$PROJECT_DIR$/py_scripts/utils.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/train.py" afterPath="$PROJECT_DIR$/train.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,15 +19,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="train.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="train.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="231" column="67" lean-forward="false" selection-start-line="231" selection-start-column="67" selection-end-line="231" selection-end-column="67" />
+            <state relative-caret-position="224">
+              <caret line="232" column="24" lean-forward="false" selection-start-line="232" selection-start-column="24" selection-end-line="232" selection-end-column="24" />
               <folding>
                 <element signature="e#23#54#0" expanded="true" />
-                <element signature="e#13710#14060#0" expanded="false" />
-                <element signature="e#14103#15192#0" expanded="false" />
+                <element signature="e#13735#14085#0" expanded="false" />
+                <element signature="e#14128#15217#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -35,12 +36,12 @@
       <file leaf-file-name="opts.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/opts.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-781">
-              <caret line="276" column="32" lean-forward="false" selection-start-line="276" selection-start-column="32" selection-end-line="276" selection-end-column="32" />
+            <state relative-caret-position="187">
+              <caret line="266" column="24" lean-forward="false" selection-start-line="266" selection-start-column="24" selection-end-line="266" selection-end-column="24" />
               <folding>
                 <element signature="e#46#1167#0" expanded="false" />
-                <element signature="e#14454#18298#0" expanded="false" />
-                <element signature="e#18339#18469#0" expanded="false" />
+                <element signature="e#14452#18296#0" expanded="false" />
+                <element signature="e#18337#18467#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -61,8 +62,8 @@
       <file leaf-file-name="SwapDict.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/onmt/modules/SwapDict.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="95" lean-forward="false" selection-start-line="4" selection-start-column="95" selection-end-line="4" selection-end-column="95" />
+            <state relative-caret-position="287">
+              <caret line="25" column="27" lean-forward="false" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -93,10 +94,10 @@
       <file leaf-file-name="Trainer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/onmt/Trainer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="278" column="57" lean-forward="true" selection-start-line="278" selection-start-column="57" selection-end-line="278" selection-end-column="57" />
+            <state relative-caret-position="125">
+              <caret line="225" column="63" lean-forward="false" selection-start-line="225" selection-start-column="63" selection-end-line="225" selection-end-column="63" />
               <folding>
-                <element signature="e#8699#8857#1" expanded="false" />
+                <element signature="e#8660#8818#1" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -112,24 +113,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="utils.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/py_scripts/utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="427" column="19" lean-forward="false" selection-start-line="427" selection-start-column="19" selection-end-line="427" selection-end-column="19" />
+            <state relative-caret-position="225">
+              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding>
-                <element signature="e#247#677#0" expanded="false" />
-                <element signature="e#711#992#0" expanded="false" />
-                <element signature="e#1208#1510#0" expanded="false" />
-                <element signature="e#1587#1731#0" expanded="false" />
-                <element signature="e#1833#2066#0" expanded="false" />
-                <element signature="e#2157#2463#0" expanded="false" />
-                <element signature="e#2584#3040#0" expanded="false" />
-                <element signature="e#3121#3193#0" expanded="false" />
-                <element signature="e#3288#3470#0" expanded="false" />
-                <element signature="e#3518#3602#0" expanded="false" />
-                <element signature="e#3667#3796#0" expanded="false" />
-                <element signature="e#3866#4374#0" expanded="false" />
+                <element signature="e#1391#1821#0" expanded="false" />
+                <element signature="e#1855#2136#0" expanded="false" />
+                <element signature="e#2352#2654#0" expanded="false" />
+                <element signature="e#2731#2875#0" expanded="false" />
+                <element signature="e#2977#3210#0" expanded="false" />
+                <element signature="e#3301#3607#0" expanded="false" />
+                <element signature="e#3728#4184#0" expanded="false" />
+                <element signature="e#4265#4337#0" expanded="false" />
+                <element signature="e#4432#4614#0" expanded="false" />
+                <element signature="e#4811#4940#0" expanded="false" />
+                <element signature="e#5010#5518#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -156,7 +156,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>load_vocab</find>
       <find>load_vectors</find>
       <find>TMBA</find>
       <find>src.</find>
@@ -173,7 +172,6 @@
       <find>repeat_</find>
       <find>Order</find>
       <find>beam_upda</find>
-      <find>Trainer</find>
       <find>Statistics(</find>
       <find>load_</find>
       <find>load_fields</find>
@@ -186,6 +184,8 @@
       <find>constraint</find>
       <find>nltk</find>
       <find>swap</find>
+      <find>Trainer</find>
+      <find>wc_weight</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -223,14 +223,14 @@
         <option value="$PROJECT_DIR$/onmt/ModelConstructor.py" />
         <option value="$PROJECT_DIR$/onmt/io/IO.py" />
         <option value="$PROJECT_DIR$/onmt/modules/__init__.py" />
-        <option value="$PROJECT_DIR$/onmt/modules/SwapDict.py" />
-        <option value="$PROJECT_DIR$/onmt/Trainer.py" />
         <option value="$PROJECT_DIR$/onmt/modules/Embeddings.py" />
         <option value="$PROJECT_DIR$/py_scripts/sent_tokenize.py" />
-        <option value="$PROJECT_DIR$/train.py" />
-        <option value="$PROJECT_DIR$/opts.py" />
         <option value="$PROJECT_DIR$/data_scripts/mono_sent.sh" />
         <option value="$PROJECT_DIR$/py_scripts/utils.py" />
+        <option value="$PROJECT_DIR$/onmt/Trainer.py" />
+        <option value="$PROJECT_DIR$/opts.py" />
+        <option value="$PROJECT_DIR$/onmt/modules/SwapDict.py" />
+        <option value="$PROJECT_DIR$/train.py" />
       </list>
     </option>
   </component>
@@ -361,11 +361,6 @@
               <item name="Final" type="b2602c69:ProjectViewProjectNode" />
               <item name="Final" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Final" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Final" type="462c0819:PsiDirectoryNode" />
-              <item name="py_scripts" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -444,62 +439,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1542514609546</updated>
-    </task>
-    <task id="LOCAL-00066" summary="Add fixed universal embedding to be accesses.&#10;Train_opt, add vectors and max_vec_num.">
-      <created>1543360915503</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1543360915503</updated>
-    </task>
-    <task id="LOCAL-00067" summary="Add fixed universal embedding to be accesses.&#10;Train_opt, add vectors and max_vec_num.">
-      <created>1543361182751</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1543361182751</updated>
-    </task>
-    <task id="LOCAL-00068" summary="Add fixed universal embedding to be accesses.&#10;Train_opt, add vectors and max_vec_num.">
-      <created>1543369157547</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1543369157550</updated>
-    </task>
-    <task id="LOCAL-00069" summary="Add fixed universal embedding to be accesses.&#10;Train_opt, add vectors and max_vec_num.">
-      <created>1543369859074</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1543369859075</updated>
-    </task>
-    <task id="LOCAL-00070" summary="Added ngram embedding.">
-      <created>1543370164858</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1543370164858</updated>
-    </task>
-    <task id="LOCAL-00071" summary="Added ngram embedding.">
-      <created>1543370214381</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1543370214381</updated>
-    </task>
-    <task id="LOCAL-00072" summary="Added ngram embedding.">
-      <created>1543370390560</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1543370390560</updated>
-    </task>
-    <task id="LOCAL-00073" summary="Fixed bug of padding.">
-      <created>1543370615569</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1543370615569</updated>
     </task>
     <task id="LOCAL-00074" summary="Fixed bug of padding.">
       <created>1543371383312</created>
@@ -788,7 +727,63 @@
       <option name="project" value="LOCAL" />
       <updated>1544400394494</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <task id="LOCAL-00115" summary="Revised the soft embedding version.">
+      <created>1544400746828</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1544400746828</updated>
+    </task>
+    <task id="LOCAL-00116" summary="Revised the soft embedding version.">
+      <created>1544400832479</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1544400832479</updated>
+    </task>
+    <task id="LOCAL-00117" summary="Revised the soft embedding version.">
+      <created>1544400920324</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1544400920324</updated>
+    </task>
+    <task id="LOCAL-00118" summary="Revised the soft embedding version.">
+      <created>1544401045171</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1544401045171</updated>
+    </task>
+    <task id="LOCAL-00119" summary="Revised the soft embedding version.">
+      <created>1544401123853</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1544401123853</updated>
+    </task>
+    <task id="LOCAL-00120" summary="Revised the soft embedding version.">
+      <created>1544402343149</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1544402343149</updated>
+    </task>
+    <task id="LOCAL-00121" summary="Revised the soft embedding version.">
+      <created>1544405600514</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1544405600514</updated>
+    </task>
+    <task id="LOCAL-00122" summary="Revised the soft embedding version.">
+      <created>1544405948987</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1544405948987</updated>
+    </task>
+    <option name="localTasksCounter" value="123" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -800,7 +795,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27860263" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27860263" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -848,11 +843,11 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/train.py</url>
-          <line>452</line>
+          <line>453</line>
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/train.py</url>
-          <line>360</line>
+          <line>361</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -917,12 +912,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/train.py</url>
-          <line>380</line>
+          <line>381</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/train.py</url>
-          <line>478</line>
+          <line>479</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
@@ -1052,6 +1047,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="362">
           <caret line="316" column="20" lean-forward="false" selection-start-line="316" selection-start-column="20" selection-end-line="316" selection-end-column="20" />
+          <folding>
+            <element signature="e#306#2073#0" expanded="false" />
+            <element signature="e#13078#13992#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1293,56 +1292,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/onmt/Trainer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="278" column="57" lean-forward="true" selection-start-line="278" selection-start-column="57" selection-end-line="278" selection-end-column="57" />
-          <folding>
-            <element signature="e#8699#8857#1" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/onmt/modules/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="62" lean-forward="false" selection-start-line="9" selection-start-column="62" selection-end-line="9" selection-end-column="62" />
           <folding>
             <element signature="e#0#80#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/onmt/modules/SwapDict.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="95" lean-forward="false" selection-start-line="4" selection-start-column="95" selection-end-line="4" selection-end-column="95" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="231" column="67" lean-forward="false" selection-start-line="231" selection-start-column="67" selection-end-line="231" selection-end-column="67" />
-          <folding>
-            <element signature="e#23#54#0" expanded="true" />
-            <element signature="e#13710#14060#0" expanded="false" />
-            <element signature="e#14103#15192#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/opts.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-781">
-          <caret line="276" column="32" lean-forward="false" selection-start-line="276" selection-start-column="32" selection-end-line="276" selection-end-column="32" />
-          <folding>
-            <element signature="e#46#1167#0" expanded="false" />
-            <element signature="e#14454#18298#0" expanded="false" />
-            <element signature="e#18339#18469#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1357,21 +1312,64 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/py_scripts/utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="427" column="19" lean-forward="false" selection-start-line="427" selection-start-column="19" selection-end-line="427" selection-end-column="19" />
+        <state relative-caret-position="225">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding>
-            <element signature="e#247#677#0" expanded="false" />
-            <element signature="e#711#992#0" expanded="false" />
-            <element signature="e#1208#1510#0" expanded="false" />
-            <element signature="e#1587#1731#0" expanded="false" />
-            <element signature="e#1833#2066#0" expanded="false" />
-            <element signature="e#2157#2463#0" expanded="false" />
-            <element signature="e#2584#3040#0" expanded="false" />
-            <element signature="e#3121#3193#0" expanded="false" />
-            <element signature="e#3288#3470#0" expanded="false" />
-            <element signature="e#3518#3602#0" expanded="false" />
-            <element signature="e#3667#3796#0" expanded="false" />
-            <element signature="e#3866#4374#0" expanded="false" />
+            <element signature="e#1391#1821#0" expanded="false" />
+            <element signature="e#1855#2136#0" expanded="false" />
+            <element signature="e#2352#2654#0" expanded="false" />
+            <element signature="e#2731#2875#0" expanded="false" />
+            <element signature="e#2977#3210#0" expanded="false" />
+            <element signature="e#3301#3607#0" expanded="false" />
+            <element signature="e#3728#4184#0" expanded="false" />
+            <element signature="e#4265#4337#0" expanded="false" />
+            <element signature="e#4432#4614#0" expanded="false" />
+            <element signature="e#4811#4940#0" expanded="false" />
+            <element signature="e#5010#5518#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/onmt/Trainer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="225" column="63" lean-forward="false" selection-start-line="225" selection-start-column="63" selection-end-line="225" selection-end-column="63" />
+          <folding>
+            <element signature="e#8660#8818#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/opts.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="266" column="24" lean-forward="false" selection-start-line="266" selection-start-column="24" selection-end-line="266" selection-end-column="24" />
+          <folding>
+            <element signature="e#46#1167#0" expanded="false" />
+            <element signature="e#14452#18296#0" expanded="false" />
+            <element signature="e#18337#18467#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/onmt/modules/SwapDict.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="25" column="27" lean-forward="false" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="232" column="24" lean-forward="false" selection-start-line="232" selection-start-column="24" selection-end-line="232" selection-end-column="24" />
+          <folding>
+            <element signature="e#23#54#0" expanded="true" />
+            <element signature="e#13735#14085#0" expanded="false" />
+            <element signature="e#14128#15217#0" expanded="false" />
           </folding>
         </state>
       </provider>
