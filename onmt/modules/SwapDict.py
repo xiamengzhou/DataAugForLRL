@@ -1,5 +1,6 @@
 import torch
 import numpy as np
+from torch.autograd import Variable
 
 class SwapDict():
     def __init__(self, swap_dict, ec_weight, src_field, sep, lrl_prob, device=0, sample_num=5000):
@@ -28,7 +29,7 @@ class SwapDict():
         f2 = open(ec_weight, "r").readlines()
         for line in f2:
             self.weight.append(float(line.strip()))
-        self.weight = torch.FloatTensor(self.weight)
+        self.weight = Variable(torch.FloatTensor(self.weight))
 
         # Low Resource word frequency
         self.probs = self.get_prob(lrl_prob)
