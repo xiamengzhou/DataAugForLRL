@@ -187,7 +187,6 @@ def output_dict_and_score(f, d, sep = " "):
 # /projects/tir3/users/mengzhox/data/rapid2/azetur_eng/utils/aze_tur_google.vocab
 # token1, token2 => {token2, token1}
 def load_swap_dict(dict_, sep=" ||| ", score_file=None):
-    print("Loading from the score file {}!".format(score_file))
     a = load_files(dict_)
     re = {}
     scores = None
@@ -426,7 +425,7 @@ if __name__ == '__main__':
     if sys.argv[1] == "swap":
         swap(file=sys.argv[2],
              outfile=sys.argv[3],
-             dict_=load_swap_dict(sys.argv[4], sys.argv[7]),
+             dict_=load_swap_dict(sys.argv[4], score_file=sys.argv[7]),
              src_vocab=sys.argv[5],
              alpha=float(sys.argv[6]))
     elif sys.argv[1] == "shuffle":
