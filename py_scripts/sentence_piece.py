@@ -23,13 +23,14 @@ def encode(model, f, output):
 def encode_dict(model, model2, d, output, sep=" ||| "):
     s = SentencePieceProcessor()
     s.load(model)
-    d = load_dict(d, sep)
     s2 = SentencePieceProcessor()
     s2.load(model2)
     new_d = {}
-    for key in d:
-        k = " ".join(s.encode_as_pieces(key))
-        v = " ".join(s2.encode_as_pieces(d[key]))
+    f = load_files(d)
+    for line in f:
+        k, v = line.split(sep)
+        k = " ".join(s.encode_as_pieces(k))
+        v = " ".join(s2.encode_as_pieces(v))
         new_d[k] = v
     output_dict(output, new_d, sep)
     print("Encode dict to {}".format(output))
