@@ -13,9 +13,9 @@ python3 ~/11731_final/py_scripts/utils.py swap \
                                           0  " " \
                                           /projects/tir3/users/mengzhox/data/11731_final/MUSE_dict/azetur/T2S_re2_score
 
-python3 utils.py prob /projects/tir3/users/mengzhox/data/11731_final/bilang/azetur_eng/swap-5/swap_dict \
-                      /projects/tir3/users/mengzhox/data/11731_final/vocab/aze.vocab.tok \
-                      /projects/tir3/users/mengzhox/data/11731_final/bilang/azetur_eng/swap-5/prob_0.5 \
+python3 utils.py prob /projects/tir3/users/mengzhox/data/11731_final/bilang/glgpor_eng/swap-2/swap_dict \
+                      /projects/tir3/users/mengzhox/data/11731_final/vocab/glg.vocab.tok \
+                      /projects/tir3/users/mengzhox/data/11731_final/bilang/glgpor_eng/swap-2/prob_0.5 \
                       0.5 " ||| "
 """
 

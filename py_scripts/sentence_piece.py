@@ -41,4 +41,4 @@ if __name__ == '__main__':
     elif sys.argv[1] == "encode":
         encode(model=sys.argv[2], f=sys.argv[3], output=sys.argv[4])
     elif sys.argv[1] == "encode_dict":
-        encode_dict(model=sys.argv[2], model2=sys.argv[3], d=sys.argv[4], output=sys.argv[5])
+        encode_dict(model=sys.argv[2], model2=sys.argv[3], d=sys.argv[4], output=sys.argv[5], sep=sys.argv[6])

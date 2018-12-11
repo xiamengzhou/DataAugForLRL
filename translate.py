@@ -271,8 +271,7 @@ def translate_single_process(opt, model, fields, data,
                 gold_score_total += trans.gold_score
                 gold_words_total += len(trans.gold_sent) + 1
 
-            n_best_preds = [" ".join(pred)
-                            for pred in trans.pred_sents[:opt.n_best]]
+            n_best_preds = [" ".join(pred) for pred in trans.pred_sents[:opt.n_best]]
             if f is not None:
                 f.write('\n'.join(n_best_preds))
                 f.write('\n')
