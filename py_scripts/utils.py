@@ -316,7 +316,10 @@ def get_prob(swap_dict, lrl_freq, output, temp=0.5, sep=" ||| "):
     freqs = []
     for line in f:
         src, tgt = line.split(sep)
-        freqs.append(freq[src])
+        if src in freq:
+            freqs.append(freq[src])
+        else:
+            freqs.append(1)
     freqs = [math.exp(-temp*k) for k in freqs]
     sum_freqs = sum(freqs)
     freqs = [k / sum_freqs for k in freqs]
