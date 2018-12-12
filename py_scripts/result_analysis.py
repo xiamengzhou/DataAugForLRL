@@ -1,5 +1,6 @@
 import nltk
 import sys
+import os
 
 def readlines(f):
     return open(f, "r").readlines()
@@ -16,7 +17,7 @@ def analyze(ref, out1, out2, out3):
             print(out1_score, line2, out2_score, line3, out3_score, line4)
 
 lang = sys.argv[1]
-analyze(readlines("/usr2/home/mengzhox/data/11731_final/bilang/{}_eng/ted-test.mtok.eng".format(lang)),
+analyze(readlines("{}/11731_final/bilang/{}_eng/ted-test.mtok.eng".format(os.environ["data"], lang)),
         readlines("{}.base".format(lang)),
         readlines("{}.soft".format(lang)),
         readlines("{}.swap".format(lang)))
