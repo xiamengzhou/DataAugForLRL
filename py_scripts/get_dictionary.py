@@ -100,6 +100,5 @@ if __name__ == '__main__':
         s_word = src_id2word[i]
         t_word = tgt_id2word[j]
         f.write(s_word + " " + t_word + "\n")
-        print(k)
     print(dictionary.shape)
     print(dictionary[0])
