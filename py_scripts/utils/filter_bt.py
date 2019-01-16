@@ -1,3 +1,12 @@
+"""
+    python3 filter_bt.py $data/11731_final/bilang/tur_eng/ted-train.orig.tur.tok.spm8k \
+                         $out/unsup/aztr/tran/147301/tran0.tr-az.txt \
+                         $data/11731_final/bilang/tur_eng/ted-train.mtok.spm8000.eng \
+                         $out/unsup/aztr/tran/147301/tran0.tr-az.txt.clean \
+                         $out/unsup/aztr/tran/147301/ted-train.mtok.spm8000.eng
+
+"""
+
 def filter(hrl_file, lrl_file, tgt_file, outlrl_file, outtgt_file):
     a = open(hrl_file, "r")
     b = open(lrl_file, "r")
@@ -9,7 +18,7 @@ def filter(hrl_file, lrl_file, tgt_file, outlrl_file, outtgt_file):
         tokens2 = line2.split()
         lens1 = len(tokens1)
         lens2 = len(tokens2)
-        if abs(lens1 - lens2) / min(lens1, lens2) >= 2:
+        if abs(lens1 - lens2) / min(lens1, lens2) >= 2 or "▁& quot ; ▁& quot ; ▁& quot ; ▁& quot ;" in line2:
             pass
         else:
             d.write(line2)
