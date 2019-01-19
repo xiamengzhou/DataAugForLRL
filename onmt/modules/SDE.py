@@ -3,7 +3,6 @@ import torch
 from torch.autograd import Variable
 import torch.nn.functional as F
 
-from collections import namedtuple
 
 
 class charEmbedder(nn.Module):

@@ -97,7 +97,6 @@ def preprocess_opts(parser):
     group.add_argument('-cover', default="standard")
     group.add_argument("-ngram", type=int, default=-1)
     group.add_argument("-skipgram", action="store_true")
-    group.add_argument("-semb", help="dot_prod")
 
 
 def train_opts(parser):
@@ -277,6 +276,8 @@ def train_opts(parser):
     group.add_argument("-ec_weight_file", type=str)
     group.add_argument("-lrl_prob")
     group.add_argument("-sample_num", type=int)
+
+    group.add_argument("-semb", help="dot_prod")
 
 
 

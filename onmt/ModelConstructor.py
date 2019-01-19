@@ -86,6 +86,8 @@ def fix_prior(model_opt):
         model_opt.uni_dim = 256
     if not hasattr(model_opt, "random_uni"):
         model_opt.random_uni = False
+    if not hasattr(model_opt, "semb"):
+        model_opt.semb = None
 
 def load_test_model(opt, dummy_opt):
     checkpoint = torch.load(opt.model,
@@ -123,6 +125,8 @@ def make_base_model(model_opt, fields, gpu, checkpoint=None):
     src_dict = fields["src"].vocab
     src_embeddings = None
     semb_params = None
+    fix_prior(model_opt)
+
     if not model_opt.semb:
         src_embeddings = make_embeddings(model_opt, src_dict)
     else:
@@ -142,7 +146,6 @@ def make_base_model(model_opt, fields, gpu, checkpoint=None):
         semb_params = Hparams(char_ngram_n=4, cuda=True, compute_ngram=False, char_input=None,
                               init_range=0.1, semb="dot_prod", semb_vsize=10000, d_word_vec=256,
                               src_char_vsize=len(src_dict), d_char_vec=None, sep_char_proj=False)
-    fix_prior(model_opt)
 
     ####### ... Load Global Data ... ######
     vecs = load_vectors(model_opt.vectors, model_opt.max_vec_num,
