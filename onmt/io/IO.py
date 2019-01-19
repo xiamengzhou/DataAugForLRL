@@ -227,7 +227,7 @@ class TMBatch:
                         max_word_len = 0
                         for b in new_batch: # sent
                             out_t = field.process(b, device=-1, train=train) # word_len * ngram_len
-                            if len(out_t) > max_word_len:
+                            if len(out_t[0]) > max_word_len:
                                 max_word_len = len(out_t)
                             new_outs.append([])
                             for ngrams in out_t[0]: # word
