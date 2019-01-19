@@ -248,15 +248,19 @@ class Trainer(object):
             cur_dataset = valid_iter.get_cur_dataset()
             self.valid_loss.cur_dataset = cur_dataset
 
-            src, src_lengths = batch.src
-            src = src.unsqueeze(-1)
             tgt = batch.tgt
             tgt = tgt.unsqueeze(-1)
-
+            src, src_lengths = batch.src
+            if not isinstance(src, torch.sparse.FloatTensor):
+                src = src.unsqueeze(-1)
+                outputs, attns = \
+                    self.pass_model(src, tgt, src_lengths, ngram_input=None)
+            else:
+                outputs, attns = \
+                    self.pass_model(None, tgt, src_lengths, ngram_input=src)
 
             # F-prop through the model.
-            outputs, attns = \
-                self.pass_model(src, tgt, src_lengths)
+
 
             # Compute loss.
             batch_stats = self.valid_loss.monolithic_compute_loss(batch, outputs, attns)
@@ -269,8 +273,8 @@ class Trainer(object):
 
         return stats
 
-    def pass_model(self, src, tgt, src_lengths):
-        outputs, attns, _ = self.model(src, tgt, src_lengths, None)
+    def pass_model(self, src, tgt, src_lengths, ngram_input):
+        outputs, attns, _ = self.model(src, tgt, src_lengths, None, ngram_input=ngram_input)
         return outputs, attns
 
     def pass_constraint(self, swap_dict, report_stats, total_stats):
@@ -337,7 +341,12 @@ class Trainer(object):
 
             dec_state = None
             src, src_lengths = batch.src
-            src = src.unsqueeze(-1)
+            ngram_input = None
+            if not isinstance(src, torch.sparse.FloatTensor):
+                src = src.unsqueeze(-1)
+            else:
+                ngram_input = src
+                src = None
             report_stats.n_src_words += src_lengths.sum()
 
             tgt_outer = batch.tgt
@@ -353,7 +362,7 @@ class Trainer(object):
                     self.model.zero_grad()
 
                 outputs, attns = \
-                    self.pass_model(src, tgt, src_lengths)
+                    self.pass_model(src, tgt, src_lengths, ngram_input)
 
                 if emb_loss is not None:
                     emb_loss.backward(retain_graph=True)

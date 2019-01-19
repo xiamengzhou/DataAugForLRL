@@ -111,9 +111,13 @@ class Translator(object):
 
         # (1) Run the encoder on the src.
         src, src_lengths = batch.src
-        src = src.unsqueeze(-1)
-
-        enc_states, memory_bank = self.model.encoder(src, src_lengths)
+        ngram_input = None
+        if not isinstance(src, torch.sparse.FloatTensor):
+            src = src.unsqueeze(-1)
+        else:
+            ngram_input = src
+            src = None
+        enc_states, memory_bank = self.model.encoder(src, src_lengths, ngram_input=ngram_input)
 
         dec_states = self.model.decoder.init_decoder_state(src)
 
@@ -199,11 +203,16 @@ class Translator(object):
 
     def _run_target(self, batch, data):
         src, src_lengths = batch.src
-        src = src.unsqueeze(-1)
+        ngram_input = None
+        if not isinstance(src, torch.sparse.FloatTensor):
+            src = src.unsqueeze(-1)
+        else:
+            ngram_input = src
+            src = None
         tgt_in = batch.tgt.unsqueeze(-1)[:-1]
 
         #  (1) run the encoder on the src
-        enc_states, memory_bank = self.model.encoder(src, src_lengths)
+        enc_states, memory_bank = self.model.encoder(src, src_lengths, ngram_input=ngram_input)
         tm_enc_final = None
         tm_memory_bank = None
 

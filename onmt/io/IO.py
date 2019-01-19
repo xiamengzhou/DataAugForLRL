@@ -218,8 +218,8 @@ class TMBatch:
                     if not isinstance(dataset.ngram, int):
                         dataset.ngram = -1
                     if name == "src" and dataset.ngram > 0:
-                        langid = [int(d[0]) for d in batch]
-                        batch = [d[1:] for d in batch]
+                        # langid = [int(d[0]) for d in batch]
+                        # batch = [d[1:] for d in batch]
                         out = field.process(batch, device=-1, train=train)
                         length = out[1]
                         new_batch = TMBatch.get_ngram(batch, dataset.ngram)
@@ -248,7 +248,7 @@ class TMBatch:
                             sent_sparse = torch.sparse.FloatTensor(keys, vals, torch.Size([max_ngram_len, len(field.vocab.itos)]))
                             sents_sparse.append(sent_sparse)
                         assert len(sents_sparse) == len(new_outs)
-                        setattr(self, name, (sents_sparse, length, langid))
+                        setattr(self, name, (sents_sparse, length))
                     # if name == "src_sg" and dataset.skipgram:
                     #     setattr(self, name, field.process(batch, device=device, train=train))
                     else:

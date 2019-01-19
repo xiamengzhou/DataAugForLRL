@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e3c4f64b-11fa-4fb2-aa3f-d8de53608997" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/onmt/ModelConstructor.py" afterPath="$PROJECT_DIR$/onmt/ModelConstructor.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/onmt/modules/SDE.py" afterPath="$PROJECT_DIR$/onmt/modules/SDE.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/opts.py" afterPath="$PROJECT_DIR$/opts.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/onmt/Trainer.py" afterPath="$PROJECT_DIR$/onmt/Trainer.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/onmt/io/IO.py" afterPath="$PROJECT_DIR$/onmt/io/IO.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/onmt/translate/Translator.py" afterPath="$PROJECT_DIR$/onmt/translate/Translator.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,8 +22,18 @@
       <file leaf-file-name="translate.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/translate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="875">
-              <caret line="166" column="19" lean-forward="false" selection-start-line="166" selection-start-column="19" selection-end-line="166" selection-end-column="19" />
+            <state relative-caret-position="90">
+              <caret line="263" column="43" lean-forward="false" selection-start-line="263" selection-start-column="43" selection-end-line="263" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Translator.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/onmt/translate/Translator.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="350">
+              <caret line="214" column="94" lean-forward="false" selection-start-line="214" selection-start-column="94" selection-end-line="214" selection-end-column="94" />
               <folding />
             </state>
           </provider>
@@ -32,91 +42,24 @@
       <file leaf-file-name="SDE.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/onmt/modules/SDE.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#20#0" expanded="true" />
-                <element signature="e#140#5274#0" expanded="false" />
-                <element signature="e#6541#6672#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/onmt/modules/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="33" lean-forward="false" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
-              <folding>
-                <element signature="e#0#80#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SwapDict.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/onmt/modules/SwapDict.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Transformer.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/onmt/modules/Transformer.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#20#0" expanded="true" />
-                <element signature="e#1949#2590#0" expanded="false" />
-                <element signature="e#11104#15333#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Generator.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/onmt/modules/Generator.py">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
-              <caret line="5" column="62" lean-forward="false" selection-start-line="5" selection-start-column="62" selection-end-line="5" selection-end-column="62" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Embeddings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/onmt/modules/Embeddings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="41" column="25" lean-forward="false" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ModelConstructor.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/onmt/ModelConstructor.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="89" column="29" lean-forward="false" selection-start-line="89" selection-start-column="29" selection-end-line="89" selection-end-column="29" />
+              <caret line="4" column="18" lean-forward="false" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
               <folding>
-                <element signature="e#0#12#0" expanded="true" />
+                <element signature="e#0#20#0" expanded="true" />
+                <element signature="e#6559#6690#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="opts.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/opts.py">
+      <file leaf-file-name="Trainer.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/onmt/Trainer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="278" column="0" lean-forward="false" selection-start-line="278" selection-start-column="0" selection-end-line="278" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="2278">
+              <caret line="364" column="70" lean-forward="false" selection-start-line="364" selection-start-column="70" selection-end-line="364" selection-end-column="70" />
+              <folding>
+                <element signature="e#8660#8818#1" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -124,8 +67,18 @@
       <file leaf-file-name="IO.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/onmt/io/IO.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="76" column="13" lean-forward="true" selection-start-line="76" selection-start-column="13" selection-end-line="76" selection-end-column="13" />
+            <state relative-caret-position="279">
+              <caret line="250" column="56" lean-forward="false" selection-start-line="250" selection-start-column="56" selection-end-line="250" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/onmt/Models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="760">
+              <caret line="54" column="68" lean-forward="false" selection-start-line="54" selection-start-column="68" selection-end-line="54" selection-end-column="68" />
               <folding />
             </state>
           </provider>
@@ -170,8 +123,8 @@
       <find>dot_pro</find>
       <find>NMTMODEL</find>
       <find>state.src</find>
-      <find>tmbatch</find>
       <find>ngram</find>
+      <find>tmbatch</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -201,13 +154,11 @@
         <option value="$PROJECT_DIR$/onmt/modules/W2V.py" />
         <option value="$PROJECT_DIR$/preprocess.py" />
         <option value="$PROJECT_DIR$/onmt/io/TextDataset.py" />
-        <option value="$PROJECT_DIR$/onmt/Trainer.py" />
         <option value="$PROJECT_DIR$/train.py" />
         <option value="$PROJECT_DIR$/onmt/modules/Embeddings.py" />
         <option value="$PROJECT_DIR$/onmt/modules/SwapDict.py" />
         <option value="$PROJECT_DIR$/py_scripts/sent_tokenize.py" />
         <option value="$PROJECT_DIR$/translate.py" />
-        <option value="$PROJECT_DIR$/onmt/translate/Translator.py" />
         <option value="$PROJECT_DIR$/py_scripts/sentence_piece.py" />
         <option value="$PROJECT_DIR$/data_scripts/mono_sent.sh" />
         <option value="$PROJECT_DIR$/py_scripts/result_analysis.py" />
@@ -221,12 +172,14 @@
         <option value="$PROJECT_DIR$/data2.sh" />
         <option value="$PROJECT_DIR$/data_scripts/data.sh" />
         <option value="$PROJECT_DIR$/onmt/modules/__init__.py" />
-        <option value="$PROJECT_DIR$/onmt/io/IO.py" />
         <option value="$PROJECT_DIR$/onmt/Models.py" />
-        <option value="$PROJECT_DIR$/onmt/modules/SDE.py" />
-        <option value="$PROJECT_DIR$/onmt/modules/Transformer.py" />
-        <option value="$PROJECT_DIR$/onmt/ModelConstructor.py" />
         <option value="$PROJECT_DIR$/opts.py" />
+        <option value="$PROJECT_DIR$/onmt/modules/SDE.py" />
+        <option value="$PROJECT_DIR$/onmt/ModelConstructor.py" />
+        <option value="$PROJECT_DIR$/onmt/modules/Transformer.py" />
+        <option value="$PROJECT_DIR$/onmt/io/IO.py" />
+        <option value="$PROJECT_DIR$/onmt/Trainer.py" />
+        <option value="$PROJECT_DIR$/onmt/translate/Translator.py" />
       </list>
     </option>
   </component>
@@ -368,6 +321,12 @@
               <item name="Final" type="b2602c69:ProjectViewProjectNode" />
               <item name="Final" type="462c0819:PsiDirectoryNode" />
               <item name="onmt" type="462c0819:PsiDirectoryNode" />
+              <item name="io" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Final" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Final" type="462c0819:PsiDirectoryNode" />
+              <item name="onmt" type="462c0819:PsiDirectoryNode" />
               <item name="modules" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -457,48 +416,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1542514609546</updated>
-    </task>
-    <task id="LOCAL-00104" summary="Embedding constraint.">
-      <created>1543718758019</created>
-      <option name="number" value="00104" />
-      <option name="presentableId" value="LOCAL-00104" />
-      <option name="project" value="LOCAL" />
-      <updated>1543718758023</updated>
-    </task>
-    <task id="LOCAL-00105" summary="Embedding constraint.">
-      <created>1543719797911</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1543719797912</updated>
-    </task>
-    <task id="LOCAL-00106" summary="Embedding constraint.">
-      <created>1543722205396</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1543722205399</updated>
-    </task>
-    <task id="LOCAL-00107" summary="Fix priors.">
-      <created>1543733448055</created>
-      <option name="number" value="00107" />
-      <option name="presentableId" value="LOCAL-00107" />
-      <option name="project" value="LOCAL" />
-      <updated>1543733448058</updated>
-    </task>
-    <task id="LOCAL-00108" summary="Fix priors.">
-      <created>1543769263414</created>
-      <option name="number" value="00108" />
-      <option name="presentableId" value="LOCAL-00108" />
-      <option name="project" value="LOCAL" />
-      <updated>1543769263415</updated>
-    </task>
-    <task id="LOCAL-00109" summary="Fix priors.">
-      <created>1544209660859</created>
-      <option name="number" value="00109" />
-      <option name="presentableId" value="LOCAL-00109" />
-      <option name="project" value="LOCAL" />
-      <updated>1544209660863</updated>
     </task>
     <task id="LOCAL-00110" summary="Revised the soft embedding version.">
       <created>1544392412499</created>
@@ -801,7 +718,49 @@
       <option name="project" value="LOCAL" />
       <updated>1547871453455</updated>
     </task>
-    <option name="localTasksCounter" value="153" />
+    <task id="LOCAL-00153" summary="Added SDE!">
+      <created>1547871730005</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1547871730005</updated>
+    </task>
+    <task id="LOCAL-00154" summary="Added SDE!">
+      <created>1547871893924</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1547871893924</updated>
+    </task>
+    <task id="LOCAL-00155" summary="Added SDE!">
+      <created>1547872048337</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1547872048337</updated>
+    </task>
+    <task id="LOCAL-00156" summary="Added SDE!">
+      <created>1547872188055</created>
+      <option name="number" value="00156" />
+      <option name="presentableId" value="LOCAL-00156" />
+      <option name="project" value="LOCAL" />
+      <updated>1547872188055</updated>
+    </task>
+    <task id="LOCAL-00157" summary="Added SDE!">
+      <created>1547872275119</created>
+      <option name="number" value="00157" />
+      <option name="presentableId" value="LOCAL-00157" />
+      <option name="project" value="LOCAL" />
+      <updated>1547872275119</updated>
+    </task>
+    <task id="LOCAL-00158" summary="Added SDE!">
+      <created>1547872326121</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1547872326121</updated>
+    </task>
+    <option name="localTasksCounter" value="159" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -813,7 +772,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26171243" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26171243" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -951,7 +910,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/onmt/translate/Translator.py</url>
-          <line>154</line>
+          <line>158</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
@@ -999,14 +958,6 @@
           <folding>
             <element signature="e#0#18#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/onmt/io/TextDataset.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2235">
-          <caret line="159" column="13" lean-forward="false" selection-start-line="159" selection-start-column="13" selection-end-line="159" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1067,16 +1018,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/onmt/Trainer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="277" column="32" lean-forward="false" selection-start-line="277" selection-start-column="32" selection-end-line="277" selection-end-column="32" />
-          <folding>
-            <element signature="e#8660#8818#1" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/py_scripts/sent_tokenize.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -1117,14 +1058,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
           <caret line="47" column="16" lean-forward="false" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/onmt/translate/Translator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1845">
-          <caret line="127" column="19" lean-forward="false" selection-start-line="127" selection-start-column="19" selection-end-line="127" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -1289,42 +1222,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/onmt/Models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="54" column="68" lean-forward="false" selection-start-line="54" selection-start-column="68" selection-end-line="54" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/py_scripts/gensim_py.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="20" lean-forward="true" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/onmt/io/IO.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="76" column="13" lean-forward="true" selection-start-line="76" selection-start-column="13" selection-end-line="76" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/translate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="875">
-          <caret line="166" column="19" lean-forward="false" selection-start-line="166" selection-start-column="19" selection-end-line="166" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/onmt/modules/SwapDict.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1355,44 +1256,101 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/opts.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="278" column="0" lean-forward="false" selection-start-line="278" selection-start-column="0" selection-end-line="278" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/onmt/modules/SDE.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+        <state relative-caret-position="60">
+          <caret line="4" column="18" lean-forward="false" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
-            <element signature="e#140#5274#0" expanded="false" />
-            <element signature="e#6541#6672#0" expanded="false" />
+            <element signature="e#6559#6690#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/onmt/modules/Transformer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+        <state relative-caret-position="315">
+          <caret line="266" column="52" lean-forward="false" selection-start-line="266" selection-start-column="52" selection-end-line="266" selection-end-column="52" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
             <element signature="e#1949#2590#0" expanded="false" />
-            <element signature="e#11104#15333#0" expanded="false" />
+            <element signature="e#11120#15349#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/onmt/modules/SwapDict.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/onmt/ModelConstructor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="89" column="29" lean-forward="false" selection-start-line="89" selection-start-column="29" selection-end-line="89" selection-end-column="29" />
+        <state relative-caret-position="106">
+          <caret line="132" column="39" lean-forward="true" selection-start-line="132" selection-start-column="39" selection-end-line="132" selection-end-column="39" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/opts.py">
+    <entry file="file://$PROJECT_DIR$/onmt/Models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="278" column="0" lean-forward="false" selection-start-line="278" selection-start-column="0" selection-end-line="278" selection-end-column="0" />
+        <state relative-caret-position="760">
+          <caret line="54" column="68" lean-forward="false" selection-start-line="54" selection-start-column="68" selection-end-line="54" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/onmt/io/TextDataset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="597">
+          <caret line="159" column="13" lean-forward="false" selection-start-line="159" selection-start-column="13" selection-end-line="159" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/onmt/io/IO.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="250" column="56" lean-forward="false" selection-start-line="250" selection-start-column="56" selection-end-line="250" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/onmt/Trainer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2278">
+          <caret line="364" column="70" lean-forward="false" selection-start-line="364" selection-start-column="70" selection-end-line="364" selection-end-column="70" />
+          <folding>
+            <element signature="e#8660#8818#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/translate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="263" column="43" lean-forward="false" selection-start-line="263" selection-start-column="43" selection-end-line="263" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/onmt/translate/Translator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="214" column="94" lean-forward="false" selection-start-line="214" selection-start-column="94" selection-end-line="214" selection-end-column="94" />
           <folding />
         </state>
       </provider>
