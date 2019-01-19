@@ -132,16 +132,16 @@ def make_base_model(model_opt, fields, gpu, checkpoint=None):
     else:
         Hparams = namedtuple("Hparams",
                      "char_ngram_n" # Number of ngrams
-                     "cuda" # cuda
-                     "compute_ngram" # False
-                     "char_input" # None
-                     "init_range" # 0.1
-                     "semb" # dot_prod 
-                     "semb_vsize" # 10000
-                     "d_word_vec" # hidden size of query matrix 
-                     "src_char_vsize" # ngram size
-                     "d_char_vec"  # Dimension of ngram embedding
-                     "sep_char_proj" # seperate character projection
+                     " cuda" # cuda
+                     " compute_ngram" # False
+                     " char_input" # None
+                     " init_range" # 0.1
+                     " semb" # dot_prod 
+                     " semb_vsize" # 10000
+                     " d_word_vec" # hidden size of query matrix 
+                     " src_char_vsize" # ngram size
+                     " d_char_vec"  # Dimension of ngram embedding
+                     " sep_char_proj" # seperate character projection
                      )
         semb_params = Hparams(char_ngram_n=4, cuda=True, compute_ngram=False, char_input=None,
                               init_range=0.1, semb="dot_prod", semb_vsize=10000, d_word_vec=256,
