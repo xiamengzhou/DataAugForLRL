@@ -75,7 +75,7 @@ class charEmbedder(nn.Module):
         """
         if self.hparams.char_ngram_n > 0:
             ret = []
-            for idx, (x_char_sent, lengths, langid) in enumerate(x_train_char):
+            for idx, (x_char_sent, lengths) in enumerate(x_train_char):
                 emb = Variable(x_char_sent.to_dense(), requires_grad=False)
                 if self.hparams.cuda: emb = emb.cuda()
                 #if self.hparams.d_char_vec is not None:
@@ -83,7 +83,8 @@ class charEmbedder(nn.Module):
                 x_char_sent = torch.tanh(self.char_emb_proj(emb))
 
                 if self.hparams.sep_char_proj and not self.trg:
-                    x_char_sent = torch.tanh(self.sep_proj_list[[langid]](x_char_sent))
+                    pass
+                    # x_char_sent = torch.tanh(self.sep_proj_list[[langid]](x_char_sent))
                 ret.append(x_char_sent)
             if not self.hparams.semb == 'mlp':
                 char_emb = torch.stack(ret, dim=0)
