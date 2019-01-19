@@ -81,6 +81,7 @@ class TransformerEncoder(nn.Module):
             char_emb = self.char_emb(ngram_input)
             word_emb = self.word_emb(char_emb)
             out = word_emb * self.emb_scale
+            emb = out.transpose(0, 1).contiguous()
             max_length = torch.max(src_lengths)
             mask = torch.zeros(batch_size, max_length)
             for i in range(batch_size):
