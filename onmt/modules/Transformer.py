@@ -85,6 +85,8 @@ class TransformerEncoder(nn.Module):
             for i in range(batch_size):
                 if src_lengths.data[i] < max_length:
                     mask[i][src_lengths.data[i]:] = 1
+            if out.is_cuda:
+                mask = mask.cuda()
         else:
             # legacy code
             emb = self.embeddings(input)
