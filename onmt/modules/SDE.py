@@ -75,8 +75,7 @@ class charEmbedder(nn.Module):
         """
         if self.hparams.char_ngram_n > 0:
             ret = []
-            for idx, x in enumerate(x_train_char):
-                x_char_sent, lengths = x
+            for idx, x_char_sent in enumerate(x_train_char):
                 emb = Variable(x_char_sent.to_dense(), requires_grad=False)
                 if self.hparams.cuda: emb = emb.cuda()
                 #if self.hparams.d_char_vec is not None:
