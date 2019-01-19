@@ -234,7 +234,8 @@ class TMBatch:
                                         ngram_kv[ngram] = 1
                                     else:
                                         ngram_kv[ngram] += 1
-                                ngram_kv[0] = 0
+                                if 0 in ngram_kv:
+                                    ngram_kv[0] = 0
                                 new_outs[-1].append(ngram_kv)
                         # sent * len(ngram)
                         sents_sparse = []
