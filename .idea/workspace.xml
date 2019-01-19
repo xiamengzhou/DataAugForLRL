@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e3c4f64b-11fa-4fb2-aa3f-d8de53608997" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/onmt/modules/Transformer.py" afterPath="$PROJECT_DIR$/onmt/modules/Transformer.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/onmt/Trainer.py" afterPath="$PROJECT_DIR$/onmt/Trainer.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/onmt/translate/Translator.py" afterPath="$PROJECT_DIR$/onmt/translate/Translator.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,11 +28,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Translator.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Translator.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/onmt/translate/Translator.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="201">
-              <caret line="219" column="43" lean-forward="true" selection-start-line="219" selection-start-column="43" selection-end-line="219" selection-end-column="43" />
+              <caret line="206" column="35" lean-forward="false" selection-start-line="206" selection-start-column="35" selection-end-line="206" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -50,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Trainer.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Trainer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/onmt/Trainer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="709">
-              <caret line="170" column="35" lean-forward="false" selection-start-line="170" selection-start-column="31" selection-end-line="170" selection-end-column="36" />
+            <state relative-caret-position="201">
+              <caret line="253" column="39" lean-forward="false" selection-start-line="253" selection-start-column="39" selection-end-line="253" selection-end-column="39" />
               <folding>
                 <element signature="e#8660#8818#1" expanded="false" />
               </folding>
@@ -75,8 +76,8 @@
       <file leaf-file-name="Models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/onmt/Models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="24" column="38" lean-forward="false" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+            <state relative-caret-position="290">
+              <caret line="56" column="51" lean-forward="false" selection-start-line="56" selection-start-column="51" selection-end-line="56" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -85,12 +86,12 @@
       <file leaf-file-name="Transformer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/onmt/modules/Transformer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="174" column="0" lean-forward="false" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
+            <state relative-caret-position="231">
+              <caret line="194" column="30" lean-forward="true" selection-start-line="194" selection-start-column="30" selection-end-line="194" selection-end-column="30" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
                 <element signature="e#1949#2590#0" expanded="false" />
-                <element signature="e#11125#15354#0" expanded="false" />
+                <element signature="e#11439#15668#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -107,13 +108,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>class Statistic</find>
-      <find>index_sele</find>
-      <find>main</find>
-      <find>constraint</find>
-      <find>swap</find>
-      <find>Trainer</find>
-      <find>wc_weight</find>
       <find>SwapDict</find>
       <find>embedding_cons</find>
       <find>beam_up</find>
@@ -137,6 +131,13 @@
       <find>tmbatch</find>
       <find>init_decoder_state</find>
       <find>max(src_</find>
+      <find>mask[i][src_</find>
+      <find>max_length</find>
+      <find>mask = torch.zeros(src_batc</find>
+      <find>mask = torch.zeros</find>
+      <find>mask[i][src_lengths.data[i]:]</find>
+      <find>beam_update</find>
+      <find>if not is</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -184,14 +185,14 @@
         <option value="$PROJECT_DIR$/data2.sh" />
         <option value="$PROJECT_DIR$/data_scripts/data.sh" />
         <option value="$PROJECT_DIR$/onmt/modules/__init__.py" />
-        <option value="$PROJECT_DIR$/onmt/Models.py" />
         <option value="$PROJECT_DIR$/opts.py" />
         <option value="$PROJECT_DIR$/onmt/modules/SDE.py" />
         <option value="$PROJECT_DIR$/onmt/ModelConstructor.py" />
-        <option value="$PROJECT_DIR$/onmt/Trainer.py" />
         <option value="$PROJECT_DIR$/onmt/io/IO.py" />
-        <option value="$PROJECT_DIR$/onmt/translate/Translator.py" />
         <option value="$PROJECT_DIR$/onmt/modules/Transformer.py" />
+        <option value="$PROJECT_DIR$/onmt/Models.py" />
+        <option value="$PROJECT_DIR$/onmt/Trainer.py" />
+        <option value="$PROJECT_DIR$/onmt/translate/Translator.py" />
       </list>
     </option>
   </component>
@@ -428,69 +429,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1542514609546</updated>
-    </task>
-    <task id="LOCAL-00114" summary="Revised the soft embedding version.">
-      <created>1544400394494</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1544400394494</updated>
-    </task>
-    <task id="LOCAL-00115" summary="Revised the soft embedding version.">
-      <created>1544400746828</created>
-      <option name="number" value="00115" />
-      <option name="presentableId" value="LOCAL-00115" />
-      <option name="project" value="LOCAL" />
-      <updated>1544400746828</updated>
-    </task>
-    <task id="LOCAL-00116" summary="Revised the soft embedding version.">
-      <created>1544400832479</created>
-      <option name="number" value="00116" />
-      <option name="presentableId" value="LOCAL-00116" />
-      <option name="project" value="LOCAL" />
-      <updated>1544400832479</updated>
-    </task>
-    <task id="LOCAL-00117" summary="Revised the soft embedding version.">
-      <created>1544400920324</created>
-      <option name="number" value="00117" />
-      <option name="presentableId" value="LOCAL-00117" />
-      <option name="project" value="LOCAL" />
-      <updated>1544400920324</updated>
-    </task>
-    <task id="LOCAL-00118" summary="Revised the soft embedding version.">
-      <created>1544401045171</created>
-      <option name="number" value="00118" />
-      <option name="presentableId" value="LOCAL-00118" />
-      <option name="project" value="LOCAL" />
-      <updated>1544401045171</updated>
-    </task>
-    <task id="LOCAL-00119" summary="Revised the soft embedding version.">
-      <created>1544401123853</created>
-      <option name="number" value="00119" />
-      <option name="presentableId" value="LOCAL-00119" />
-      <option name="project" value="LOCAL" />
-      <updated>1544401123853</updated>
-    </task>
-    <task id="LOCAL-00120" summary="Revised the soft embedding version.">
-      <created>1544402343149</created>
-      <option name="number" value="00120" />
-      <option name="presentableId" value="LOCAL-00120" />
-      <option name="project" value="LOCAL" />
-      <updated>1544402343149</updated>
-    </task>
-    <task id="LOCAL-00121" summary="Revised the soft embedding version.">
-      <created>1544405600514</created>
-      <option name="number" value="00121" />
-      <option name="presentableId" value="LOCAL-00121" />
-      <option name="project" value="LOCAL" />
-      <updated>1544405600514</updated>
-    </task>
-    <task id="LOCAL-00122" summary="Revised the soft embedding version.">
-      <created>1544405948987</created>
-      <option name="number" value="00122" />
-      <option name="presentableId" value="LOCAL-00122" />
-      <option name="project" value="LOCAL" />
-      <updated>1544405948987</updated>
     </task>
     <task id="LOCAL-00123" summary="Revised the soft embedding version.">
       <created>1544410995711</created>
@@ -772,7 +710,70 @@
       <option name="project" value="LOCAL" />
       <updated>1547873269874</updated>
     </task>
-    <option name="localTasksCounter" value="163" />
+    <task id="LOCAL-00163" summary="Added SDE!">
+      <created>1547873567588</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1547873567588</updated>
+    </task>
+    <task id="LOCAL-00164" summary="Added SDE!">
+      <created>1547873678488</created>
+      <option name="number" value="00164" />
+      <option name="presentableId" value="LOCAL-00164" />
+      <option name="project" value="LOCAL" />
+      <updated>1547873678488</updated>
+    </task>
+    <task id="LOCAL-00165" summary="Added SDE!">
+      <created>1547873796145</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1547873796146</updated>
+    </task>
+    <task id="LOCAL-00166" summary="Added SDE!">
+      <created>1547874000661</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1547874000661</updated>
+    </task>
+    <task id="LOCAL-00167" summary="Added SDE!">
+      <created>1547909983625</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1547909983631</updated>
+    </task>
+    <task id="LOCAL-00168" summary="Added SDE!">
+      <created>1547910145825</created>
+      <option name="number" value="00168" />
+      <option name="presentableId" value="LOCAL-00168" />
+      <option name="project" value="LOCAL" />
+      <updated>1547910145826</updated>
+    </task>
+    <task id="LOCAL-00169" summary="Added SDE!">
+      <created>1547910354117</created>
+      <option name="number" value="00169" />
+      <option name="presentableId" value="LOCAL-00169" />
+      <option name="project" value="LOCAL" />
+      <updated>1547910354118</updated>
+    </task>
+    <task id="LOCAL-00170" summary="Added SDE!">
+      <created>1547910437862</created>
+      <option name="number" value="00170" />
+      <option name="presentableId" value="LOCAL-00170" />
+      <option name="project" value="LOCAL" />
+      <updated>1547910437862</updated>
+    </task>
+    <task id="LOCAL-00171" summary="Added SDE!">
+      <created>1547910542619</created>
+      <option name="number" value="00171" />
+      <option name="presentableId" value="LOCAL-00171" />
+      <option name="project" value="LOCAL" />
+      <updated>1547910542619</updated>
+    </task>
+    <option name="localTasksCounter" value="172" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -925,8 +926,13 @@
           <line>158</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/onmt/Models.py</url>
+          <line>50</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="20" />
+      <option name="time" value="21" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1329,41 +1335,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/onmt/modules/Transformer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="194" column="30" lean-forward="true" selection-start-line="194" selection-start-column="30" selection-end-line="194" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+            <element signature="e#1949#2590#0" expanded="false" />
+            <element signature="e#11439#15668#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/onmt/Models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="24" column="38" lean-forward="false" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+        <state relative-caret-position="290">
+          <caret line="56" column="51" lean-forward="false" selection-start-line="56" selection-start-column="51" selection-end-line="56" selection-end-column="51" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/onmt/Trainer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="253" column="39" lean-forward="false" selection-start-line="253" selection-start-column="39" selection-end-line="253" selection-end-column="39" />
+          <folding>
+            <element signature="e#8660#8818#1" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/onmt/translate/Translator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="201">
-          <caret line="219" column="43" lean-forward="true" selection-start-line="219" selection-start-column="43" selection-end-line="219" selection-end-column="43" />
+          <caret line="206" column="35" lean-forward="false" selection-start-line="206" selection-start-column="35" selection-end-line="206" selection-end-column="35" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/onmt/modules/Transformer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="174" column="0" lean-forward="false" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-            <element signature="e#1949#2590#0" expanded="false" />
-            <element signature="e#11125#15354#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/onmt/Trainer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="709">
-          <caret line="170" column="35" lean-forward="false" selection-start-line="170" selection-start-column="31" selection-end-line="170" selection-end-column="36" />
-          <folding>
-            <element signature="e#8660#8818#1" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>

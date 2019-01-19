@@ -251,7 +251,7 @@ class Trainer(object):
             tgt = batch.tgt
             tgt = tgt.unsqueeze(-1)
             src, src_lengths = batch.src
-            if not isinstance(src, torch.sparse.FloatTensor):
+            if not isinstance(src, list):
                 src = src.unsqueeze(-1)
                 outputs, attns = \
                     self.pass_model(src, tgt, src_lengths, ngram_input=None)
@@ -342,7 +342,7 @@ class Trainer(object):
             dec_state = None
             src, src_lengths = batch.src
             ngram_input = None
-            if not isinstance(src, torch.sparse.FloatTensor):
+            if not isinstance(src, list):
                 src = src.unsqueeze(-1)
             else:
                 ngram_input = src

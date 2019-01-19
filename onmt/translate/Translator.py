@@ -112,7 +112,7 @@ class Translator(object):
         # (1) Run the encoder on the src.
         src, src_lengths = batch.src
         ngram_input = None
-        if not isinstance(src, torch.sparse.FloatTensor):
+        if not isinstance(src, list):
             src = src.unsqueeze(-1)
         else:
             ngram_input = src
@@ -204,7 +204,7 @@ class Translator(object):
     def _run_target(self, batch, data):
         src, src_lengths = batch.src
         ngram_input = None
-        if not isinstance(src, torch.sparse.FloatTensor):
+        if not isinstance(src, list):
             src = src.unsqueeze(-1)
         else:
             ngram_input = src
