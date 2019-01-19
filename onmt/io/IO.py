@@ -242,7 +242,6 @@ class TMBatch:
                                 new_outs[-1].append(ngram_kv)
                         # sent * len(ngram)
                         sents_sparse = []
-                        assert len(set([len(o) for o in new_outs])) == 1
                         for o in new_outs:
                             keys = []
                             vals = []
