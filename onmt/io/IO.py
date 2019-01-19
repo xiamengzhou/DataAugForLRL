@@ -227,7 +227,7 @@ class TMBatch:
                         for b in new_batch: # sent
                             out_t = field.process(b, device=-1, train=train) # word_len * ngram_len
                             new_outs.append([])
-                            for ngrams in out_t: # word
+                            for ngrams in out_t[0]: # word
                                 ngram_kv = {}
                                 for ngram in ngrams:
                                     if ngram not in ngram_kv:
@@ -241,7 +241,7 @@ class TMBatch:
                             keys = []
                             vals = []
                             for i, word in enumerate(o):
-                                keys.append(torch.LongTensor([[i for _ in range(len(word))], list(word.keys)]))
+                                keys.append(torch.LongTensor([[i for _ in range(len(word))], list(word.keys())]))
                                 vals.extend(list(word.values()))
                             keys = torch.cat(keys, dim=1)
                             vals = torch.FloatTensor(vals)
