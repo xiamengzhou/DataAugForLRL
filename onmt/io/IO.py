@@ -229,11 +229,12 @@ class TMBatch:
                             new_outs.append([])
                             for ngrams in out_t[0]: # word
                                 ngram_kv = {}
-                                for ngram in ngrams:
+                                for ngram in ngrams.data:
                                     if ngram not in ngram_kv:
                                         ngram_kv[ngram] = 1
                                     else:
                                         ngram_kv[ngram] += 1
+                                ngram_kv[0] = 0
                                 new_outs[-1].append(ngram_kv)
                         # sent * len(ngram)
                         sents_sparse = []
