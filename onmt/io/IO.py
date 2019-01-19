@@ -223,29 +223,29 @@ class TMBatch:
                         out = field.process(batch, device=-1, train=train)
                         length = out[1]
                         new_batch = TMBatch.get_ngram(batch, dataset.ngram)
-                        max_sent_len = 0
-                        max_ngram_len = 0
                         new_outs = []
-                        for b in new_batch:
-                            out_t = field.process(b, device=-1, train=train)
-                            out_t = out_t[0]
-                            sent_len, ngram_len = out_t.shape
-                            if sent_len > max_sent_len:
-                                max_sent_len = sent_len
-                            if ngram_len > max_ngram_len:
-                                max_ngram_len = ngram_len
-                            new_outs.append(out_t.data)
+                        for b in new_batch: # sent
+                            out_t = field.process(b, device=-1, train=train) # word_len * ngram_len
+                            new_outs.append([])
+                            for ngrams in out_t: # word
+                                ngram_kv = {}
+                                for ngram in ngrams:
+                                    if ngram not in ngram_kv:
+                                        ngram_kv[ngram] = 1
+                                    else:
+                                        ngram_kv[ngram] += 1
+                                new_outs[-1].append(ngram_kv)
                         # sent * len(ngram)
                         sents_sparse = []
                         for o in new_outs:
                             keys = []
                             vals = []
-                            for i, ngrams in enumerate(o):
-                                keys.append(torch.LongTensor([[i for _ in range(len(ngrams))], list(ngrams)]))
-                                vals.extend([1] * len(ngrams))
+                            for i, word in enumerate(o):
+                                keys.append(torch.LongTensor([[i for _ in range(len(word))], list(word.keys)]))
+                                vals.extend(list(word.values()))
                             keys = torch.cat(keys, dim=1)
                             vals = torch.FloatTensor(vals)
-                            sent_sparse = torch.sparse.FloatTensor(keys, vals, torch.Size([max_ngram_len, len(field.vocab.itos)]))
+                            sent_sparse = torch.sparse.FloatTensor(keys, vals, torch.Size([len(word), len(field.vocab.itos)]))
                             sents_sparse.append(sent_sparse)
                         assert len(sents_sparse) == len(new_outs)
                         setattr(self, name, (sents_sparse, length))
