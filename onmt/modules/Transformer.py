@@ -84,8 +84,8 @@ class TransformerEncoder(nn.Module):
             max_length = torch.max(src_lengths)
             mask = torch.zeros(batch_size, max_length)
             for i in range(batch_size):
-                if src_lengths.data[i] < max_length:
-                    mask[i][src_lengths.data[i]:] = 1
+                if src_lengths[i] < max_length:
+                    mask[i][src_lengths[i]:] = 1
             if out.is_cuda:
                 mask = mask.cuda()
         else:
@@ -190,8 +190,8 @@ class TransformerDecoder(nn.Module):
         max_length = torch.max(src_lengths)
         mask = torch.zeros(src_batch, max_length)
         for i in range(src_batch):
-            if src_lengths.data[i] < max_length:
-                mask[i][src_lengths.data[i]:] = 1
+            if src_lengths[i] < max_length:
+                mask[i][src_lengths[i]:] = 1
         if memory_bank.is_cuda:
             mask = mask.cuda()
 
