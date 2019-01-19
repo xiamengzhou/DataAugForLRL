@@ -65,6 +65,7 @@ class TransformerEncoder(nn.Module):
         self.semb_params = semb_params
         if self.semb_params:
             print("using SDE...")
+            self.semb = self.semb_params.semb
             self.word_emb = QueryEmb(self.semb_params, self.semb_params.semb_vsize)
             self.char_emb = charEmbedder(self.semb_params, char_vsize=self.semb_params.src_char_vsize)
             self.emb_scale = np.sqrt(hidden_size)
