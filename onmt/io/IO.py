@@ -241,7 +241,7 @@ class TMBatch:
                             keys = []
                             vals = []
                             for i, ngrams in enumerate(o):
-                                keys.append(torch.LongTensor([i for _ in range(len(ngrams))], list(ngrams)))
+                                keys.append(torch.LongTensor([[i for _ in range(len(ngrams))], list(ngrams)]))
                                 vals.extend([1] * len(ngrams))
                             keys = torch.cat(keys, dim=1)
                             vals = torch.FloatTensor(vals)
