@@ -224,8 +224,11 @@ class TMBatch:
                         length = out[1]
                         new_batch = TMBatch.get_ngram(batch, dataset.ngram)
                         new_outs = []
+                        max_word_len = 0
                         for b in new_batch: # sent
                             out_t = field.process(b, device=-1, train=train) # word_len * ngram_len
+                            if len(out_t) > max_word_len:
+                                max_word_len = len(out_t)
                             new_outs.append([])
                             for ngrams in out_t[0]: # word
                                 ngram_kv = {}
@@ -239,6 +242,7 @@ class TMBatch:
                                 new_outs[-1].append(ngram_kv)
                         # sent * len(ngram)
                         sents_sparse = []
+                        assert len(set([len(o) for o in new_outs])) == 1
                         for o in new_outs:
                             keys = []
                             vals = []
@@ -247,7 +251,7 @@ class TMBatch:
                                 vals.extend(list(word.values()))
                             keys = torch.cat(keys, dim=1)
                             vals = torch.FloatTensor(vals)
-                            sent_sparse = torch.sparse.FloatTensor(keys, vals, torch.Size([len(o), len(field.vocab.itos)]))
+                            sent_sparse = torch.sparse.FloatTensor(keys, vals, torch.Size([max_word_len, len(field.vocab.itos)]))
                             sents_sparse.append(sent_sparse)
                         assert len(sents_sparse) == len(new_outs)
                         setattr(self, name, (sents_sparse, length))
