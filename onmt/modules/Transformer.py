@@ -80,7 +80,7 @@ class TransformerEncoder(nn.Module):
             char_emb = self.char_emb(ngram_input)
             word_emb = self.word_emb(char_emb)
             out = word_emb * self.emb_scale
-            mask = torch.zeros(batch_size, max(src_lengths))
+            mask = torch.zeros(batch_size, max(src_lengths.data))
             for i in range(batch_size):
                 mask[i][src_lengths[i:]] = 1
         else:
@@ -182,7 +182,7 @@ class TransformerDecoder(nn.Module):
 
         src_lengths = state.src_lengths
         src_batch = len(src_lengths)
-        mask = torch.zeros(src_batch, max(src_lengths))
+        mask = torch.zeros(src_batch, max(src_lengths.data))
         for i in range(src_batch):
             mask[i][src_lengths[i:]] = 1
 
