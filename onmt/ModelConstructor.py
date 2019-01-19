@@ -144,11 +144,12 @@ def make_base_model(model_opt, fields, gpu, checkpoint=None):
                      " sep_char_proj" # seperate character projection
                      " dropout"
                      " d_model"
+                     " semb_num"
                      )
         semb_params = Hparams(char_ngram_n=4, cuda=True, compute_ngram=False, char_input=None,
                               init_range=0.1, semb="dot_prod", semb_vsize=10000, d_word_vec=256,
                               src_char_vsize=len(src_dict), d_char_vec=None, sep_char_proj=False,
-                              dropout=model_opt.dropout, d_model=model_opt.rnn_size)
+                              dropout=model_opt.dropout, d_model=model_opt.rnn_size, semb_num=1)
 
     ####### ... Load Global Data ... ######
     vecs = load_vectors(model_opt.vectors, model_opt.max_vec_num,
