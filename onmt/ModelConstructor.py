@@ -11,7 +11,7 @@ from onmt.Models import NMTModel
 from onmt.modules import Embeddings, TransformerEncoder, TransformerDecoder, Generator
 from onmt.Utils import use_gpu
 from torch.nn.init import xavier_uniform
-
+from collections import namedtuple
 def load_vectors(vectors_path=None, num=50000, is_cuda=True, random=False, dim=256):
     if not vectors_path:
         if random:
@@ -61,14 +61,14 @@ def make_embeddings(opt, word_dict, for_encoder=True):
                       word_padding_idx=word_padding_idx,
                       word_vocab_size=num_word_embeddings)
 
-def make_encoder(opt, embeddings, vecs):
+def make_encoder(opt, embeddings, vecs, semb_params):
     """
     Various encoder dispatcher function.
     Args:
         opt: the option in current environment.
         embeddings (Embeddings): vocab embeddings for this encoder.
     """
-    return TransformerEncoder(opt.enc_layers, opt.rnn_size, opt.dropout, embeddings, vecs)
+    return TransformerEncoder(opt.enc_layers, opt.rnn_size, opt.dropout, embeddings, vecs, semb_params)
 
 def make_decoder(opt, embeddings):
     """
@@ -121,13 +121,33 @@ def make_base_model(model_opt, fields, gpu, checkpoint=None):
 
     # Make encoder.
     src_dict = fields["src"].vocab
-    src_embeddings = make_embeddings(model_opt, src_dict)
+    src_embeddings = None
+    semb_params = None
+    if not model_opt.semb:
+        src_embeddings = make_embeddings(model_opt, src_dict)
+    else:
+        Hparams = namedtuple("Hparams",
+                     "char_ngram_n" # Number of ngrams
+                     "cuda" # cuda
+                     "compute_ngram" # False
+                     "char_input" # None
+                     "init_range" # 0.1
+                     "semb" # dot_prod 
+                     "semb_vsize" # 10000
+                     "d_word_vec" # hidden size of query matrix 
+                     "src_char_vsize" # ngram size
+                     "d_char_vec"  # Dimension of ngram embedding
+                     "sep_char_proj" # seperate character projection
+                     )
+        semb_params = Hparams(char_ngram_n=4, cuda=True, compute_ngram=False, char_input=None,
+                              init_range=0.1, semb="dot_prod", semb_vsize=10000, d_word_vec=256,
+                              src_char_vsize=len(src_dict), d_char_vec=None, sep_char_proj=False)
     fix_prior(model_opt)
 
     ####### ... Load Global Data ... ######
     vecs = load_vectors(model_opt.vectors, model_opt.max_vec_num,
                         is_cuda=True, random=model_opt.random_uni, dim=model_opt.uni_dim)
-    encoder = make_encoder(model_opt, src_embeddings, vecs)
+    encoder = make_encoder(model_opt, src_embeddings, vecs, semb_params=semb_params)
 
     # Make decoder.
     tgt_dict = fields["tgt"].vocab

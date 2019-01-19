@@ -1,8 +1,8 @@
 """
-    python3 ~/11731_final/py_scripts/gensim.py train /projects/tir3/users/mengzhox/data/unsup/mono/aztr/all.az-tr.spm8k \
-                      /projects/tir3/users/mengzhox/data/unsup/mono/aztr/emb/emb.spm8k \
+    python3 ~/11731_final/py_scripts/gensim_py.py train /projects/tir3/users/mengzhox/data/unsup/mono/aztr/all.az-tr.spm8k \
+                      /projects/tir3/users/mengzhox/data/unsup/mono/aztr/emb/swap/emb.spm8k \
                       256 \
-                      /projects/tir3/users/mengzhox/data/unsup/mono/aztr/emb/emb.spm8k.vec
+                      /projects/tir3/users/mengzhox/data/unsup/mono/aztr/emb/swap/emb.spm8k.vec
 """
 
 # Gensim

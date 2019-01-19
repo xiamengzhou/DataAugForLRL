@@ -218,6 +218,8 @@ class TMBatch:
                     if not isinstance(dataset.ngram, int):
                         dataset.ngram = -1
                     if name == "src" and dataset.ngram > 0:
+                        langid = [int(d[0]) for d in batch]
+                        batch = [d[1:] for d in batch]
                         out = field.process(batch, device=-1, train=train)
                         length = out[1]
                         new_batch = TMBatch.get_ngram(batch, dataset.ngram)
@@ -232,19 +234,21 @@ class TMBatch:
                                 max_sent_len = sent_len
                             if ngram_len > max_ngram_len:
                                 max_ngram_len = ngram_len
-                            new_outs.append(out_t)
-                        new_outs2 = []
+                            new_outs.append(out_t.data)
+                        # sent * len(ngram)
+                        sents_sparse = []
                         for o in new_outs:
-                            pad1 = max(0, max_ngram_len-o.shape[1])
-                            pad2 = max(0, max_sent_len-o.shape[0])
-                            new_o = torch.nn.functional.pad(o, (0, pad1, 0, pad2), value=0) # padding index
-                            new_outs2.append(new_o)
-                        out = torch.stack(new_outs2, 0)
-                        if device > -1:
-                            out = out.cuda(device)
-                            length = length.cuda(device)
-                        assert out.shape == (len(batch), max_sent_len, max_ngram_len)
-                        setattr(self, name, (out, length))
+                            keys = []
+                            vals = []
+                            for i, ngrams in enumerate(o):
+                                keys.append(torch.LongTensor([i for _ in range(len(ngrams))], list(ngrams)))
+                                vals.extend([1] * len(ngrams))
+                            keys = torch.cat(keys, dim=1)
+                            vals = torch.FloatTensor(vals)
+                            sent_sparse = torch.sparse.FloatTensor(keys, vals, torch.Size([max_ngram_len, len(field.vocab.itos)]))
+                            sents_sparse.append(sent_sparse)
+                        assert len(sents_sparse) == len(new_outs)
+                        setattr(self, name, (sents_sparse, length, langid))
                     # if name == "src_sg" and dataset.skipgram:
                     #     setattr(self, name, field.process(batch, device=device, train=train))
                     else:
@@ -263,6 +267,7 @@ class TMBatch:
 
     @classmethod
     def get_ngram(cls, batch, n):
+        # sent * word
         new_batch = []
         for k, sent in enumerate(batch):
             new_batch.append([])

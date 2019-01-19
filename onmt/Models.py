@@ -16,13 +16,13 @@ class NMTModel(nn.Module):
         self.encoder = encoder
         self.decoder = decoder
 
-    def forward(self, src, tgt, lengths, dec_state=None):
+    def forward(self, src, tgt, lengths, dec_state=None, ngram_input=None):
         tgt = tgt[:-1]  # exclude last target from inputs
 
-        enc_final, memory_bank = self.encoder(src, lengths)
+        enc_final, memory_bank = self.encoder(src, lengths, ngram_input=ngram_input)
 
         enc_state = \
-            self.decoder.init_decoder_state(src)
+            self.decoder.init_decoder_state(lengths)
 
         decoder_outputs, dec_state, attns = \
                 self.decoder(tgt, memory_bank,
@@ -50,28 +50,16 @@ class DecoderState(object):
         # usually layer_num * (beam_size * bs) * 1 * dim
         for e in self._all:
             sizes = e.size()
-            if len(sizes) == 3:
-                br = sizes[1]
-                sent_states = e.view(sizes[0], beam_size, br // beam_size,
-                                     sizes[2])[:, :, idx]
-                sent_states.data.copy_(
-                    sent_states.data.index_select(1, positions))
-
+            br = sizes[1]
+            if len(sizes) == 1:
+                sent_states = e.view(beam_size, br // beam_size)[:, idx]
             else:
-                if e.shape[-1] == 1:
-                    br = sizes[0]
-                    sent_states = e.view(beam_size, br // beam_size,
-                                         sizes[1], sizes[2], sizes[3])[:, idx]
-                    sent_states.data.copy_(
-                        sent_states.data.index_select(0, positions))
-
-                else:
-                    br = sizes[1]
-                    sent_states = e.view(sizes[0], beam_size,
+                sent_states = e.view(sizes[0], beam_size,
                                      br // beam_size,
                                      sizes[2],
                                      sizes[3])[:, :, idx]
-                    sent_states.data.copy_(
-                        sent_states.data.index_select(1, positions))
+
+            sent_states.data.copy_(
+                sent_states.data.index_select(1, positions))
 
 

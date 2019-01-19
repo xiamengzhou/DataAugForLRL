@@ -22,6 +22,7 @@ python3 utils.py prob /projects/tir3/users/mengzhox/data/11731_final/bilang/glgp
 import torch
 
 def load_model(model_path):
+    import sys
     sys.path.append("/home/junjieh/mengzhox/11731_final")
     sys.path.append("/usr2/home/mengzhox/11731_final")
     sys.path.append("/home/mengzhox/11731_final")
@@ -454,6 +455,22 @@ def generate_nonbpe(file):
                 break
         new_line = " ".join(tokens_)
         f2.write(new_line + "\n")
+
+def change(file, sep1, sep2):
+    f = open(file, "r").readlines()
+    fout = open(file+"2", "w")
+    for line in f:
+        src, tgt = line.split(sep1)
+        fout.write(src + sep2 + tgt)
+
+def get_rid(file1):
+    f = open(file1, "r")
+    for i, line in enumerate(f):
+        re = line.strip().split(" ||| ")
+        if len(re) != 2:
+            print(i)
+
+
 
 if __name__ == '__main__':
     if sys.argv[1] == "swap":

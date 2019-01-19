@@ -3,6 +3,8 @@ from torch.autograd import Variable
 import torch
 import math
 from onmt.Models import DecoderState
+from onmt.modules import QueryEmb, charEmbedder
+import numpy as np
 
 class EncoderLayer(nn.Module):
     def __init__(self, hidden_size, dropout,
@@ -38,10 +40,9 @@ class EncoderLayer(nn.Module):
 
 class TransformerEncoder(nn.Module):
     def __init__(self, num_layers, hidden_size,
-                 dropout, embeddings, uni_vecs):
+                 dropout, embeddings=None, uni_vecs=None, semb_params=None):
         super(TransformerEncoder, self).__init__()
         self.num_layers = num_layers
-        self.embeddings = embeddings
         self.layer_stack = nn.ModuleList([
             EncoderLayer(hidden_size, dropout) for _ in range(num_layers)])
         self.layer_norm = LayerNorm(hidden_size)
@@ -61,36 +62,53 @@ class TransformerEncoder(nn.Module):
                 dim = self.vecs.shape[1]
                 self.w = nn.Linear(dim, self.embeddings.embedding_size)
 
-
-    def forward(self, input, src_lengths):
-        ### Seems like size of input must end with 1
-
-        emb = self.embeddings(input)
-        # s_len, n_batch, emb_dim = emb.size()
-        out = emb.transpose(0, 1).contiguous()
-
-        if self.vecs is not None:
-            mid = self.ma_prenorm(out)
-            if not self.vecs.requires_grad:
-                v = self.w(self.vecs)
-            else:
-                v = self.vecs
-            v = v.unsqueeze(0).expand(out.size(0), -1, -1).contiguous()
-            # mid, _ = self.ma(mid, v, self.num_heads, None)
-            att = torch.matmul(mid, v.transpose(1, 2).contiguous())
-            att = self.softmax(att)
-            drop_att = self.attn_dp(att)
-            mid = torch.matmul(drop_att, v)
-            out = self.ma_postdropout(mid) + out
-        if input.dim() == 4:
-            words = input[:, :, 0, 0]
+        self.semb_params = semb_params
+        if self.semb_params:
+            print("using SDE...")
+            self.word_emb = QueryEmb(self.semb_params, self.semb_params.semb_vsize)
+            self.char_emb = charEmbedder(self.semb_params, char_vsize=self.semb_params.src_char_vsize)
+            self.emb_scale = np.sqrt(hidden_size)
         else:
-            words = input[:, :, 0].transpose(0, 1)
+            self.semb = None
+            self.embeddings = embeddings
 
+    def forward(self, input, src_lengths, ngram_input=None):
+        ### Seems like size of input must end with 1
+        if ngram_input is not None:
+            assert self.semb
+            batch_size = len(ngram_input)
+            char_emb = self.char_emb(ngram_input)
+            word_emb = self.word_emb(char_emb)
+            out = word_emb * self.emb_scale
+            mask = torch.zeros(batch_size, max(src_lengths))
+            for i in range(batch_size):
+                mask[i][src_lengths[i:]] = 1
+        else:
+            # legacy code
+            emb = self.embeddings(input)
+            # s_len, n_batch, emb_dim = emb.size()
+            out = emb.transpose(0, 1).contiguous()
+            if self.vecs is not None:
+                mid = self.ma_prenorm(out)
+                if not self.vecs.requires_grad:
+                    v = self.w(self.vecs)
+                else:
+                    v = self.vecs
+                v = v.unsqueeze(0).expand(out.size(0), -1, -1).contiguous()
+                # mid, _ = self.ma(mid, v, self.num_heads, None)
+                att = torch.matmul(mid, v.transpose(1, 2).contiguous())
+                att = self.softmax(att)
+                drop_att = self.attn_dp(att)
+                mid = torch.matmul(drop_att, v)
+                out = self.ma_postdropout(mid) + out
+            if input.dim() == 4:
+                words = input[:, :, 0, 0]
+            else:
+                words = input[:, :, 0].transpose(0, 1)
+            # Make mask.
+            padding_idx = self.embeddings.word_padding_idx
+            mask = words.data.eq(padding_idx).float()
 
-        # Make mask.
-        padding_idx = self.embeddings.word_padding_idx
-        mask = words.data.eq(padding_idx).float()
         bias = Variable(torch.unsqueeze(mask * -1e9, 1))
         # Run the forward pass of every layer of the tranformer.
         for i in range(self.num_layers):
@@ -162,13 +180,14 @@ class TransformerDecoder(nn.Module):
         tgt_len, tgt_batch, _ = tgt.size()
         memory_len, memory_batch, _ = memory_bank.size()
 
-        src = state.src
-        if src.dim() == 4:
-            src_words = src[:, :, 0, 0]
-        else:
-            src_words = src[:, :, 0].transpose(0, 1)
+        src_lengths = state.src_lengths
+        src_batch = len(src_lengths)
+        mask = torch.zeros(src_batch, max(src_lengths))
+        for i in range(src_batch):
+            mask[i][src_lengths[i:]] = 1
+
+
         tgt_words = tgt[:, :, 0].transpose(0, 1)
-        src_batch, src_len = src_words.size()
         tgt_batch, tgt_len = tgt_words.size()
 
         if state.previous_input is not None:
@@ -187,7 +206,7 @@ class TransformerDecoder(nn.Module):
         src_memory_bank = memory_bank.transpose(0, 1).contiguous()
 
         padding_idx = self.embeddings.word_padding_idx
-        src_pad_mask = Variable(src_words.data.eq(padding_idx).float())
+        src_pad_mask = Variable(mask.float())
         tgt_pad_mask = Variable(tgt_words.data.eq(padding_idx).float().unsqueeze(1))
         tgt_pad_mask = tgt_pad_mask.repeat(1, tgt_len, 1)  # batch * tgt_len * tgt_len
         encoder_decoder_bias = torch.unsqueeze(src_pad_mask * -1e9, 1)  # batch * 1 * src_length
@@ -223,32 +242,30 @@ class TransformerDecoder(nn.Module):
 
         return outputs, state, attns
 
-    def init_decoder_state(self, src):
-        return TransformerDecoderState(src)
+    def init_decoder_state(self, src_lengths):
+        return TransformerDecoderState(src_lengths)
 
 class TransformerDecoderState(DecoderState):
-    def __init__(self, src):
-        self.src = src
+    def __init__(self, src_lengths):
+        self.src_lengths = src_lengths
         self.previous_input = None
         self.previous_layer_inputs = None
 
     @property
     def _all(self):
-        return (self.previous_input, self.previous_layer_inputs, self.src)
+        return (self.previous_input, self.previous_layer_inputs, self.src_lengths)
 
     def update_state(self, input, previous_layer_inputs):
         """ Called for every decoder forward pass. """
-        state = TransformerDecoderState(self.src)
+        state = TransformerDecoderState(self.src_lengths)
         state.previous_input = input
         state.previous_layer_inputs = previous_layer_inputs
         return state
 
     def repeat_beam_size_times(self, beam_size):
         """ Repeat beam_size times along batch dimension. """
-        if self.src.dim() == 4:
-            self.src = Variable(self.src.data.repeat(beam_size, 1, 1, 1), volatile=True)
-        else:
-            self.src = Variable(self.src.data.repeat(1, beam_size, 1), volatile=True)
+        self.src = Variable(self.src.data.repeat(beam_size), volatile=True)
+
 
 class MultiheadAttention(nn.Module):
     def __init__(self,
