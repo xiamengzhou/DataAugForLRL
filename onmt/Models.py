@@ -50,15 +50,17 @@ class DecoderState(object):
         # usually layer_num * (beam_size * bs) * 1 * dim
         for e in self._all:
             sizes = e.size()
-            br = sizes[1]
             if len(sizes) == 1:
+                br = sizes[0]
                 sent_states = e.view(beam_size, br // beam_size)[:, idx]
             elif len(sizes) == 4:
+                br = sizes[1]
                 sent_states = e.view(sizes[0], beam_size,
                                      br // beam_size,
                                      sizes[2],
                                      sizes[3])[:, :, idx]
             else:
+                br = sizes[1]
                 sent_states = e.view(sizes[0], beam_size,
                                      br // beam_size,
                                      sizes[2])[:, :, idx]
