@@ -3,7 +3,7 @@ from torch.autograd import Variable
 import torch
 import math
 from onmt.Models import DecoderState
-from onmt.modules import QueryEmb, charEmbedder
+from onmt.modules.SDE import QueryEmb, charEmbedder
 import numpy as np
 
 class EncoderLayer(nn.Module):
