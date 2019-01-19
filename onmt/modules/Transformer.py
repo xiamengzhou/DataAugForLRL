@@ -191,6 +191,8 @@ class TransformerDecoder(nn.Module):
         for i in range(src_batch):
             if src_lengths.data[i] < max_length:
                 mask[i][src_lengths.data[i]:] = 1
+        if memory_bank.is_cuda:
+            mask = mask.cuda()
 
 
         tgt_words = tgt[:, :, 0].transpose(0, 1)
