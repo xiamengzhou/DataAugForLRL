@@ -246,7 +246,7 @@ class TMBatch:
                                 vals.extend(list(word.values()))
                             keys = torch.cat(keys, dim=1)
                             vals = torch.FloatTensor(vals)
-                            sent_sparse = torch.sparse.FloatTensor(keys, vals, torch.Size([len(word), len(field.vocab.itos)]))
+                            sent_sparse = torch.sparse.FloatTensor(keys, vals, torch.Size([len(o), len(field.vocab.itos)]))
                             sents_sparse.append(sent_sparse)
                         assert len(sents_sparse) == len(new_outs)
                         setattr(self, name, (sents_sparse, length))
