@@ -148,7 +148,7 @@ python3 $UTIL ex_emb $out/11731_final/belrus/spm8000-v2/models/spm8000_acc_59.58
                      /projects/tir3/users/mengzhox/data/unsup/mono/beru/emb/joint/emb.spm8k
 
 # UMT translate out augmented data
-exp_id=147722
+exp_id=147987
 lang21=aze
 lang22=tur
 lang11=az
