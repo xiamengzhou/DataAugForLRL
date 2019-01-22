@@ -61,6 +61,7 @@ class TranslationBuilder(object):
 
         # Sorting
         inds, perm = torch.sort(batch.indices.data)
+        # For SDE
         src = batch.src[0]
         if not isinstance(src, list):
             src = src.data.index_select(1, perm)
