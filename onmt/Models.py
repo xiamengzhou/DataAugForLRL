@@ -52,9 +52,11 @@ class DecoderState(object):
             sizes = e.size()
             if len(sizes) == 1:
                 br = sizes[0]
+                if not e.is_cuda:
+                    positions = positions.cpu()
                 sent_states = e.view(beam_size, br // beam_size)[:, idx]
                 sent_states.copy_(
-                    sent_states.index_select(0, positions.cpu()))
+                    sent_states.index_select(0, positions))
             elif len(sizes) == 4:
                 br = sizes[1]
                 sent_states = e.view(sizes[0], beam_size,
