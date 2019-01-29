@@ -281,6 +281,7 @@ def train_opts(parser):
 
     # Switchout
     group = parser.add_argument_group("Switch Out")
+    group.add_argument("-switch_out", action="store_true")
     group.add_argument("-src_vocab", type=str)
     group.add_argument("-tgt_vocab", type=str)
     group.add_argument("-src_model", type=str)
