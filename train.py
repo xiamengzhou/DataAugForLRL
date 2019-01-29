@@ -137,9 +137,6 @@ class DatasetLazyIter(object):
         self.device = device
         self.is_train = is_train
 
-        self.cur_iter = self._next_dataset_iterator(datasets)
-        # We have at least one dataset.
-        assert self.cur_iter is not None
         self.global_data = {}
         if self.is_train and switchout is not None:
             src_vocab = load_vocab(switchout.src_vocab)
@@ -150,6 +147,11 @@ class DatasetLazyIter(object):
             SO = namedtuple("SO", "src_vocab tgt_vocab src_model tgt_model tmp")
             so = SO(src_vocab=src_vocab, tgt_vocab=tgt_vocab, src_model=src_model, tgt_model=tgt_model, tmp=tmp)
             self.global_data["so"] = so
+
+        self.cur_iter = self._next_dataset_iterator(datasets)
+        # We have at least one dataset.
+        assert self.cur_iter is not None
+
 
     def __iter__(self):
         dataset_iter = (d for d in self.datasets)
