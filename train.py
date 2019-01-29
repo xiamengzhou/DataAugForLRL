@@ -24,6 +24,7 @@ import opts
 
 from copy import deepcopy
 import numpy as np
+from collections import namedtuple
 
 parser = argparse.ArgumentParser(
     description='train.py',
@@ -109,6 +110,10 @@ def report_func(epoch, batch, num_batches,
 
     return report_stats
 
+def load_vocab(vocab):
+    lines = open(vocab, "r").readlines()
+    lines = [line.split() for line in lines]
+    return [line[0] for line in lines]
 
 class DatasetLazyIter(object):
     """ An Ordered Dataset Iterator, supporting multiple datasets,
@@ -124,7 +129,7 @@ class DatasetLazyIter(object):
     """
 
     def __init__(self, datasets, fields, batch_size, batch_size_fn,
-                 device, is_train):
+                 device, is_train, switchout=None):
         self.datasets = datasets
         self.fields = fields
         self.batch_size = batch_size
@@ -135,6 +140,16 @@ class DatasetLazyIter(object):
         self.cur_iter = self._next_dataset_iterator(datasets)
         # We have at least one dataset.
         assert self.cur_iter is not None
+        self.global_data = {}
+        if self.is_train and switchout is not None:
+            src_vocab = load_vocab(switchout.src_vocab)
+            tgt_vocab = load_vocab(switchout.tgt_vocab)
+            src_model = switchout.src_model
+            tgt_model = switchout.tgt_model
+            tmp = switchout.tmp
+            SO = namedtuple("SO", "src_vocab tgt_vocab src_model tgt_model tmp")
+            so = SO(src_vocab=src_vocab, tgt_vocab=tgt_vocab, src_model=src_model, tgt_model=tgt_model, tmp=tmp)
+            self.global_data["so"] = so
 
     def __iter__(self):
         dataset_iter = (d for d in self.datasets)
@@ -169,9 +184,9 @@ class DatasetLazyIter(object):
             batch_size_fn=self.batch_size_fn,
             device=self.device, train=self.is_train,
             sort=False, sort_within_batch=True,
-            repeat=False)
+            repeat=False, global_data=self.global_data)
 
-
+from collections import namedtuple
 def make_dataset_iter(datasets, fields, opt, is_train=True):
     """
     This returns user-defined train/validate data iterator for the trainer
@@ -196,8 +211,14 @@ def make_dataset_iter(datasets, fields, opt, is_train=True):
             return max(src_elements, tgt_elements)
 
     device = opt.gpuid[0] if opt.gpuid else -1
+    so = None
+    if is_train and opt.switch_out:
+        SO = namedtuple("SO", "src_vocab tgt_vocab src_model tgt_model tmp")
+        so = SO(src_vocab=opt.src_vocab, tgt_vocab=opt.tgt_vocab,
+                src_model=opt.src_model, tgt_model=opt.tgt_model,
+                tmp=opt.tmp)
     return DatasetLazyIter(datasets, fields, batch_size, batch_size_fn,
-                           device, is_train)
+                           device, is_train, so)
 
 
 def make_loss_compute(model, tgt_vocab, opt, train=True):

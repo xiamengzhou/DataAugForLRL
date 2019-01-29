@@ -148,13 +148,32 @@ python3 $UTIL ex_emb $out/11731_final/belrus/spm8000-v2/models/spm8000_acc_59.58
                      /projects/tir3/users/mengzhox/data/unsup/mono/beru/emb/joint/emb.spm8k
 
 # UMT translate out augmented data
-exp_id=147987
-lang21=aze
-lang22=tur
-lang11=az
-lang12=tr
+exp_id=149118
+lang21=glg
+lang22=por
+lang11=gl
+lang12=pt
+
+# Form the normal
 cat $data/11731_final/bilang/${lang21}_eng/ted-train.orig.${lang21}.tok.spm8k \
-    $out/unsup/aztr/tran/$exp_id/tran0.${lang12}-${lang11}.txt > $out/unsup/aztr/tran/$exp_id/ted-train.orig.${lang21}${lang22}.tok.spm8k
-cp $data/11731_final/bilang/${lang21}${lang22}_eng/ted-train.mtok.spm8000.eng  $out/unsup/aztr/tran/$exp_id
-# cat $data/11731_final/bilang/${lang21}_eng/ted-train.mtok.spm8000.eng \
-#     $out/unsup/aztr/tran/$exp_id/ted-train.mtok.spm8000.eng > $out/unsup/aztr/tran/$exp_id/ted-train.mtok.spm8000.eng
+    $out/unsup/${lang11}${lang12}/tran/$exp_id/tran0.${lang12}-${lang11}.txt > $out/unsup/${lang11}${lang12}/tran/$exp_id/ted-train.orig.${lang21}${lang22}.tok.spm8k
+cp $data/11731_final/bilang/${lang21}${lang22}_eng/ted-train.mtok.spm8000.eng  $out/unsup/${lang11}${lang12}/tran/$exp_id
+
+# Form the con
+mkdir $out/unsup/${lang11}${lang12}/tran/$exp_id/test
+cat $data/11731_final/bilang/${lang21}${lang22}_eng/ted-train.orig.${lang21}${lang22}.tok.spm8k \
+    $out/unsup/${lang11}${lang12}/tran/$exp_id/ted-train.orig.${lang21}${lang22}.tok.spm8k > \
+    $out/unsup/${lang11}${lang12}/tran/$exp_id/test/ted-train.orig.${lang21}${lang22}.tok.spm8k
+cat $out/unsup/${lang11}${lang12}/tran/$exp_id/ted-train.mtok.spm8000.eng \
+    $out/unsup/${lang11}${lang12}/tran/$exp_id/ted-train.mtok.spm8000.eng > \
+    $out/unsup/${lang11}${lang12}/tran/$exp_id/test/ted-train.mtok.spm8000.eng
+
+# From the con2
+mkdir $out/unsup/${lang11}${lang12}/tran/$exp_id/test2
+cat $data/11731_final/bilang/${lang21}${lang22}_eng/swap-su-T2S-in/ted-train.orig.azetur.tok.spm8k \
+    $out/unsup/${lang11}${lang12}/tran/$exp_id/test/ted-train.orig.${lang21}${lang22}.tok.spm8k > \
+    $out/unsup/${lang11}${lang12}/tran/$exp_id/test2/ted-train.orig.${lang21}${lang22}.tok.spm8k
+cat $out/unsup/${lang11}${lang12}/tran/$exp_id/test/ted-train.mtok.spm8000.eng \
+    $out/unsup/${lang11}${lang12}/tran/$exp_id/ted-train.mtok.spm8000.eng > \
+    $out/unsup/${lang11}${lang12}/tran/$exp_id/test2/ted-train.mtok.spm8000.eng
+

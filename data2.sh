@@ -3,13 +3,13 @@
 UTIL=/home/mengzhox/NMT/rapid/utils.py
 
 # Swap words in monolingual data
-lang1=az
-lang2=tr
-lang22=tur
-mkdir -p $data/unsup/mono/${lang1}${lang2}_swapped3
-dir=${lang1}${lang2}_swapped3
-dict=$data/11731_final/mono/using/fasttext/MUSE_SUP/${lang1}${lang2}/1/T2S
-python3 $UTIL swap2 $data/11731_final/mono/using/${lang2}.wiki.tok.txt \
+lang1=gl
+lang2=pt
+lang22=por
+mkdir -p $data/unsup/mono/${lang1}${lang2}_swapped4
+dir=${lang1}${lang2}_swapped2
+dict=$data/11731_final/mono/using/fasttext/MUSE_SUP/${lang1}${lang2}/1/S2TT2S
+python3 $UTIL swap3 $data/11731_final/mono/using/${lang2}.wiki.tok.txt \
                     $data/unsup/mono/$dir/${lang2}.wiki.tok.txt \
                     $dict
 cp $data/11731_final/mono/using/${lang1}.wiki.tok.txt $data/unsup/mono/$dir/${lang1}.wiki.tok.txt
@@ -61,9 +61,9 @@ UTIL=/home/mengzhox/NMT/rapid/utils.py
 lang1=cs #hrl
 lang2=sk #lrl
 lang21=ces
-mkdir -p $data/unsup/mono/${lang1}${lang2}_swapped3
-dir=${lang1}${lang2}_swapped3
-dict=$data/11731_final/mono/using/fasttext/MUSE_SUP/${lang2}${lang1}/1/T2S
+mkdir -p $data/unsup/mono/${lang1}${lang2}_swapped2
+dir=${lang1}${lang2}_swapped2
+dict=$data/11731_final/mono/using/fasttext/MUSE_SUP/${lang2}${lang1}/1/S2TT2S
 python3 $UTIL swap2 $data/11731_final/mono/using/${lang1}.wiki.tok.txt \
                     $data/unsup/mono/$dir/${lang1}.wiki.tok.txt \
                     $dict
@@ -104,3 +104,17 @@ cat $data/unsup/bilang/$dir/train.${lang1}-${lang2}.${lang2}.txt.clean \
     $data/unsup/bilang/$dir/dev.${lang1}-${lang2}.${lang2}.txt.clean \
     $data/unsup/bilang/$dir/test.${lang1}-${lang2}.${lang2}.txt.clean > \
     $data/unsup/bilang/$dir/all.${lang1}-${lang2}.${lang2}.txt.clean
+
+
+## Test
+lang=bel
+for f in dev_test/*.nonbpe; do echo $f;
+                               perl ~/NMT/tools/multi-bleu.perl \
+                               $data/11731_final/bilang/${lang}_eng/ted-dev.mtok.eng \
+                               < $f; done
+
+for f in test/*.nonbpe; do echo $f;
+                           perl ~/NMT/tools/multi-bleu.perl \
+                           $data/11731_final/bilang/${lang}_eng/ted-test.mtok.eng \
+                           < $f; done
+

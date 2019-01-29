@@ -279,6 +279,13 @@ def train_opts(parser):
 
     group.add_argument("-semb", help="dot_prod")
 
+    # Switchout
+    group = parser.add_argument_group("Switch Out")
+    group.add_argument("-src_vocab", type=str)
+    group.add_argument("-tgt_vocab", type=str)
+    group.add_argument("-src_model", type=str)
+    group.add_argument("-tgt_model", type=str)
+    group.add_argument("-tmp", type=float)
 
 
 def translate_opts(parser):

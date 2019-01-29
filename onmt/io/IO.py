@@ -10,10 +10,10 @@ from torchtext.data.utils import RandomShuffler
 import torch.nn.functional
 from onmt.io.DatasetBase import UNK_WORD, PAD_WORD, BOS_WORD, EOS_WORD
 from onmt.io.TextDataset import TextDataset
+from sentencepiece import SentencePieceProcessor, SentencePieceTrainer_Train
 
 import numpy as np
-
-
+import random
 
 def _getstate(self):
     return dict(self.__dict__, stoi=dict(self.stoi))
@@ -291,10 +291,11 @@ class OrderedIterator(torchtext.data.Iterator):
     def __init__(self, dataset, batch_size, sort_key=None, device=None,
                  batch_size_fn=None, train=True,
                  repeat=None, shuffle=None, sort=None,
-                 sort_within_batch=None):
+                 sort_within_batch=None, global_data=None):
         super(OrderedIterator, self).__init__(dataset, batch_size, sort_key=sort_key, device=device,
                                               batch_size_fn=batch_size_fn, train=train, repeat=repeat,
-                                              shuffle=shuffle, sort=sort, sort_within_batch=sort_within_batch)
+                                              shuffle=shuffle, sort=sort, sort_within_batch=sort_within_batch,
+                                              )
         self.batch_size, self.train, self.dataset = batch_size, train, dataset
         self.batch_size_fn = batch_size_fn
         self.iterations = 0
@@ -321,13 +322,21 @@ class OrderedIterator(torchtext.data.Iterator):
         self._random_state_this_epoch = None
         self._restored_from_state = False
 
+        self.global_data = global_data
+
     def create_batches(self):
         if self.train:
             def pool(data, random_shuffler):
                 for p in torchtext.data.batch(data, self.batch_size * 100):
-                    p_batch = torchtext.data.batch(
-                            sorted(p, key=self.sort_key),
-                            self.batch_size, self.batch_size_fn)
+                    if "so" in self.global_data:
+                        so = self.global_data["so"]
+                        p_batch = overload_batch(data, self.batch_size, batch_size_fn=self.batch_size_fn,
+                                                 tmp=so.tmp, src_vocab=so.src_vocab, tgt_vocab=so.tgt_vocab,
+                                                 src_model=so.src_model, tgt_model=so.tgt_model)
+                    else:
+                        p_batch = torchtext.data.batch(
+                                sorted(p, key=self.sort_key),
+                                self.batch_size, self.batch_size_fn)
                     for b in random_shuffler(list(p_batch)):
                         yield b
             self.batches = pool(self.data(), self.random_shuffler)
@@ -356,6 +365,76 @@ class OrderedIterator(torchtext.data.Iterator):
                 yield TMBatch(minibatch, self.dataset, self.device, self.train)
             if not self.repeat:
                 raise StopIteration
+
+def get_pos(tmp, prob):
+    i = 0
+    while tmp > prob[i]:
+        i += 1
+    return i + 1
+
+def get_num(lens, temp):
+    z = np.exp(-np.arange(0, lens) / temp)
+    p = z / sum(z)
+    return np.random.choice(range(lens), size=1, replace=True, p=p)[0]
+
+def generate_nonbpe(tokens):
+    token = ""
+    tokens_ = []
+    for i, t in enumerate(tokens):
+        if t[0] == "▁":
+            if token != "":
+                tokens_.append(token)
+            token = t[1:]
+        else:
+            token += t
+        if i == len(tokens) - 1:
+            tokens_.append(token)
+            break
+    return tokens_
+
+def load_spm_model(model):
+    s = SentencePieceProcessor()
+    s.load(model)
+    return s
+
+def overload_batch(data, batch_size, batch_size_fn=None, tmp=0.9,
+                   src_vocab=None, tgt_vocab=None, src_model=None, tgt_model=None):
+    """Yield elements from data in chunks of batch_size."""
+    if batch_size_fn is None:
+        def batch_size_fn(new, count, sofar):
+            return count
+    minibatch, size_so_far = [], 0
+    for ex in data:
+        corrupt = []
+        src_len = len(ex.src)
+        tgt_len = len(ex.tgt)
+        selected_src_num = get_num(src_len, tmp)
+        selected_tgt_num = get_num(tgt_len, tmp)
+        p1 = selected_src_num / src_len
+        p2 = selected_tgt_num / tgt_len
+        src_nonbpe = generate_nonbpe(ex.src)
+        tgt_nonbpe = generate_nonbpe(ex.tgt)
+        src_model = load_spm_model(src_model)
+        tgt_model = load_spm_model(tgt_model)
+        ex.src = merge_ori_corrupt(src_nonbpe, p1, src_vocab, src_model)
+        ex.tgt = merge_ori_corrupt(tgt_nonbpe, p2, tgt_vocab, tgt_model)
+        minibatch.append(ex)
+        size_so_far = batch_size_fn(ex, len(minibatch), size_so_far)
+        if size_so_far == batch_size:
+            yield minibatch
+            minibatch, size_so_far = [], 0
+        elif size_so_far > batch_size:
+            yield minibatch[:-1]
+            minibatch, size_so_far = minibatch[-1:], batch_size_fn(ex, 1, 0)
+    if minibatch:
+        yield minibatch
+
+def merge_ori_corrupt(src_nonbpe, p1, src_vocab, src_model):
+    for i in range(len(src_nonbpe)):
+        a = np.random.choice([0, 1], size=1, replace=True, p=(p1, 1-p1))[0]
+        if a:
+            src_nonbpe[i] = random.choice(src_vocab)
+        return tuple(src_model.encode_as_pieces(" ".join(src_nonbpe)))
 
 
 class Vocab(torchtext.vocab.Vocab):
