@@ -330,7 +330,7 @@ class OrderedIterator(torchtext.data.Iterator):
                 for p in torchtext.data.batch(data, self.batch_size * 100):
                     if "so" in self.global_data:
                         so = self.global_data["so"]
-                        p_batch = overload_batch(p, self.batch_size, batch_size_fn=self.batch_size_fn,
+                        p_batch = overload_batch(sorted(p, key=self.sort_key), self.batch_size, batch_size_fn=self.batch_size_fn,
                                                  tmp=so.tmp, src_vocab=so.src_vocab, tgt_vocab=so.tgt_vocab,
                                                  src_model=so.src_model, tgt_model=so.tgt_model)
                     else:
