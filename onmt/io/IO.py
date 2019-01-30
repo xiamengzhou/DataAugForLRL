@@ -414,10 +414,10 @@ def overload_batch(data, batch_size, batch_size_fn=None, tmp=0.9,
         p2 = selected_tgt_num / tgt_len
         src_nonbpe = generate_nonbpe(ex.src)
         tgt_nonbpe = generate_nonbpe(ex.tgt)
-        src_model = load_spm_model(src_model)
-        tgt_model = load_spm_model(tgt_model)
-        ex.src = merge_ori_corrupt(src_nonbpe, p1, src_vocab, src_model)
-        ex.tgt = merge_ori_corrupt(tgt_nonbpe, p2, tgt_vocab, tgt_model)
+        src_spm_model = load_spm_model(src_model)
+        tgt_spm_model = load_spm_model(tgt_model)
+        ex.src = merge_ori_corrupt(src_nonbpe, p1, src_vocab, src_spm_model)
+        ex.tgt = merge_ori_corrupt(tgt_nonbpe, p2, tgt_vocab, tgt_spm_model)
         minibatch.append(ex)
         size_so_far = batch_size_fn(ex, len(minibatch), size_so_far)
         if size_so_far == batch_size:
