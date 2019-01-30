@@ -404,8 +404,9 @@ def overload_batch(data, batch_size, batch_size_fn=None, tmp=0.9,
         def batch_size_fn(new, count, sofar):
             return count
     minibatch, size_so_far = [], 0
+    src_spm_model = load_spm_model(src_model)
+    tgt_spm_model = load_spm_model(tgt_model)
     for ex in data:
-        corrupt = []
         src_len = len(ex.src)
         tgt_len = len(ex.tgt)
         selected_src_num = get_num(src_len, tmp)
@@ -414,8 +415,6 @@ def overload_batch(data, batch_size, batch_size_fn=None, tmp=0.9,
         p2 = selected_tgt_num / tgt_len
         src_nonbpe = generate_nonbpe(ex.src)
         tgt_nonbpe = generate_nonbpe(ex.tgt)
-        src_spm_model = load_spm_model(src_model)
-        tgt_spm_model = load_spm_model(tgt_model)
         ex.src = merge_ori_corrupt(src_nonbpe, p1, src_vocab, src_spm_model)
         ex.tgt = merge_ori_corrupt(tgt_nonbpe, p2, tgt_vocab, tgt_spm_model)
         minibatch.append(ex)
