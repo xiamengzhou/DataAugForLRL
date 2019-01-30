@@ -407,14 +407,14 @@ def overload_batch(data, batch_size, batch_size_fn=None, tmp=0.9,
     src_spm_model = load_spm_model(src_model)
     tgt_spm_model = load_spm_model(tgt_model)
     for ex in data:
-        src_len = len(ex.src)
-        tgt_len = len(ex.tgt)
+        src_nonbpe = generate_nonbpe(ex.src)
+        tgt_nonbpe = generate_nonbpe(ex.tgt)
+        src_len = len(src_nonbpe)
+        tgt_len = len(tgt_nonbpe)
         selected_src_num = get_num(src_len, tmp)
         selected_tgt_num = get_num(tgt_len, tmp)
         p1 = selected_src_num / src_len
         p2 = selected_tgt_num / tgt_len
-        src_nonbpe = generate_nonbpe(ex.src)
-        tgt_nonbpe = generate_nonbpe(ex.tgt)
         ex.src = merge_ori_corrupt(src_nonbpe, p1, src_vocab, src_spm_model)
         ex.tgt = merge_ori_corrupt(tgt_nonbpe, p2, tgt_vocab, tgt_spm_model)
         minibatch.append(ex)
@@ -430,7 +430,7 @@ def overload_batch(data, batch_size, batch_size_fn=None, tmp=0.9,
 
 def merge_ori_corrupt(src_nonbpe, p1, src_vocab, src_model):
     for i in range(len(src_nonbpe)):
-        a = np.random.choice([0, 1], size=1, replace=True, p=(p1, 1-p1))[0]
+        a = np.random.choice([1, 0], size=1, replace=True, p=(p1, 1-p1))[0]
         if a:
             src_nonbpe[i] = random.choice(src_vocab)
         return tuple(src_model.encode_as_pieces(" ".join(src_nonbpe)))
