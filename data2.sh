@@ -3,11 +3,11 @@
 UTIL=/home/mengzhox/NMT/rapid/utils.py
 
 # Swap words in monolingual data
-lang1=gl
-lang2=pt
-lang22=por
-mkdir -p $data/unsup/mono/${lang1}${lang2}_swapped4
-dir=${lang1}${lang2}_swapped2
+lang1=az
+lang2=tr
+lang22=tur
+mkdir -p $data/unsup/mono/${lang1}${lang2}_finetune
+dir=${lang1}${lang2}_finetune
 dict=$data/11731_final/mono/using/fasttext/MUSE_SUP/${lang1}${lang2}/1/S2TT2S
 python3 $UTIL swap3 $data/11731_final/mono/using/${lang2}.wiki.tok.txt \
                     $data/unsup/mono/$dir/${lang2}.wiki.tok.txt \
@@ -107,7 +107,7 @@ cat $data/unsup/bilang/$dir/train.${lang1}-${lang2}.${lang2}.txt.clean \
 
 
 ## Test
-lang=bel
+lang=slk
 for f in dev_test/*.nonbpe; do echo $f;
                                perl ~/NMT/tools/multi-bleu.perl \
                                $data/11731_final/bilang/${lang}_eng/ted-dev.mtok.eng \
@@ -118,3 +118,27 @@ for f in test/*.nonbpe; do echo $f;
                            $data/11731_final/bilang/${lang}_eng/ted-test.mtok.eng \
                            < $f; done
 
+
+## Test for eng2lrl
+lang=aze
+for f in dev_test/*.nonbpe; do echo $f;
+                               perl ~/NMT/tools/multi-bleu.perl \
+                               $data/11731_final/bilang/${lang}_eng/ted-dev.orig.${lang}.tok \
+                               < $f; done
+
+for f in test/*.nonbpe; do echo $f;
+                           perl ~/NMT/tools/multi-bleu.perl \
+                           $data/11731_final/bilang/${lang}_eng/ted-test.orig.${lang}.tok \
+                           < $f; done
+
+
+# Add dictionary to para
+lang1=sk
+lang2=cs
+lang22=rus
+dir=${lang2}${lang1}
+dict=$data/11731_final/mono/using/fasttext/MUSE_SUP/${lang1}${lang2}/1/S2TT2S
+
+python3 ~/NMT/rapid/utils.py split_dict $dict \
+                                        $data/unsup/bilang/$dir/dict_${lang1} \
+                                        $data/unsup/bilang/$dir/dict_${lang2}

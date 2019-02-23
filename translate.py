@@ -228,7 +228,6 @@ def generate_nonbpe(file):
         new_line = " ".join(tokens_)
         f2.write(new_line + "\n")
 
-
 def translate_single_process(opt, model, fields, data,
                              data_iter, start_index=0, result=None, f=None):
     end_index = start_index + len(data)

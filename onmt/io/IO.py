@@ -332,7 +332,7 @@ class OrderedIterator(torchtext.data.Iterator):
                         so = self.global_data["so"]
                         p_batch = overload_batch(sorted(p, key=self.sort_key), self.batch_size, batch_size_fn=self.batch_size_fn,
                                                  tmp=so.tmp, src_vocab=so.src_vocab, tgt_vocab=so.tgt_vocab,
-                                                 src_model=so.src_model, tgt_model=so.tgt_model)
+                                                 src_model=so.src_model, tgt_model=so.tgt_model, di=so.di)
                     else:
                         p_batch = torchtext.data.batch(
                                 sorted(p, key=self.sort_key),
@@ -398,7 +398,7 @@ def load_spm_model(model):
     return s
 
 def overload_batch(data, batch_size, batch_size_fn=None, tmp=0.9,
-                   src_vocab=None, tgt_vocab=None, src_model=None, tgt_model=None):
+                   src_vocab=None, tgt_vocab=None, src_model=None, tgt_model=None, di=False):
     """Yield elements from data in chunks of batch_size."""
     if batch_size_fn is None:
         def batch_size_fn(new, count, sofar):
@@ -413,10 +413,15 @@ def overload_batch(data, batch_size, batch_size_fn=None, tmp=0.9,
         tgt_len = len(tgt_nonbpe)
         selected_src_num = get_num(src_len, tmp)
         selected_tgt_num = get_num(tgt_len, tmp)
-        p1 = selected_src_num / src_len
-        p2 = selected_tgt_num / tgt_len
-        ex.src = merge_ori_corrupt(src_nonbpe, p1, src_vocab, src_spm_model)
-        ex.tgt = merge_ori_corrupt(tgt_nonbpe, p2, tgt_vocab, tgt_spm_model)
+        if not di:
+            p1 = selected_src_num / src_len
+            p2 = selected_tgt_num / tgt_len
+        else:
+            p1 = (selected_src_num + selected_tgt_num) / (src_len + tgt_len)
+            p2 = p1
+        ex.src, ex.tgt = merge_ori_corrupt(src_nonbpe, tgt_nonbpe,
+                                           p1, p2, src_vocab, tgt_vocab, src_model, tgt_model,
+                                           di)
         minibatch.append(ex)
         size_so_far = batch_size_fn(ex, len(minibatch), size_so_far)
         if size_so_far == batch_size:
@@ -428,12 +433,26 @@ def overload_batch(data, batch_size, batch_size_fn=None, tmp=0.9,
     if minibatch:
         yield minibatch
 
-def merge_ori_corrupt(src_nonbpe, p1, src_vocab, src_model):
-    for i in range(len(src_nonbpe)):
-        a = np.random.choice([1, 0], size=1, replace=True, p=(p1, 1-p1))[0]
-        if a:
-            src_nonbpe[i] = random.choice(src_vocab)
-        return tuple(src_model.encode_as_pieces(" ".join(src_nonbpe)))
+def merge_ori_corrupt(src_nonbpe, tgt_nonbpe,  p_src, p_tgt, src_vocab, tgt_vocab, src_model, tgt_model, di):
+    if not di:
+        for i in range(len(src_nonbpe)):
+            a = np.random.choice([1, 0], size=1, replace=True, p=(p_src, 1-p_src))[0]
+            b = np.random.choice([1, 0], size=1, replace=True, p=(p_tgt, 1-p_tgt))[0]
+            if a:
+                src_nonbpe[i] = random.choice(src_vocab)
+            if b:
+                tgt_nonbpe[i] = random.choice(tgt_vocab)
+    else:
+        for i in range(len(src_nonbpe)):
+            a = np.random.choice([1, 0], size=1, replace=True, p=(p_src, 1-p_src))[0]
+            if a:
+                index = random.randint(0,len(src_vocab)-1)
+                src_nonbpe[i] = src_vocab[index]
+                j = random.choice(range(len(tgt_nonbpe)))
+                tgt_nonbpe[j] = tgt_vocab[index]
+    return tuple(src_model.encode_as_pieces(" ".join(src_nonbpe))), \
+           tuple(tgt_model.encode_as_pieces(" ".join(tgt_nonbpe)))
+
 
 
 class Vocab(torchtext.vocab.Vocab):

@@ -144,8 +144,10 @@ class DatasetLazyIter(object):
             src_model = switchout.src_model
             tgt_model = switchout.tgt_model
             tmp = switchout.tmp
-            SO = namedtuple("SO", "src_vocab tgt_vocab src_model tgt_model tmp")
-            so = SO(src_vocab=src_vocab, tgt_vocab=tgt_vocab, src_model=src_model, tgt_model=tgt_model, tmp=tmp)
+            di = switchout.di
+            SO = namedtuple("SO", "src_vocab tgt_vocab src_model tgt_model tmp di")
+            so = SO(src_vocab=src_vocab, tgt_vocab=tgt_vocab, src_model=src_model,
+                    tgt_model=tgt_model, tmp=tmp, di=di)
             self.global_data["so"] = so
 
         self.cur_iter = self._next_dataset_iterator(datasets)
@@ -215,10 +217,10 @@ def make_dataset_iter(datasets, fields, opt, is_train=True):
     device = opt.gpuid[0] if opt.gpuid else -1
     so = None
     if is_train and opt.switch_out:
-        SO = namedtuple("SO", "src_vocab tgt_vocab src_model tgt_model tmp")
+        SO = namedtuple("SO", "src_vocab tgt_vocab src_model tgt_model tmp di")
         so = SO(src_vocab=opt.src_vocab, tgt_vocab=opt.tgt_vocab,
                 src_model=opt.src_model, tgt_model=opt.tgt_model,
-                tmp=opt.tmp)
+                tmp=opt.tmp, di=opt.di)
     return DatasetLazyIter(datasets, fields, batch_size, batch_size_fn,
                            device, is_train, so)
 

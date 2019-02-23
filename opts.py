@@ -287,6 +287,7 @@ def train_opts(parser):
     group.add_argument("-src_model", type=str)
     group.add_argument("-tgt_model", type=str)
     group.add_argument("-tmp", type=float)
+    group.add_argument("-di", action="store_true")
 
 
 def translate_opts(parser):
