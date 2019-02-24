@@ -420,7 +420,7 @@ def overload_batch(data, batch_size, batch_size_fn=None, tmp=0.9,
             p1 = (selected_src_num + selected_tgt_num) / (src_len + tgt_len)
             p2 = p1
         ex.src, ex.tgt = merge_ori_corrupt(src_nonbpe, tgt_nonbpe,
-                                           p1, p2, src_vocab, tgt_vocab, src_model, tgt_model,
+                                           p1, p2, src_vocab, tgt_vocab, src_spm_model, tgt_spm_model,
                                            di)
         minibatch.append(ex)
         size_so_far = batch_size_fn(ex, len(minibatch), size_so_far)
@@ -433,7 +433,8 @@ def overload_batch(data, batch_size, batch_size_fn=None, tmp=0.9,
     if minibatch:
         yield minibatch
 
-def merge_ori_corrupt(src_nonbpe, tgt_nonbpe,  p_src, p_tgt, src_vocab, tgt_vocab, src_model, tgt_model, di):
+def merge_ori_corrupt(src_nonbpe, tgt_nonbpe,  p_src, p_tgt,
+                      src_vocab, tgt_vocab, src_model, tgt_model, di):
     if not di:
         for i in range(len(src_nonbpe)):
             a = np.random.choice([1, 0], size=1, replace=True, p=(p_src, 1-p_src))[0]
