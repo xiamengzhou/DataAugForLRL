@@ -438,11 +438,12 @@ def merge_ori_corrupt(src_nonbpe, tgt_nonbpe,  p_src, p_tgt,
     if not di:
         for i in range(len(src_nonbpe)):
             a = np.random.choice([1, 0], size=1, replace=True, p=(p_src, 1-p_src))[0]
-            b = np.random.choice([1, 0], size=1, replace=True, p=(p_tgt, 1-p_tgt))[0]
             if a:
                 src_nonbpe[i] = random.choice(src_vocab)
+        for j in range(len(tgt_nonbpe)):
+            b = np.random.choice([1, 0], size=1, replace=True, p=(p_tgt, 1-p_tgt))[0]
             if b:
-                tgt_nonbpe[i] = random.choice(tgt_vocab)
+                tgt_nonbpe[j] = random.choice(tgt_vocab)
     else:
         for i in range(len(src_nonbpe)):
             a = np.random.choice([1, 0], size=1, replace=True, p=(p_src, 1-p_src))[0]
