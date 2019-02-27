@@ -177,6 +177,8 @@ def make_base_model(model_opt, fields, gpu, checkpoint=None, old_vocab=None):
             new_vocab = fields["src"].vocab.stoi
             weights = checkpoint['model']["encoder.embeddings.embeddings.weight"]
             new_weights = torch.randn(len(src_dict), weights.shape[1])
+            for i in range(len(new_weights)):
+                new_weights[i] = weights[0]
             for i, weight in enumerate(weights):
                 new_weights[new_vocab[old_vocab.itos[i]]] = weight
             checkpoint['model']["encoder.embeddings.embeddings.weight"] = new_weights
