@@ -421,13 +421,13 @@ def load_fields(dataset, checkpoint, hack_vocab=False):
     if not hack_vocab:
         return fields
     else:
-        return v, fields
+        return v[0][1], fields
 
 
 def build_model(model_opt, opt, fields, checkpoint, old_vocab=None):
     print('Building model...')
     model = onmt.ModelConstructor.make_base_model(model_opt, fields,
-                                                  use_gpu(opt), checkpoint)
+                                                  use_gpu(opt), checkpoint, old_vocab)
     if len(opt.gpuid) > 1:
         print('Multi gpu training: ', opt.gpuid)
         model = nn.DataParallel(model, device_ids=opt.gpuid, dim=1)
