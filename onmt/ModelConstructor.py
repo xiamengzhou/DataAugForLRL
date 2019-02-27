@@ -109,7 +109,7 @@ def load_test_model(opt, dummy_opt):
     return fields, model, model_opt
 
 
-def make_base_model(model_opt, fields, gpu, checkpoint=None):
+def make_base_model(model_opt, fields, gpu, checkpoint=None, old_vocab=None):
     """
     Args:
         model_opt: the option loaded from checkpoint.
@@ -171,6 +171,14 @@ def make_base_model(model_opt, fields, gpu, checkpoint=None):
     # Load the model states from checkpoint or initialize them.
     if checkpoint is not None:
         print('Loading model parameters.')
+        if old_vocab:
+            # Dirty Hack
+            new_vocab = fields["src"].vocab.stoi
+            weights = checkpoint['model']["encoder.embeddings.embeddings.weight"]
+            new_weights = torch.randn(len(src_dict), weights.shape[1])
+            for i, weight in enumerate(weights):
+                new_weights[new_vocab[old_vocab.itos[i]]] = weight
+            checkpoint['model']["encoder.embeddings.embeddings.weight"] = new_weights
         model.load_state_dict(checkpoint['model'])
         if "0.weight" in checkpoint['generator']:
             checkpoint['generator']["latent.weight"] = checkpoint['generator'].pop("0.weight")

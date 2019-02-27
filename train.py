@@ -394,14 +394,19 @@ def lazily_load_dataset(corpus_type, valid_pt=None):
             yield lazy_dataset_loader(pt, corpus_type)
 
 
-def load_fields(dataset, checkpoint):
+def load_fields(dataset, checkpoint, hack_vocab=False):
     if checkpoint is not None:
         print('Loading vocab from checkpoint at %s.' % opt.train_from)
+
         v = checkpoint['vocab']
         v_names = [f[0] for f in v]
-        fields = onmt.io.load_fields_from_vocab(v,
-                                                dataset.ngram,
-                                                "src_sg" in v_names)
+        if not hack_vocab:
+            fields = onmt.io.load_fields_from_vocab(v,  dataset.ngram,
+                                                    "src_sg" in v_names)
+        else:
+            v2 = torch.load(opt.data + '.vocab.pt')
+            v2_names = [f[0] for f in v2]
+            fields = onmt.io.load_fields_from_vocab(v2, dataset.ngram, "src_sg" in v2_names)
     else:
         v = torch.load(opt.data + '.vocab.pt')
         v_names = [f[0] for f in v]
@@ -413,10 +418,13 @@ def load_fields(dataset, checkpoint):
 
     print(' * vocabulary size. source = %d; target = %d' %
               (len(fields['src'].vocab), len(fields['tgt'].vocab)))
-    return fields
+    if not hack_vocab:
+        return fields
+    else:
+        return v, fields
 
 
-def build_model(model_opt, opt, fields, checkpoint):
+def build_model(model_opt, opt, fields, checkpoint, old_vocab=None):
     print('Building model...')
     model = onmt.ModelConstructor.make_base_model(model_opt, fields,
                                                   use_gpu(opt), checkpoint)
@@ -488,10 +496,13 @@ def main():
         opt.ngram = -1
 
     # Load fields generated from preprocess phase.
-    fields = load_fields(first_dataset, checkpoint)
-
+    old_vocab = None
+    if opt.hack_vocab:
+        old_vocab, fields = load_fields(first_dataset, checkpoint, True)
+    else:
+        fields = load_fields(first_dataset, checkpoint, True)
     # Build model.
-    model = build_model(model_opt, opt, fields, checkpoint)
+    model = build_model(model_opt, opt, fields, checkpoint, old_vocab)
     tally_parameters(model)
     check_save_model_path()
 
