@@ -172,6 +172,7 @@ def make_base_model(model_opt, fields, gpu, checkpoint=None, old_vocab=None):
     if checkpoint is not None:
         print('Loading model parameters.')
         if old_vocab:
+            print('Hacking vocab...')
             # Dirty Hack
             new_vocab = fields["src"].vocab.stoi
             weights = checkpoint['model']["encoder.embeddings.embeddings.weight"]
