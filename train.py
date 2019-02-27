@@ -500,7 +500,7 @@ def main():
     if opt.hack_vocab:
         old_vocab, fields = load_fields(first_dataset, checkpoint, True)
     else:
-        fields = load_fields(first_dataset, checkpoint, True)
+        fields = load_fields(first_dataset, checkpoint, False)
     # Build model.
     model = build_model(model_opt, opt, fields, checkpoint, old_vocab)
     tally_parameters(model)
