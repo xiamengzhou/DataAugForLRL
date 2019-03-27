@@ -22,6 +22,8 @@ def model_opts(parser):
                        help='Number of layers in enc/dec.')
     group.add_argument('-rnn_size', type=int, default=500,
                        help='Size of rnn hidden states')
+    group.add_argument('-num_heads', type=int, default=8,
+                       help='Number of heads')
 
 
     # Model Selection
