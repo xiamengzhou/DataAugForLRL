@@ -90,6 +90,10 @@ def fix_prior(model_opt):
         model_opt.random_uni = False
     if not hasattr(model_opt, "semb"):
         model_opt.semb = None
+    if not hasattr(model_opt, "attention_dropout"):
+        model_opt.attention_dropout = model_opt.dropout
+    if not hasattr(model_opt, "relu_dropout"):
+        model_opt.relu_dropout = model_opt.dropout
 
 def load_test_model(opt, dummy_opt):
     checkpoint = torch.load(opt.model,
