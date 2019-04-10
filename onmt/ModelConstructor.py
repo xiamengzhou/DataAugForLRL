@@ -68,8 +68,8 @@ def make_encoder(opt, embeddings, vecs, semb_params):
         opt: the option in current environment.
         embeddings (Embeddings): vocab embeddings for this encoder.
     """
-    return TransformerEncoder(opt.enc_layers, opt.rnn_size, opt.dropout,
-                              opt.num_heads, embeddings, vecs, semb_params)
+    return TransformerEncoder(opt.enc_layers, opt.rnn_size, opt.dropout, opt.attention_dropout,
+                              opt.relu_dropout, opt.num_heads, embeddings, vecs, semb_params)
 
 def make_decoder(opt, embeddings):
     """
@@ -78,7 +78,8 @@ def make_decoder(opt, embeddings):
         opt: the option in current environment.
         embeddings (Embeddings): vocab embeddings for this decoder.
     """
-    return TransformerDecoder(opt.dec_layers, opt.rnn_size, opt.dropout, embeddings, opt.num_heads)
+    return TransformerDecoder(opt.dec_layers, opt.rnn_size, opt.dropout, opt.attention_dropout,
+                              opt.relu_dropout, embeddings, opt.num_heads)
 
 def fix_prior(model_opt):
     if not hasattr(model_opt, "ngram"):
