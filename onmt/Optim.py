@@ -66,6 +66,13 @@ class Optim(object):
         self.warmup_steps = warmup_steps
         self.model_size = model_size
 
+        if method == "fairseq":
+            self.warmup_init_lr = 1e-7
+            self.warmup_end_lr = 1e-3
+            self.warmup_updates = 4000
+            self.lr_step = (self.warmup_end_lr - self.warmup_init_lr) / self.warmup_updates
+            self.decay_factor = self.warmup_end_lr * self.warmup_updates ** 0.5
+
     def set_parameters(self, params):
         self.params = []
         self.sparse_params = []
@@ -120,6 +127,13 @@ class Optim(object):
                 (self.model_size ** (-0.5) *
                  min(self._step ** (-0.5),
                      self._step * self.warmup_steps**(-1.5))))
+
+        if self.decay_method == "fairseq":
+            if self._step <= self.warmup_updates:
+                lr = self.warmup_init_lr + self._step * self.lr_step
+            else:
+                lr = self.decay_factor * self._step**-0.5
+            self._set_rate(lr)
 
         if self.max_grad_norm:
             clip_grad_norm(self.params, self.max_grad_norm)

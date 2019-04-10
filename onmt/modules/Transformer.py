@@ -5,24 +5,31 @@ import math
 from onmt.Models import DecoderState
 from onmt.modules.SDE import QueryEmb, charEmbedder
 import numpy as np
+import torch.nn.functional as F
 
 class EncoderLayer(nn.Module):
     def __init__(self, hidden_size, dropout,
+                 relu_dropout, attention_dropout,
                  num_heads=8, filter_size=2048):
         super(EncoderLayer, self).__init__()
         self.num_heads = num_heads
+        self.dropout = dropout
+        self.relu_dropout = relu_dropout
+        self.attention_dropout = attention_dropout
+
         self.ma = MultiheadAttention(hidden_size,
-                                               hidden_size,
-                                               hidden_size,
-                                               dropout)
+                                     hidden_size,
+                                     hidden_size,
+                                     self.attention_dropout)
         self.ffn = ffn_layer(hidden_size,
                                     filter_size,
                                     hidden_size,
-                                    dropout)
+                                    self.relu_dropout)
         self.ma_prenorm = LayerNorm(hidden_size)
         self.ffn_prenorm = LayerNorm(hidden_size)
         self.ma_postdropout = nn.Dropout(dropout)
         self.ffn_postdropout = nn.Dropout(dropout)
+
 
     def forward(self, x, bias):
         """
@@ -40,11 +47,13 @@ class EncoderLayer(nn.Module):
 
 class TransformerEncoder(nn.Module):
     def __init__(self, num_layers, hidden_size,
-                 dropout, num_heads=8, embeddings=None, uni_vecs=None, semb_params=None):
+                 dropout, attention_dropout, relu_dropout, num_heads=8,
+                 embeddings=None, uni_vecs=None, semb_params=None):
         super(TransformerEncoder, self).__init__()
         self.num_layers = num_layers
         self.layer_stack = nn.ModuleList([
-            EncoderLayer(hidden_size, dropout, num_heads=num_heads) for _ in range(num_layers)])
+            EncoderLayer(hidden_size, dropout, relu_dropout, attention_dropout,
+                         num_heads=num_heads) for _ in range(num_layers)])
         self.layer_norm = LayerNorm(hidden_size)
         self.vecs = uni_vecs ## A universal space to be accessed by embedding.
         if self.vecs is not None:
@@ -126,22 +135,25 @@ class TransformerEncoder(nn.Module):
 
 
 class DecoderLayer(nn.Module):
-    def __init__(self, hidden_size, dropout,
-                 num_heads=8, filter_size=2048):
+    def __init__(self, hidden_size, dropout, attention_dropout,
+                 relu_dropout, num_heads=8, filter_size=2048):
         super(DecoderLayer, self).__init__()
         self.num_heads = num_heads
+        self.dropout = dropout
+        self.attention_dropout = attention_dropout
+        self.relu_dropout = relu_dropout
         self.ma_l1 = MultiheadAttention(hidden_size,
                                                   hidden_size,
                                                   hidden_size,
-                                                  dropout)
+                                                  attention_dropout)
         self.ma_l2 = MultiheadAttention(hidden_size,
                                                   hidden_size,
                                                   hidden_size,
-                                                  dropout)
+                                                  attention_dropout)
         self.ffn = ffn_layer(hidden_size,
-                                    filter_size,
-                                    hidden_size,
-                                    dropout)
+                             filter_size,
+                             hidden_size,
+                             relu_dropout)
         self.ma_l1_prenorm = LayerNorm(hidden_size)
         self.ma_l2_prenorm = LayerNorm(hidden_size)
         self.ffn_prenorm = LayerNorm(hidden_size)
@@ -170,14 +182,20 @@ class DecoderLayer(nn.Module):
 
 
 class TransformerDecoder(nn.Module):
-    def __init__(self, num_layers, hidden_size, dropout, embeddings, num_heads=8):
+    def __init__(self, num_layers, hidden_size, dropout, attention_dropout, relu_dropout,
+                 embeddings, num_heads=8):
         super(TransformerDecoder, self).__init__()
 
         # Basic attributes.
         self.num_layers = num_layers
         self.embeddings = embeddings
+        self.dropout = dropout
+        self.attention_dropout = attention_dropout
+        self.relu_dropout = relu_dropout
         self.layer_stack = nn.ModuleList([
-                DecoderLayer(hidden_size, dropout, num_heads=num_heads) for _ in range(num_layers)])
+                DecoderLayer(hidden_size, dropout,
+                             attention_dropout, relu_dropout,
+                             num_heads=num_heads) for _ in range(num_layers)])
 
         self.layer_norm = LayerNorm(hidden_size)
 
