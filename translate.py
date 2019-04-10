@@ -30,6 +30,12 @@ class Time:
         print('{} done. Time elapsed (hh:mm:ss.ms) {}'.format(task, time_elapsed))
 
 
+def fix_legacy(opt):
+    if "attention_dropout" not in vars(opt):
+        opt.attention_dropout = opt.dropout
+    if "relu_dropout" not in vars(opt):
+        opt.relu_dropout = opt.dropout
+    return opt
 
 def tok(s):
     return s.split()
@@ -151,6 +157,7 @@ def main(training=False, fields=None, model=None, opt=None, writer=None,  step=0
         dummy_parser = argparse.ArgumentParser(description='train.py')
         opts.model_opts(dummy_parser)
         dummy_opt = dummy_parser.parse_known_args([])[0]
+        opt = fix_legacy(opt)
 
         opt.cuda = opt.gpu > -1
         if opt.cuda:
