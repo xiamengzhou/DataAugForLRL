@@ -180,7 +180,7 @@ def train_opts(parser):
                        help='Number of training epochs')
     group.add_argument('-optim', default='sgd',
                        choices=['sgd', 'adagrad', 'adadelta', 'adam',
-                                'sparseadam'],
+                                'sparseadam', 'fairseq'],
                        help="""Optimization method.""")
     group.add_argument('-max_grad_norm', type=float, default=5,
                        help="""If the norm of the gradient vector exceeds this,
@@ -188,6 +188,10 @@ def train_opts(parser):
                        max_grad_norm""")
     group.add_argument('-dropout', type=float, default=0.3,
                        help="Dropout probability; applied in LSTM stacks.")
+    group.add_argument('-attention_dropout', type=float, default=0.3,
+                       help="Dropout probability; for attention")
+    group.add_argument('-relu_dropout', type=float, default=0.3,
+                       help="Dropout probability; for relu")
     group.add_argument('-truncated_decoder', type=int, default=0,
                        help="""Truncated bptt.""")
     group.add_argument('-adam_beta1', type=float, default=0.9,
@@ -232,6 +236,8 @@ def train_opts(parser):
     group.add_argument('-start_checkpoint_at', type=int, default=0,
                        help="""Start checkpointing every epoch after and including
                        this epoch""")
+    group.add_argument('-save_interval', type=int, default=10,
+                       help="""Save a checkpoint every 10 epochs.""")
     group.add_argument('-decay_method', type=str, default="",
                        choices=['noam'], help="Use a custom decay rate.")
     group.add_argument('-warmup_steps', type=int, default=4000,

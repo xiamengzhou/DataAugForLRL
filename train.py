@@ -335,7 +335,7 @@ def train_model(model, fields, optim, model_opt, swap_dict):
         trainer.epoch_step(valid_stats.ppl(), epoch)
 
         # 5. Drop a checkpoint if needed.
-        if epoch >= opt.start_checkpoint_at:
+        if epoch >= opt.start_checkpoint_at and epoch % opt.save_interval == 0:
             trainer.drop_checkpoint(model_opt, epoch, deepcopy(fields), valid_stats, 0)
 
 
