@@ -95,9 +95,20 @@ def fix_prior(model_opt):
     if not hasattr(model_opt, "relu_dropout"):
         model_opt.relu_dropout = model_opt.dropout
 
+def average_checkpoint_weight(checkpoints):
+    from copy import deepcopy
+    base_checkpoint = deepcopy(checkpoints[0])
+    num = len(checkpoints)
+    for key in base_checkpoint["model"]:
+        base_checkpoint["model"][key] = torch.sum(torch.stack([c["model"][key] for c in checkpoints]), 0) / num
+    for key in base_checkpoint["generator"]:
+        base_checkpoint["generator"][key] = torch.sum(torch.stack([c["generator"][key] for c in checkpoints]), 0) / num
+    return base_checkpoint
+
 def load_test_model(opt, dummy_opt):
-    checkpoint = torch.load(opt.model,
-                            map_location=lambda storage, loc: storage)
+    model_names = opt.model.split(";")
+    checkpoints = [torch.load(model_name, map_location=lambda storage, loc:storage) for model_name in model_names]
+    checkpoint = average_checkpoint_weight(checkpoints)
     model_opt = checkpoint['opt']
     fix_prior(model_opt)
     fields = onmt.io.load_fields_from_vocab(checkpoint['vocab'],
