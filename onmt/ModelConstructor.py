@@ -108,7 +108,10 @@ def average_checkpoint_weight(checkpoints):
 def load_test_model(opt, dummy_opt):
     model_names = opt.model.split(";")
     checkpoints = [torch.load(model_name, map_location=lambda storage, loc:storage) for model_name in model_names]
-    checkpoint = average_checkpoint_weight(checkpoints)
+    if len(checkpoints) > 1:
+        checkpoint = average_checkpoint_weight(checkpoints)
+    else:
+        checkpoint = checkpoints[0]
     model_opt = checkpoint['opt']
     fix_prior(model_opt)
     fields = onmt.io.load_fields_from_vocab(checkpoint['vocab'],
