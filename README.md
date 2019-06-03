@@ -1,4 +1,4 @@
-# 11731_final
+# Generalized Data Augmentation for Low-Resource Translation
 
 Preprocess the dataset to generate data.pt files.
 ```bash
